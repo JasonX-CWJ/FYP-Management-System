@@ -1,8 +1,33 @@
-import { Container } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { 
+    InputAdornment,
+    Container,
+    Grow,
+    Typography,
+    Paper,
+    TextField,
+} from "@material-ui/core";
+import { Search as SearchIcon } from "@material-ui/icons";
+
 
 const InfoGuideline = () => {
-    return <Container maxWidth={false}>Info and Guidelines here</Container>;
+
+    // //Table Arrange States
+    // const [order, setOrder] = useState("desc");
+    // const [orderBy, setOrderBy] = useState("createdAt");
+    
+
+    return (
+        <Grow in>
+            <Container maxWidth={false}>
+            <Typography variant="h5"> All Info and Guidelines</Typography>
+            <div></div>
+            <Paper>
+            
+            </Paper>
+            </Container>
+        </Grow>
+    );
 };
 
 export default InfoGuideline;
