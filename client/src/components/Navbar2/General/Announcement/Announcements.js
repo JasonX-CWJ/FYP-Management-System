@@ -218,7 +218,7 @@ const Announcements = () => {
                             </TableHead>
                             <TableBody>
                                 {handleAfterRowChange().map((row) => (
-                                    <AnnouncementDetails row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                                    <AnnouncementDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
                                 ))}
                             </TableBody>
                         </Table>
