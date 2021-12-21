@@ -23,7 +23,7 @@ const InfoGuideline = () => {
             <Typography variant="h5"> All Info and Guidelines</Typography>
             <div></div>
             <Paper>
-            
+            <Typography variant="h5">Test</Typography>
             </Paper>
             </Container>
         </Grow>
