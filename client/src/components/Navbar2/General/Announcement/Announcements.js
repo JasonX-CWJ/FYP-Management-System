@@ -96,6 +96,31 @@ const Announcements = () => {
         },
     });
 
+    // In case you need to use buttons to filter the departments
+    // const [category, setCategory] = useState({
+    //     fn: (items) => {
+    //         return items.filter((x) => x.name.toLowerCase().includes("cheng"));
+    //     },
+    // });
+
+    // const handleSearch = (event) => {
+    //     let target = event.target;
+    //     setFilter({
+    //         fn: (items) => {
+    //             switch (target.value) {
+    //                 case "Networking":
+    //                     return items.filter((x) => x.name.toLowerCase().includes("cheng"));
+    //                 case "SE":
+    //                 case "AI":
+    //                 case "IT":
+    //                 case "Data Science":
+    //                 default:
+    //                     return items;
+    //             }
+    //         },
+    //     });
+    // };
+
     const handleChangeRows = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
@@ -109,6 +134,7 @@ const Announcements = () => {
 
     const handleAfterRowChange = () => {
         return stableSort(filter.fn(posts), getComparator(order, orderBy)).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+        //  return stableSort(filter.fn(category.fn(posts)), getComparator(order, orderBy)).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
     };
 
     function stableSort(array, comparator) {
@@ -228,6 +254,7 @@ const Announcements = () => {
                         page={page}
                         rowsPerPageOptions={pages}
                         rowsPerPage={rowsPerPage}
+                        // count={category.fn(posts).length}
                         count={posts.length}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRows}
