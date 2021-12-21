@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
 import userRouter from "./routes/user.js";
+import infoGuideRouter from "./routes/infoGuide.js";
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 app.use("/user", userRouter);
+app.use("/info", infoGuideRouter);
 
 const PORT = process.env.PORT || 5000;
 

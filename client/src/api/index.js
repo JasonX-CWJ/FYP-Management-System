@@ -17,3 +17,8 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);
+
+export const fetchInfoGuide = () => API.get("/info");
+export const createInfoGuide = (newInfoGuide) => API.post("/info", newInfoGuide);
+export const updateInfoGuide = (id, updatedInfoGuide) => API.patch(`/info/${id}`, updatedInfoGuide);
+export const deleteInfoGuide = (id) => API.delete(`/info/${id}`);

@@ -30,6 +30,7 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(e);
         if (currentId === 0) {
             dispatch(createPost({ ...postData, name: user?.result?.name }));
         } else {
