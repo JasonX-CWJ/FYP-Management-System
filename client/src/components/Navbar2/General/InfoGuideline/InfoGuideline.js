@@ -10,9 +10,11 @@ const InfoGuideline = () => {
     return (
         <Grow in>
             <Container maxWidth={false}>
-                <Typography variant="h5"> All Info and Guidelines</Typography>
-                <div></div>
-                <Paper></Paper>
+            <Typography variant="h5"> All Info and Guidelines</Typography>
+            <div></div>
+            <Paper>
+              <Typography variant="h5">Test</Typography>
+            </Paper>
             </Container>
         </Grow>
     );
