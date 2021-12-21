@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
+import Alert from "@material-ui/lab/Alert";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import Icon from "./icon";
@@ -25,6 +26,7 @@ const SignUp = () => {
 
     const [showConfirmPassword, setConfirmShowPassword] = useState(false);
     const handleShowConfirmPassword = () => setConfirmShowPassword(!showConfirmPassword);
+    const error = useSelector((state) => state.auth.errors);
 
     const switchMode = () => {
         setForm(initialState);
@@ -63,6 +65,7 @@ const SignUp = () => {
     return (
         <Container component="main" maxWidth="xs">
             <Paper className={classes.paper} elevation={3}>
+                {error && <Alert severity="error">{error}</Alert>}
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>

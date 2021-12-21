@@ -1,4 +1,4 @@
-import { AUTH } from "../constants/actionTypes";
+import { AUTH, ERROR } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
 export const signin = (formData, router) => async (dispatch) => {
@@ -10,7 +10,10 @@ export const signin = (formData, router) => async (dispatch) => {
         router.push("/");
         window.location.reload();
     } catch (error) {
-        console.log(error);
+        if (error.response) {
+            let errorMessage = error.response.data.message;
+            dispatch({ type: ERROR, errorMessage });
+        }
     }
 };
 
@@ -23,6 +26,9 @@ export const signup = (formData, router) => async (dispatch) => {
         router.push("/");
         window.location.reload();
     } catch (error) {
-        console.log(error);
+        if (error.response) {
+            let errorMessage = error.response.data.message;
+            dispatch({ type: ERROR, errorMessage });
+        }
     }
 };
