@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Home, SubjectOutlined } from "@material-ui/icons";
+import { SubjectOutlined } from "@material-ui/icons";
 import { Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography } from "@material-ui/core";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 
@@ -147,6 +147,7 @@ const LeftBar = ({ sideState, setSideState }) => {
         }
 
         setUser(JSON.parse(localStorage.getItem("profile")));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     const handleDrawerToggle = () => {
@@ -168,12 +169,12 @@ const LeftBar = ({ sideState, setSideState }) => {
                         history.push("/");
                         handleDrawerToggle();
                     }}
-                    className={location.pathname == "/" ? classes.active : null}
+                    className={location.pathname === "/" ? classes.active : null}
                 >
                     <ListItemIcon>
-                        <SubjectOutlined className={location.pathname == "/" ? classes.iconFocused : classes.icon} />
+                        <SubjectOutlined className={location.pathname === "/" ? classes.iconFocused : classes.icon} />
                     </ListItemIcon>
-                    <ListItemText primary="Overview" className={location.pathname == "/" ? null : classes.text} />
+                    <ListItemText primary="Overview" className={location.pathname === "/" ? null : classes.text} />
                 </ListItem>
                 <Divider variant="fullWidth" className={classes.divider} />
                 {menuItemsGeneral.map((item) => (
@@ -184,10 +185,10 @@ const LeftBar = ({ sideState, setSideState }) => {
                             history.push(item.path);
                             handleDrawerToggle();
                         }}
-                        className={location.pathname == item.path ? classes.active : null}
+                        className={location.pathname === item.path ? classes.active : null}
                     >
-                        <ListItemIcon>{location.pathname == item.path ? item.iconFocused : item.icon}</ListItemIcon>
-                        <ListItemText primary={item.text} className={location.pathname == item.path ? null : classes.text} />
+                        <ListItemIcon>{location.pathname === item.path ? item.iconFocused : item.icon}</ListItemIcon>
+                        <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
                     </ListItem>
                 ))}
                 {user?.result && (
@@ -201,10 +202,10 @@ const LeftBar = ({ sideState, setSideState }) => {
                                     history.push(item.path);
                                     handleDrawerToggle();
                                 }}
-                                className={location.pathname == item.path ? classes.active : null}
+                                className={location.pathname === item.path ? classes.active : null}
                             >
-                                <ListItemIcon>{location.pathname == item.path ? item.iconFocused : item.icon}</ListItemIcon>
-                                <ListItemText primary={item.text} className={location.pathname == item.path ? null : classes.text} />
+                                <ListItemIcon>{location.pathname === item.path ? item.iconFocused : item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
                             </ListItem>
                         ))}
                     </>
@@ -220,11 +221,11 @@ const LeftBar = ({ sideState, setSideState }) => {
                                     history.push(item.path);
                                     handleDrawerToggle();
                                 }}
-                                className={location.pathname == item.path ? classes.active : null}
+                                className={location.pathname === item.path ? classes.active : null}
                             >
                                 {" "}
-                                <ListItemIcon>{location.pathname == item.path ? item.iconFocused : item.icon}</ListItemIcon>
-                                <ListItemText primary={item.text} className={location.pathname == item.path ? null : classes.text} />
+                                <ListItemIcon>{location.pathname === item.path ? item.iconFocused : item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
                             </ListItem>
                         ))}
                     </div>

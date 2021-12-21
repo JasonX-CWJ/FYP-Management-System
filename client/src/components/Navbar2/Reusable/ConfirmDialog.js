@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography, makeStyles, IconButton } from "@material-ui/core";
-import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     dialog: {

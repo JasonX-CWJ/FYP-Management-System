@@ -1,6 +1,6 @@
 import { makeStyles, Box, TableRow, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
 import React, { useState } from "react";
-import { Delete as DeleteIcon, Search as SearchIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
+import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({

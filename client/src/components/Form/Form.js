@@ -17,16 +17,16 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
         if (post) setPostData(post);
     }, [post]);
 
-    useEffect(() => {
-        if (currentId == null) {
-            clear();
-        }
-    }, [currentId]);
-
-    const clear = () => {
+    const clearForm = () => {
         setCurrentId(0);
         setPostData({ title: "", message: "", tags: "", selectedFile: "" });
     };
+
+    useEffect(() => {
+        if (currentId == null) {
+            clearForm();
+        } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentId]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +37,7 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
         }
         setOpenPopup(false);
         setNotify({ isOpen: true, message: "Successfully Submitted!", type: "success" });
-        clear();
+        clearForm();
     };
 
     if (!user?.result?.name) {
@@ -83,7 +83,7 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit
                     </Button>
-                    <Button variant="contained" color="secondary" size="large" onClick={clear} fullWidth>
+                    <Button variant="contained" color="secondary" size="large" onClick={clearForm} fullWidth>
                         Clear
                     </Button>
                 </div>

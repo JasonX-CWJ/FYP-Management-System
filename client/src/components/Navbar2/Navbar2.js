@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AppBar, makeStyles, Button, Toolbar, Typography, Avatar, IconButton } from "@material-ui/core";
-import { Link, useHistory, useLocation, Router } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { Menu } from "@material-ui/icons";
 
 const drawerWidth = 240;

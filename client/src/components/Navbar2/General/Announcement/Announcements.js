@@ -139,7 +139,7 @@ const Announcements = () => {
         let target = event.target;
         setFilter({
             fn: (items) => {
-                if (target.value == "") return items;
+                if (target.value === "") return items;
                 else return items.filter((x) => x.title.toLowerCase().includes(target.value.toLowerCase()) || x.name.toLowerCase().includes(target.value.toLowerCase()));
             },
         });

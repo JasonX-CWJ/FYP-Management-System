@@ -1,4 +1,4 @@
-import { Paper, Container, Grid, makeStyles } from "@material-ui/core";
+import { Container, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import AnnouncementCard from "./Cards/AnnouncementCard";
 import MeetingsCompletedCard from "./Cards/MeetingsCompletedCard";
@@ -8,7 +8,7 @@ import UserDetailCard from "./Cards/UserDetailCard";
 
 const useStyles = makeStyles((theme) => {});
 const Home2 = () => {
-    const classes = useStyles();
+    // const classes = useStyles();
     return (
         <Container maxWidth={false}>
             <Grid container spacing={2}>
