@@ -33,7 +33,9 @@ export const signup = async (req, res) => {
 
         if (oldUser) return res.status(400).json({ message: "User already exists" });
 
+        console.log(password.length);
         if (password.length < 6) return res.status(400).json({ message: "Password too short! (Minimum 6 characters)" });
+
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
@@ -49,9 +51,12 @@ export const signup = async (req, res) => {
 };
 
 export const updatePass = async (req, res) => {
-    const { password, id } = req.body;
+    const { password, confirmPassword, id } = req.body;
 
     try {
+        if (password !== confirmPassword) return res.status(400).json({ message: "Passwords do not match!" });
+        if (password.length < 6) return res.status(400).json({ message: "Password too short! (Minimum 6 characters)" });
+
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const result = await User.findByIdAndUpdate(id, { password: hashedPassword, isFirstLogin: false });
