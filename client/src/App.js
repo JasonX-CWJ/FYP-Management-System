@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import ResetPass from "./components/Auth/ResetPass";
+import Home2 from "./components/Navbar2/Home2";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
@@ -25,7 +26,7 @@ const App = () => {
                 <LeftBar /> */}
             <Layout>
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" exact component={Home2} />
                     <Route path="/auth" exact component={Auth} />
                     <Route path="/reset-password" exact component={ResetPass} />
                     <Route path="/announcements" exact component={Announcements} />
