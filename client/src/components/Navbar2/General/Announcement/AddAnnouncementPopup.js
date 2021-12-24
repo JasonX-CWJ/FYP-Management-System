@@ -22,6 +22,7 @@ const AddAnnouncementPopup = ({ openPopup, setOpenPopup, setCurrentId, children 
                     <Button
                         variant="contained"
                         color="secondary"
+                        style={{ height: "4vh", width: "4vw" }}
                         onClick={() => {
                             setOpenPopup(false);
                             setCurrentId(null);
@@ -31,7 +32,7 @@ const AddAnnouncementPopup = ({ openPopup, setOpenPopup, setCurrentId, children 
                     </Button>
                 </div>
             </DialogTitle>
-            <DialogContent dividers="true">{children}</DialogContent>
+            <DialogContent dividers>{children}</DialogContent>
         </Dialog>
     );
 };

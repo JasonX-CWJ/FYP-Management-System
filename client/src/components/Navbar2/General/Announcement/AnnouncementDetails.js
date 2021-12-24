@@ -1,4 +1,4 @@
-import { makeStyles, Box, TableRow, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
+import { makeStyles, Paper, TableRow, Container, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
 import React, { useState } from "react";
 import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
 import moment from "moment";
@@ -41,7 +41,7 @@ const AnnouncementDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
     return (
         <React.Fragment>
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell>
+                <TableCell style={{ maxWidth: 10 }}>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpenDetail(!openDetail)}>
                         {openDetail ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
@@ -59,56 +59,80 @@ const AnnouncementDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
                         );
                     })}
                 </TableCell>
-                <TableCell className={classes.tableCellMobile}>{row.name}</TableCell>
-                <TableCell>{row.department}</TableCell>
-                <TableCell className={classes.tableCell}>{moment(row.createdAt).fromNow()}</TableCell>
-                <TableCell className={classes.tableCell}>
-                    {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (
-                        <Button
-                            size="small"
-                            color="secondary"
-                            onClick={() =>
-                                setConfirmDialog({
-                                    isOpen: true,
-                                    title: "Are you sure you want to delete this?",
-                                    subtitle: "You cannot undo this operation!",
-                                    onConfirm: () => {
-                                        confirmDelete(row._id);
-                                    },
-                                })
-                            }
-                        >
-                            <DeleteIcon fontSize="small" /> Delete
-                        </Button>
-                    )}
-                    {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (
-                        <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            <EditIcon fontSize="small" /> Edit
-                        </Button>
+                <TableCell className={classes.tableCell}>{row.name}</TableCell>
+                <TableCell className={classes.tableCellMobile}>{row.department}</TableCell>
+                <TableCell className={classes.tableCellMobile}>{moment(row.createdAt).fromNow()}</TableCell>
+                <TableCell className={classes.tableCellMobile}>
+                    {user?.result?._id === row?.creator && (
+                        <>
+                            <Button
+                                size="small"
+                                color="secondary"
+                                onClick={() =>
+                                    setConfirmDialog({
+                                        isOpen: true,
+                                        title: "Are you sure you want to delete this?",
+                                        subtitle: "You cannot undo this operation!",
+                                        onConfirm: () => {
+                                            confirmDelete(row._id);
+                                        },
+                                    })
+                                }
+                            >
+                                <DeleteIcon fontSize="small" /> Delete
+                            </Button>
+                            <Button size="small" color="primary" onClick={() => openForm(row)}>
+                                <EditIcon fontSize="small" /> Edit
+                            </Button>
+                        </>
                     )}
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={20}>
                     <Collapse in={openDetail} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 12 }}>
-                            <Typography variant="h6">{row.title}</Typography>
-                            <Typography variant="body2">
-                                By {row.name}, {moment(row.createdAt).fromNow()}
-                            </Typography>
-                            <div></div>
-                            <div></div>
-                            <Typography variant="body2">
-                                {row.message.split("\n").map((item, idx) => {
-                                    return (
-                                        <React.Fragment key={idx}>
-                                            {item}
-                                            <br />
-                                        </React.Fragment>
-                                    );
-                                })}
-                            </Typography>
-                        </Box>
+                        <Paper style={{ margin: "10px 0px" }}>
+                            <Container style={{ padding: "10px 20px" }}>
+                                {user?.result?._id === row?.creator && (
+                                    <>
+                                        <Button
+                                            size="small"
+                                            color="secondary"
+                                            onClick={() =>
+                                                setConfirmDialog({
+                                                    isOpen: true,
+                                                    title: "Are you sure you want to delete this?",
+                                                    subtitle: "You cannot undo this operation!",
+                                                    onConfirm: () => {
+                                                        confirmDelete(row._id);
+                                                    },
+                                                })
+                                            }
+                                        >
+                                            <DeleteIcon fontSize="small" /> Delete
+                                        </Button>
+                                        <Button size="small" color="primary" onClick={() => openForm(row)}>
+                                            <EditIcon fontSize="small" /> Edit
+                                        </Button>
+                                    </>
+                                )}
+                                <Typography variant="h5">{row.title}</Typography>
+                                <Typography variant="subtitle2">
+                                    By {row.name}, {moment(row.createdAt).fromNow()}
+                                </Typography>
+                                <br></br>
+                                <Typography variant="body2">
+                                    {row.message.split("\n").map((item, idx) => {
+                                        return (
+                                            <React.Fragment key={idx}>
+                                                {item}
+                                                <br />
+                                            </React.Fragment>
+                                        );
+                                    })}
+                                </Typography>
+                            </Container>
+                        </Paper>
                     </Collapse>
                 </TableCell>
             </TableRow>

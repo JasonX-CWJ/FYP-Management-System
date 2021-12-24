@@ -60,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
 const headCells = [
     { id: "title", label: "Title", mobileHidden: false },
     { id: "message", label: "Message", mobileHidden: true },
-    { id: "name", label: "From", mobileHidden: true },
-    { id: "department", label: "Department", mobileHidden: false },
-    { id: "createdAt", label: "Date", mobileHidden: false },
+    { id: "name", label: "From", mobileHidden: false },
+    { id: "department", label: "Department", mobileHidden: true },
+    { id: "createdAt", label: "Date", mobileHidden: true },
 ];
 
 const Announcements = () => {
