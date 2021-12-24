@@ -50,7 +50,7 @@ const AnnouncementDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
                     {row.title}
                 </TableCell>
                 <TableCell className={classes.tableCellMobile}>
-                    {row.message.split("\n").map((item, idx) => {
+                    {slicedMessage(row.message).map((item, idx) => {
                         return (
                             <React.Fragment key={idx}>
                                 {item}
@@ -115,5 +115,16 @@ const AnnouncementDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
         </React.Fragment>
     );
 };
+
+function slicedMessage(message) {
+    var slicedMessage = message.split("\n");
+    if (slicedMessage.length > 3) {
+        slicedMessage = slicedMessage.slice(0, 2);
+        slicedMessage.push("...");
+        return slicedMessage;
+    } else {
+        return slicedMessage.slice(0, 3);
+    }
+}
 
 export default AnnouncementDetails;
