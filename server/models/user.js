@@ -8,8 +8,8 @@ const userSchema = mongoose.Schema({
     id: { type: String },
     isFirstLogin: { type: Boolean, default: true },
     role: { type: String, enum: ROLE, default: ROLE.STUDENT },
-    studentData: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
-    lecturerData: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" }],
+    studentData: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
+    lecturerData: { type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" },
 });
 
 export default mongoose.model("User", userSchema);
