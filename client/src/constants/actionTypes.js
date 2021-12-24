@@ -6,3 +6,4 @@ export const FETCH_ALL = "FETCH_ALL";
 export const AUTH = "AUTH";
 export const LOGOUT = "LOGOUT";
 export const ERROR = "ERROR";
+export const UPDATE_PASS = "UPDATE_PASS";
