@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AddAnnouncementPopup = ({ openPopup, setOpenPopup, setCurrentId, children }) => {
+const AddInfoGuidelinePopup = ({ openPopup, setOpenPopup, setCurrentId, children }) => {
     const classes = useStyles();
     return (
         <Dialog open={openPopup} maxWidth="md" classes={{ paper: classes.dialog }}>
             <DialogTitle>
                 <div style={{ display: "flex" }}>
                     <Typography variant="h4" style={{ flexGrow: 1 }}>
-                        New Announcement
+                        New Info Guideline
                     </Typography>
                     <Button
                         variant="contained"
@@ -31,9 +31,9 @@ const AddAnnouncementPopup = ({ openPopup, setOpenPopup, setCurrentId, children 
                     </Button>
                 </div>
             </DialogTitle>
-            <DialogContent dividers={true}>{children}</DialogContent>
+            <DialogContent dividers= {true} >{children}</DialogContent>
         </Dialog>
     );
 };
 
-export default AddAnnouncementPopup;
+export default AddInfoGuidelinePopup;
