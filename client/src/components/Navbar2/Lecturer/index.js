@@ -1,5 +1,5 @@
 import LecturerProfile from "./LecturerProfile";
-import lectProjectDetails from "./lectProjectDetails";
+import lectProjectDetails from "./lectProjectDetails/lectProjectDetails";
 import lectMeetings from "./lectMeetings";
 import lectFileSubmitted from "./lectFileSubmitted";
 import lectAssignMark from "./lectAssignMark";

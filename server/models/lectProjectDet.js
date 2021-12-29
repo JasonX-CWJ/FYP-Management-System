@@ -14,6 +14,6 @@ const lectProjectDetSchema = mongoose.Schema({
     status: String, //to know if it is approved or not by admin
 });
 
-var LectProjectDet = mongoose.model("LectProjectDet", lectProjectDetSchema);
+var lectProjectDet = mongoose.model("LectProjectDet", lectProjectDetSchema);
 
-export default LectProjectDet;
+export default lectProjectDet;
