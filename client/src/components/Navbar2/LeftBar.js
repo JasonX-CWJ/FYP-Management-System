@@ -86,13 +86,13 @@ const LeftBar = ({ sideState, setSideState }) => {
             text: "Project Details",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "project-detail",
+            path: "/project-detail",
         },
         {
             text: "Meetings",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "meetings",
+            path: "/meetings",
         },
         {
             text: "File Submission",
@@ -101,6 +101,40 @@ const LeftBar = ({ sideState, setSideState }) => {
             path: "/file-submission",
         },
     ];
+
+    const menuItemsLecturer = [
+        {
+            text: "Lecturer Profile",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lectprofile",
+        },
+        {
+            text: "Project Details",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lectproject-detail",
+        },
+        {
+            text: "Meetings",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lectmeetings",
+        },
+        {
+            text: "File Submitted",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lectfile-submitted",
+        },
+        {
+            text: "Assign Mark",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lectassign-mark",
+        },
+    ];
+
     const menuItemsAdmin = [
         {
             text: "Lecturer Repository",
@@ -176,6 +210,32 @@ const LeftBar = ({ sideState, setSideState }) => {
                     </ListItemIcon>
                     <ListItemText primary="Overview" className={location.pathname === "/" ? null : classes.text} />
                 </ListItem>
+                <ListItem
+                    button
+                    onClick={() => {
+                        history.push("/lecturer");
+                        handleDrawerToggle();
+                    }}
+                    className={location.pathname === "/lecturer" ? classes.active : null}
+                >
+                    <ListItemIcon>
+                        <SubjectOutlined className={location.pathname === "/lecturer" ? classes.iconFocused : classes.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Overview Lecturer" className={location.pathname === "/lecturer" ? null : classes.text} />
+                </ListItem>
+                <ListItem
+                    button
+                    onClick={() => {
+                        history.push("/admin");
+                        handleDrawerToggle();
+                    }}
+                    className={location.pathname === "/admin" ? classes.active : null}
+                >
+                    <ListItemIcon>
+                        <SubjectOutlined className={location.pathname === "/admin" ? classes.iconFocused : classes.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Overview Admin" className={location.pathname === "/admin" ? null : classes.text} />
+                </ListItem>
                 <Divider variant="fullWidth" className={classes.divider} />
                 {menuItemsGeneral.map((item) => (
                     <ListItem
@@ -209,6 +269,26 @@ const LeftBar = ({ sideState, setSideState }) => {
                             </ListItem>
                         ))}
                     </>
+                )}
+                {user?.result && (
+                    <div>
+                        <Divider variant="fullWidth" className={classes.divider} />
+                        {menuItemsLecturer.map((item) => (
+                            <ListItem
+                                button
+                                key={item.text}
+                                onClick={() => {
+                                    history.push(item.path);
+                                    handleDrawerToggle();
+                                }}
+                                className={location.pathname === item.path ? classes.active : null}
+                            >
+                                {" "}
+                                <ListItemIcon>{location.pathname === item.path ? item.iconFocused : item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
+                            </ListItem>
+                        ))}
+                    </div>
                 )}
                 {user?.result && (
                     <div>

@@ -6,6 +6,7 @@ import Auth from "./components/Auth/Auth";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
+import { LecturerProfile, lectProjectDetails, lectMeetings, lectFileSubmitted, lectAssignMark } from "./components/Navbar2/Lecturer";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -26,13 +27,22 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/auth" exact component={Auth} />
+                    {/* General */}
                     <Route path="/announcements" exact component={Announcements} />
                     <Route path="/info-and-guidelines" exact component={InfoGuideline} />
                     <Route path="/project-repository" exact component={ProjectRepo} />
-                    <Route path="/file-submission" exact component={FileSubmission} />
-                    <Route path="/meetings" exact component={Meetings} />
-                    <Route path="/project-detail" exact component={ProjectDetails} />
+                    {/* Student Section */}
                     <Route path="/profile" exact component={StudentProfile} />
+                    <Route path="/project-detail" exact component={ProjectDetails} />
+                    <Route path="/meetings" exact component={Meetings} />
+                    <Route path="/file-submission" exact component={FileSubmission} />
+                    {/* Lecturer Section */} 
+                    <Route path="/lectprofile" exact component={LecturerProfile} />
+                    <Route path="/lectproject-detail" exact component={lectProjectDetails} />
+                    <Route path="/lectmeetings" exact component={lectMeetings} />
+                    <Route path="/lectfile-submitted" exact component={lectFileSubmitted} />
+                    <Route path="/lectassign-mark" exact component={lectAssignMark} />
+                    {/* Admin Section */} 
                 </Switch>
             </Layout>
             {/* </Container> */}
