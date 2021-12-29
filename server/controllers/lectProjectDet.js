@@ -33,11 +33,11 @@ export const updateLectProjectDet = async (req, res) => {
     const { department, title, description, creator, potStakeholder, tool, noOfStud } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No LectProjectDet with id: ${id}`);
-    const updateLectProjectDet = { department, title, description, creator, potStakeholder, tool, noOfStud, _id: id };
+    const updatedLectProjectDet = { department, title, description, creator, potStakeholder, tool, noOfStud, _id: id };
 
-    await LectProjectDet.findByIdAndUpdate(id, updateLectProjectDet, { new: true });
+    await LectProjectDet.findByIdAndUpdate(id, updatedLectProjectDet, { new: true });
 
-    res.json(updateLectProjectDet);
+    res.json(updatedLectProjectDet);
 };
 
 export const deleteLectProjectDet = async (req, res) => {
