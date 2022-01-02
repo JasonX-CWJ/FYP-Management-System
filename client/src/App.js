@@ -7,6 +7,7 @@ import Auth from "./components/Auth/Auth";
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
 import { LecturerProfile, lectProjectDetails, lectMeetings, lectFileSubmitted, lectAssignMark } from "./components/Navbar2/Lecturer";
+import { panelAssignMark } from "./components/Navbar2/LPanel";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -42,6 +43,8 @@ const App = () => {
                     <Route path="/lectmeetings" exact component={lectMeetings} />
                     <Route path="/lectfile-submitted" exact component={lectFileSubmitted} />
                     <Route path="/lectassign-mark" exact component={lectAssignMark} />
+                    {/* Panel Section */} 
+                    <Route path="/panelassign-mark" exact component={panelAssignMark} />
                     {/* Admin Section */} 
                 </Switch>
             </Layout>
