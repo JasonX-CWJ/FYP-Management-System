@@ -135,6 +135,15 @@ const LeftBar = ({ sideState, setSideState }) => {
         },
     ];
 
+    const menuItemsPanel = [
+        {
+            text: "Panel Assign Mark",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/panelassign-mark",
+        },
+    ];
+
     const menuItemsAdmin = [
         {
             text: "Lecturer Repository",
@@ -274,6 +283,26 @@ const LeftBar = ({ sideState, setSideState }) => {
                     <div>
                         <Divider variant="fullWidth" className={classes.divider} />
                         {menuItemsLecturer.map((item) => (
+                            <ListItem
+                                button
+                                key={item.text}
+                                onClick={() => {
+                                    history.push(item.path);
+                                    handleDrawerToggle();
+                                }}
+                                className={location.pathname === item.path ? classes.active : null}
+                            >
+                                {" "}
+                                <ListItemIcon>{location.pathname === item.path ? item.iconFocused : item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
+                            </ListItem>
+                        ))}
+                    </div>
+                )}
+                {user?.result && (
+                    <div>
+                        <Divider variant="fullWidth" className={classes.divider} />
+                        {menuItemsPanel.map((item) => (
                             <ListItem
                                 button
                                 key={item.text}
