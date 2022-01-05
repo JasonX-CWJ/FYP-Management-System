@@ -117,10 +117,10 @@ const InfoGuideline = () => {
             </TableContainer>
             </Paper>
             <AddInfoGuidelinePopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
-                    <InfoGuidelineForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
-                </AddInfoGuidelinePopup>
-                <Notification notify={notify} setNotify={setNotify} />
-                <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
+                <InfoGuidelineForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+            </AddInfoGuidelinePopup>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             </Container>
         </Grow>
     );
