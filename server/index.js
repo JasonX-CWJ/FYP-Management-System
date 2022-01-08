@@ -7,7 +7,15 @@ import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRouter from "./routes/user.js";
 import infoGuideRouter from "./routes/infoGuide.js";
+
+// Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
+//import lectMeetings from "./routes/lectMeetings.js"; 
+//import lectFileSubmitted from "./routes/lectFileSubmitted.js"
+//import lectAssignMark from "./routes/lectAssignMark.js"
+
+//Panel
+//import panelAssignMark from "./routes/panelAssignMark.js"
 
 const app = express();
 dotenv.config();
@@ -19,7 +27,15 @@ app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRouter);
 app.use("/info", infoGuideRouter);
+
+//Lecturer
 app.use("/lectProjectDet", lectProjectDet);
+//app.use("/lectMeetings", lectMeetings); - all done just uncomment
+//app.use("/lectFileSubmitted", lectFileSubmitted); - progressing
+//app.use("/lectAssignMark", lectAssignMark); - untouched
+
+//Panel
+//app.use("/panelAssignMark", panelAssignMark); - untouched
 
 const PORT = process.env.PORT || 5000;
 

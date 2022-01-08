@@ -11,7 +11,7 @@ const lectProjectDetSchema = mongoose.Schema({
     potStakeholder: String, //pot = potential
     tool: String,
     noOfStud: String,
-    status: String, //to know if it is approved or not by admin
+    status: String, //to know if it is approved or not by admin - not included anywhere yet
 });
 
 var lectProjectDet = mongoose.model("LectProjectDet", lectProjectDetSchema);
