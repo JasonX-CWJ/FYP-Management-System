@@ -4,9 +4,13 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import postRoutes from "./routes/posts.js";
+//General
 import userRouter from "./routes/user.js";
+import postRoutes from "./routes/posts.js";
 import infoGuideRouter from "./routes/infoGuide.js";
+
+//Admin
+
 
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
@@ -24,18 +28,19 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.use("/posts", postRoutes);
+//General
 app.use("/user", userRouter);
+app.use("/posts", postRoutes);
 app.use("/info", infoGuideRouter);
 
 //Lecturer
 app.use("/lectProjectDet", lectProjectDet);
 //app.use("/lectMeetings", lectMeetings); - all done just uncomment
-//app.use("/lectFileSubmitted", lectFileSubmitted); - progressing
-//app.use("/lectAssignMark", lectAssignMark); - untouched
+//app.use("/lectFileSubmitted", lectFileSubmitted); - all done just uncomment
+//app.use("/lectAssignMark", lectAssignMark); - all done just uncomment
 
 //Panel
-//app.use("/panelAssignMark", panelAssignMark); - untouched
+//app.use("/panelAssignMark", panelAssignMark); - progressing
 
 const PORT = process.env.PORT || 5000;
 
