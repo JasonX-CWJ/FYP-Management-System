@@ -14,6 +14,6 @@ const lectAssignMarkSchema = mongoose.Schema({
     vivaMark: String, //assign mark base on weightage of admin for viva
 });
 
-var lectAssignMark = mongoose.model("lectAssignMark", lectAssignMarkSchema);
+var lectAssignMark = mongoose.model("LectAssignMark", lectAssignMarkSchema);
 
 export default lectAssignMark;
