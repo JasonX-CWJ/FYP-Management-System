@@ -45,7 +45,13 @@ const App = () => {
                     <Route path="/lectassign-mark" exact component={lectAssignMark} />
                     {/* Panel Section */} 
                     <Route path="/panelassign-mark" exact component={panelAssignMark} />
-                    {/* Admin Section */} 
+                    {/* Admin Section; Note-add path in LeftBar.js */}
+                    {/* <Route path="/lecturer-repo" exact component={LecturerRepo} /> */}
+                    {/* //<Route path="/student-repo" exact component={StudentRepo} /> */}
+                    {/* <Route path="/rubric" exact component={RubricWeight} /> */}
+                    {/* <Route path="/guide-update" exact component={GuidelineUpdate} /> */}
+                    {/* <Route path="/reports" exact component={Reports} /> */}
+                    {/* <Route path="/sched-panel" exact component={SchedPanel} /> */}
                 </Switch>
             </Layout>
             {/* </Container> */}

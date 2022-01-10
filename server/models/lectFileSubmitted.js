@@ -8,6 +8,6 @@ const lectFileSubmittedSchema = mongoose.Schema({
     selectedFile: String, //should fetch the file of the student submitted (from Student module)
 });
 
-var lectFileSubmitted = mongoose.model("lectFileSubmitted", lectFileSubmittedSchema);
+var lectFileSubmitted = mongoose.model("LectFileSubmitted", lectFileSubmittedSchema);
 
 export default lectFileSubmitted;

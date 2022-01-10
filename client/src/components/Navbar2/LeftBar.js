@@ -170,6 +170,11 @@ const LeftBar = ({ sideState, setSideState }) => {
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
         },
+        {
+            text: "Schedule Panel",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+        },
     ];
 
     const logout = () => {
