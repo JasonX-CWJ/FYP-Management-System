@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const rubricWeightSchema = mongoose.Schema({
+    //try to re-review from prototype
+    //no connection with other collection supposedly
     creator: String, //takes the userId
     fypSess: String, //change to array to accepf FYP1 and FYP2 i think
     submSess: String, //change to array to accept Monitor and Viva i think

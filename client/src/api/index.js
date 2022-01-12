@@ -33,4 +33,10 @@ export const createLectProjectDet = (newLectProjectDet) => API.post("/lectProjec
 export const updateLectProjectDet = (id, updatedLectProjectDet) => API.patch(`/lectProjectDet/${id}`, updatedLectProjectDet);
 export const deleteLectProjectDet = (id) => API.delete(`/lectProjectDet/${id}`);
 
+//panel section
+export const fetchPanelAssignMark = () => API.get("/panelAssignMark");
+export const createPanelAssignMark = (newPanelAssignMark) => API.post("/panelAssignMark", newPanelAssignMark);
+export const updatePanelAssignMark = (id, updatedPanelAssignMark) => API.patch(`/panelAssignMark/${id}`, updatedPanelAssignMark);
+export const deletePanelAssignMark = (id) => API.delete(`/panelAssignMark/${id}`);
+
 //admin section

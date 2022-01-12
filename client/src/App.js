@@ -6,7 +6,7 @@ import Auth from "./components/Auth/Auth";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
-import { LecturerProfile, LectProjectDetails, lectMeetings, lectFileSubmitted, lectAssignMark } from "./components/Navbar2/Lecturer";
+import { LecturerProfile, LectProjectDetails, lectMeetings, lectFileSubmitted } from "./components/Navbar2/Lecturer";
 import { panelAssignMark } from "./components/Navbar2/LPanel";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
@@ -42,14 +42,13 @@ const App = () => {
                     <Route path="/lectproject-detail" exact component={LectProjectDetails} />
                     <Route path="/lectmeetings" exact component={lectMeetings} />
                     <Route path="/lectfile-submitted" exact component={lectFileSubmitted} />
-                    <Route path="/lectassign-mark" exact component={lectAssignMark} />
                     {/* Panel Section */} 
                     <Route path="/panelassign-mark" exact component={panelAssignMark} />
+                    {/* <Route path="/panel-vote" exact component={panelVote} /> */}
                     {/* Admin Section; Note-add path in LeftBar.js */}
                     {/* <Route path="/lecturer-repo" exact component={LecturerRepo} /> */}
-                    {/* //<Route path="/student-repo" exact component={StudentRepo} /> */}
+                    {/* <Route path="/student-repo" exact component={StudentRepo} /> */}
                     {/* <Route path="/rubric" exact component={RubricWeight} /> */}
-                    {/* <Route path="/guide-update" exact component={GuidelineUpdate} /> */}
                     {/* <Route path="/reports" exact component={Reports} /> */}
                     {/* <Route path="/sched-panel" exact component={SchedPanel} /> */}
                 </Switch>

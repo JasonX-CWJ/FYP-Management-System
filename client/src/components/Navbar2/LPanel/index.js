@@ -1,3 +1,4 @@
-import panelAssignMark from "./panelAssignMark";
+import panelAssignMark from "./PanelAssignMark/PanelAssignMark";
+//panelVote
 
 export { panelAssignMark };
