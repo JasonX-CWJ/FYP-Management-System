@@ -16,19 +16,19 @@ import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view f
 //import lecturerRepo from "./routes/lecturerRepo.js"; - no route, controller and models yet (jason)
 //import studentRepo from "./routes/studentRepo.js"; - no route, controller and models yet (jason)
 //import rubricWeight from "./routes/rubricWeight.js"; - all done just uncomment (zana)
-//import guideUpdate from "./routes/guideUpdate.js"; - the current infoGuide; currently unfix (zana) though might just able to be removed instead entirely
 //import reports from "./routes/reports.js"; - no route, controller and models yet (jason)
 //import schedPanel from "./routes/schedPanel.js"; - progressing (zana)
 
 
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
-//import lectMeetings from "./routes/lectMeetings.js"; 
-//import lectFileSubmitted from "./routes/lectFileSubmitted.js"
-//import lectAssignMark from "./routes/lectAssignMark.js"
+//import lectMeetings from "./routes/lectMeetings.js";  - all done just uncomment
+//import lectFileSubmitted from "./routes/lectFileSubmitted.js" - all done just uncomment
+//import lectAssignMark from "./routes/lectAssignMark.js" - shift to panelAssignMark then delete
 
 //Panel
-//import panelAssignMark from "./routes/panelAssignMark.js"
+import panelAssignMark from "./routes/panelAssignMark.js" //- shift to panelVote, then acept new shift
+//import panelVote from "./routes/panelVote.js" 
 
 const app = express();
 dotenv.config();
@@ -44,22 +44,22 @@ app.use("/posts", postRoutes);
 app.use("/info", infoGuideRouter);
 //app.use("/projectRepo", projectRepo);
 
-//Lecturer
-app.use("/lectProjectDet", lectProjectDet);
-//app.use("/lectMeetings", lectMeetings); - all done just uncomment
-//app.use("/lectFileSubmitted", lectFileSubmitted); - all done just uncomment
-//app.use("/lectAssignMark", lectAssignMark); - all done just uncomment
-
-//Panel
-//app.use("/panelAssignMark", panelAssignMark); - all done just uncomment
-
 //Admin
 //app.use("/lecturerRepo", lecturerRepo);
 //app.use("/studentRepo", studentRepo);
 //app.use("/rubricWeight", rubricWeight);
-//app.use("/guideUpdate", guideUpdate);
 //app.use("/reports", reports);
 //app.use("/schedPanel", schedPanel);
+
+//Lecturer
+app.use("/lectProjectDet", lectProjectDet);
+//app.use("/lectMeetings", lectMeetings); - 
+//app.use("/lectFileSubmitted", lectFileSubmitted);
+//app.use("/lectAssignMark", lectAssignMark);
+
+//Panel
+app.use("/panelAssignMark", panelAssignMark);
+//app.use("/panelVote", panelVote);
 
 const PORT = process.env.PORT || 5000;
 

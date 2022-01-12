@@ -17,3 +17,9 @@ export const CREATE_LPD = "CREATE_LPD";
 export const UPDATE_LPD = "UPDATE_LPD";
 export const DELETE_LPD = "DELETE_LPD";
 export const FETCH_ALL_LPD = "FETCH_ALL_LPD";
+
+// panel section
+export const CREATE_PAM = "CREATE_PAM";
+export const UPDATE_PAM = "UPDATE_PAM";
+export const DELETE_PAM = "DELETE_PAM";
+export const FETCH_ALL_PAM = "FETCH_ALL_PAM";

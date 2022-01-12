@@ -127,12 +127,6 @@ const LeftBar = ({ sideState, setSideState }) => {
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
             path: "/lectfile-submitted",
         },
-        {
-            text: "Assign Mark",
-            icon: <SubjectOutlined className={classes.icon} />,
-            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "/lectassign-mark",
-        },
     ];
 
     const menuItemsPanel = [
@@ -141,6 +135,12 @@ const LeftBar = ({ sideState, setSideState }) => {
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
             path: "/panelassign-mark",
+        },
+        {
+            text: "Panel APAC Voting",
+            icon: <SubjectOutlined className={classes.icon} />,
+            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/panel-vote",
         },
     ];
 
@@ -157,11 +157,6 @@ const LeftBar = ({ sideState, setSideState }) => {
         },
         {
             text: "Weightage and Rubric",
-            icon: <SubjectOutlined className={classes.icon} />,
-            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-        },
-        {
-            text: "Guideline Update",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
         },

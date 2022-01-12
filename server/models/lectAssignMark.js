@@ -2,6 +2,7 @@
 import mongoose from "mongoose";
 
 const lectAssignMarkSchema = mongoose.Schema({
+    //recheck models. assign mark is for panel to assign during monitor and viva which views link of video and slide
     creator: String, //takes the userId
     title: String,
     studname: String,
