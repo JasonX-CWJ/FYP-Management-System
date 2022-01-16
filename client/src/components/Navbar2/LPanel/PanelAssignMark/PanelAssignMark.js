@@ -94,12 +94,7 @@ const PanelAssignMark = () => {
             <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid justify="space-between" container spacing={24}>
                     <Grid item>
-                    <Typography variant="h5"> Project Details</Typography>
-                    </Grid>
-                    <Grid item>
-                    <Button variant="contained" color="primary">
-                       Submit New Title
-                    </Button>
+                    <Typography variant="h5"> Panel Assign Mark </Typography>
                     </Grid>
                 </Grid>
             </Toolbar>

@@ -6,7 +6,7 @@ import Auth from "./components/Auth/Auth";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
-import { LecturerProfile, LectProjectDetails, lectMeetings, lectFileSubmitted } from "./components/Navbar2/Lecturer";
+import { LecturerProfile, LectProjectDetails } from "./components/Navbar2/Lecturer";
 import { panelAssignMark } from "./components/Navbar2/LPanel";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
@@ -40,8 +40,8 @@ const App = () => {
                     {/* Lecturer Section */} 
                     <Route path="/lectprofile" exact component={LecturerProfile} />
                     <Route path="/lectproject-detail" exact component={LectProjectDetails} />
-                    <Route path="/lectmeetings" exact component={lectMeetings} />
-                    <Route path="/lectfile-submitted" exact component={lectFileSubmitted} />
+                    {/* <Route path="/lectmeetings" exact component={lectMeetings} />
+                    <Route path="/lectfile-submitted" exact component={lectFileSubmitted} /> */}
                     {/* Panel Section */} 
                     <Route path="/panelassign-mark" exact component={panelAssignMark} />
                     {/* <Route path="/panel-vote" exact component={panelVote} /> */}
