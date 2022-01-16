@@ -30,10 +30,10 @@ export const createPanelAssignMark = async (req, res) => {
 
 export const updatePanelAssignMark = async (req, res) => {
     const { id } = req.params;
-    const { creator, title, vote } = req.body;
+    const { creator, title, studname, selectedFile, fypSess, submSess, dimension, rubric, monEval, vivaMark } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No PanelAssignMark with id: ${id}`);
-    const updatedPanelAssignMark = { creator, title, vote, _id: id };
+    const updatedPanelAssignMark = { creator, title, studname, selectedFile, fypSess, submSess, dimension, rubric, monEval, vivaMark, _id: id };
 
     await PanelAssignMark.findByIdAndUpdate(id, updatedPanelAssignMark, { new: true });
 

@@ -22,13 +22,13 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getPanelAssignMark, deletePanelAssignMark } from "../../../../actions/LPanel/PanelAssignMark";
+import { getPanelVote, deletePanelVote } from "../../../../actions/LPanel/PanelVote";
 
 import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
-import PanelAssignMarkDetails from "./PanelAssignMarkDetails";
-import PanelAssignMarkForm from "./PanelAssignMarkForm";
-import PanelAssignMarkPopup from "./PanelAssignMarkPopup";
+import PanelVoteDetails from "./PanelVoteDetails";
+import PanelVoteForm from "./PanelVoteForm";
+import PanelVotePopup from "./PanelVotePopup";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -57,18 +57,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const PanelAssignMark = () => {
+const PanelVote = () => {
 
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    const panelAM = useSelector((state) => state.panelAssignMark);
+    const panelV = useSelector((state) => state.panelVote);
     const [currentId, setCurrentId] = useState(0);
     const [openPopup, setOpenPopup] = useState(false);
 
     useEffect(() => {
-        dispatch(getPanelAssignMark());
-        console.log(panelAM);
+        dispatch(getPanelVote());
     }, [currentId, dispatch]);
 
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
@@ -80,7 +79,7 @@ const PanelAssignMark = () => {
     };
 
     const confirmDelete = (id) => {
-        dispatch(deletePanelAssignMark(id));
+        dispatch(deletePanelVote(id));
         setNotify({ isOpen: true, message: "Deleted Successfully!", type: "error" });
         setConfirmDialog({
             ...confirmDialog,
@@ -95,38 +94,37 @@ const PanelAssignMark = () => {
             <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid justify="space-between" container spacing={24}>
                     <Grid item>
-                    <Typography variant="h5"> Panel Assign Mark </Typography>
+                    <Typography variant="h5"> Panel Vote </Typography>
                     </Grid>
                     <Grid item>
                     <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Assign Mark
+                       Testing Vote Backend
                     </Button>
                     </Grid>
                 </Grid>
             </Toolbar>
             </Paper>
             <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6"> Pending Titles</Typography>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                 <TableHead>
                     <TableRow>
                         <TableCell className={classes.tableCell}>Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student</TableCell>
+                        <TableCell className={classes.tableCell}>Vote</TableCell>
                         <TableCell className={classes.tableCell}></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { panelAM.map((row) => (
-                        <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    { panelV.map((row) => (
+                        <PanelVoteDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
                     ))}
                 </TableBody>
                 </Table>
             </TableContainer>
             </Paper>
-            <PanelAssignMarkPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
-                <PanelAssignMarkForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
-            </PanelAssignMarkPopup> 
+            <PanelVotePopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
+                <PanelVoteForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+            </PanelVotePopup> 
             <Notification notify={notify} setNotify={setNotify} />
             <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             </Container>
@@ -134,4 +132,4 @@ const PanelAssignMark = () => {
     );
 };
 
-export default PanelAssignMark;
+export default PanelVote;

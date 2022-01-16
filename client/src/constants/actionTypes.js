@@ -23,3 +23,8 @@ export const CREATE_PAM = "CREATE_PAM";
 export const UPDATE_PAM = "UPDATE_PAM";
 export const DELETE_PAM = "DELETE_PAM";
 export const FETCH_ALL_PAM = "FETCH_ALL_PAM";
+
+export const CREATE_PV = "CREATE_PV";
+export const UPDATE_PV = "UPDATE_PV";
+export const DELETE_PV = "DELETE_PV";
+export const FETCH_ALL_PV = "FETCH_ALL_PV";

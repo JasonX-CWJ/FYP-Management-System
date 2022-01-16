@@ -39,4 +39,10 @@ export const createPanelAssignMark = (newPanelAssignMark) => API.post("/panelAss
 export const updatePanelAssignMark = (id, updatedPanelAssignMark) => API.patch(`/panelAssignMark/${id}`, updatedPanelAssignMark);
 export const deletePanelAssignMark = (id) => API.delete(`/panelAssignMark/${id}`);
 
+export const fetchPanelVote = () => API.get("/panelVote");
+export const createPanelVote = (newPanelVote) => API.post("/panelVote", newPanelVote);
+export const updatePanelVote = (id, updatedPanelVote) => API.patch(`/panelVote/${id}`, updatedPanelVote);
+export const deletePanelVote = (id) => API.delete(`/panelVote/${id}`);
+
+
 //admin section
