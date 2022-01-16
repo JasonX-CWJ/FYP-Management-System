@@ -74,13 +74,13 @@ const LectProjectDetailsForm = ({ currentId, setCurrentId, setNotify, setOpenPop
             <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId ? `Editing "${lectPD.title}"` : ""}</Typography>
                 <TextField name="department" variant="outlined" required autoFocus label="Department" fullWidth value={lectPDData.department} onChange={(e) => setlectPDData({ ...lectPDData, department: e.target.value })} />
-                <TextField name="semester" variant="outlined" required autoFocus label="Semester" fullWidth value={lectPDData.semester} onChange={(e) => setlectPDData({ ...lectPDData, semester: e.target.value })} />
-                <TextField name="session" variant="outlined" required autoFocus label="Session" fullWidth value={lectPDData.session} onChange={(e) => setlectPDData({ ...lectPDData, session: e.target.value })} />
-                <TextField name="title" variant="outlined" required autoFocus label="Title" fullWidth value={lectPDData.title} onChange={(e) => setlectPDData({ ...lectPDData, title: e.target.value })} />
-                <TextField name="description" variant="outlined" required autoFocus label="Description" fullWidth value={lectPDData.description} onChange={(e) => setlectPDData({ ...lectPDData, description: e.target.value })} />
-                <TextField name="potStakeholder" variant="outlined" required autoFocus label="Potential Stakeholder" fullWidth value={lectPDData.potStakeholder} onChange={(e) => setlectPDData({ ...lectPDData, potStakeholder: e.target.value })} />
-                <TextField name="tool" variant="outlined" required autoFocus label="Tool" fullWidth value={lectPDData.tool} onChange={(e) => setlectPDData({ ...lectPDData, tool: e.target.value })} />
-                <TextField name="noOfStud" variant="outlined" required autoFocus label="No. of Student" fullWidth value={lectPDData.noOfStud} onChange={(e) => setlectPDData({ ...lectPDData, noOfStud: e.target.value })} />
+                <TextField name="semester" variant="outlined" required label="Semester" fullWidth value={lectPDData.semester} onChange={(e) => setlectPDData({ ...lectPDData, semester: e.target.value })} />
+                <TextField name="session" variant="outlined" required label="Session" fullWidth value={lectPDData.session} onChange={(e) => setlectPDData({ ...lectPDData, session: e.target.value })} />
+                <TextField name="title" variant="outlined" required label="Title" fullWidth value={lectPDData.title} onChange={(e) => setlectPDData({ ...lectPDData, title: e.target.value })} />
+                <TextField name="description" variant="outlined" required label="Description" fullWidth value={lectPDData.description} onChange={(e) => setlectPDData({ ...lectPDData, description: e.target.value })} />
+                <TextField name="potStakeholder" variant="outlined" required label="Potential Stakeholder" fullWidth value={lectPDData.potStakeholder} onChange={(e) => setlectPDData({ ...lectPDData, potStakeholder: e.target.value })} />
+                <TextField name="tool" variant="outlined" required label="Tool" fullWidth value={lectPDData.tool} onChange={(e) => setlectPDData({ ...lectPDData, tool: e.target.value })} />
+                <TextField name="noOfStud" variant="outlined" required label="No. of Student" fullWidth value={lectPDData.noOfStud} onChange={(e) => setlectPDData({ ...lectPDData, noOfStud: e.target.value })} />
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit

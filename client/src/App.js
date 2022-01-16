@@ -7,7 +7,7 @@ import Auth from "./components/Auth/Auth";
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
 import { LecturerProfile, LectProjectDetails } from "./components/Navbar2/Lecturer";
-import { panelAssignMark } from "./components/Navbar2/LPanel";
+import { panelAssignMark, panelVote } from "./components/Navbar2/LPanel";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -44,7 +44,7 @@ const App = () => {
                     <Route path="/lectfile-submitted" exact component={lectFileSubmitted} /> */}
                     {/* Panel Section */} 
                     <Route path="/panelassign-mark" exact component={panelAssignMark} />
-                    {/* <Route path="/panel-vote" exact component={panelVote} /> */}
+                    <Route path="/panel-vote" exact component={panelVote} />
                     {/* Admin Section; Note-add path in LeftBar.js */}
                     {/* <Route path="/lecturer-repo" exact component={LecturerRepo} /> */}
                     {/* <Route path="/student-repo" exact component={StudentRepo} /> */}

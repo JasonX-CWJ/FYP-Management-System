@@ -24,11 +24,10 @@ import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view f
 import lectProjectDet from "./routes/lectProjectDet.js";
 //import lectMeetings from "./routes/lectMeetings.js";  - all done just uncomment
 //import lectFileSubmitted from "./routes/lectFileSubmitted.js" - all done just uncomment
-//import lectAssignMark from "./routes/lectAssignMark.js" - shift to panelAssignMark then delete
 
 //Panel
-import panelAssignMark from "./routes/panelAssignMark.js" //- shift to panelVote, then acept new shift
-//import panelVote from "./routes/panelVote.js" 
+import panelAssignMark from "./routes/panelAssignMark.js" 
+import panelVote from "./routes/panelVote.js"
 
 const app = express();
 dotenv.config();
@@ -59,7 +58,7 @@ app.use("/lectProjectDet", lectProjectDet);
 
 //Panel
 app.use("/panelAssignMark", panelAssignMark);
-//app.use("/panelVote", panelVote);
+app.use("/panelVote", panelVote);
 
 const PORT = process.env.PORT || 5000;
 
