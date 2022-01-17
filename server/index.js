@@ -22,7 +22,7 @@ import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view f
 
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
-//import lectMeetings from "./routes/lectMeetings.js";  - all done just uncomment
+import lectMeetings from "./routes/lectMeetings.js";
 //import lectFileSubmitted from "./routes/lectFileSubmitted.js" - all done just uncomment
 
 //Panel
@@ -52,7 +52,7 @@ app.use("/info", infoGuideRouter);
 
 //Lecturer
 app.use("/lectProjectDet", lectProjectDet);
-//app.use("/lectMeetings", lectMeetings); - 
+app.use("/lectMeetings", lectMeetings); - 
 //app.use("/lectFileSubmitted", lectFileSubmitted);
 //app.use("/lectAssignMark", lectAssignMark);
 

@@ -1,4 +1,4 @@
-import panelAssignMark from "./PanelAssignMark/PanelAssignMark";
-import panelVote from "./PanelVote/PanelVote";
+import PanelAssignMark from "./PanelAssignMark/PanelAssignMark";
+import PanelVote from "./PanelVote/PanelVote";
 
-export { panelAssignMark, panelVote };
+export { PanelAssignMark, PanelVote };
