@@ -5,7 +5,9 @@ import auth from './auth';
 import infoGuideline from './infoGuideline';
 import lectProjectDetails from './Lecturer/lectProjectDetails';
 import lectMeetings from './Lecturer/lectMeetings';
+import lectFileSubmitted from './Lecturer/lectFileSubmitted';
 import panelAssignMark from './LPanel/panelAssignMark';
-import panelVote from './LPanel/panelVote'
+import panelVote from './LPanel/panelVote';
+import schedPanel from './Admin/schedPanel';
 
-export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectMeetings, panelAssignMark, panelVote });
+export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectMeetings, lectFileSubmitted, panelAssignMark, panelVote, schedPanel });

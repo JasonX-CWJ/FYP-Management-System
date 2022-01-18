@@ -1,6 +1,6 @@
 import LecturerProfile from "./LecturerProfile";
 import LectProjectDetails from "./LectProjectDetails/LectProjectDetails";
 import LectMeetings from "./LectMeetings/LectMeetings";
-//import lectFileSubmitted from "./lectFileSubmitted";
+import LectFileSubmitted from "./LectFileSubmitted/LectFileSubmitted";
 
-export { LecturerProfile, LectProjectDetails, LectMeetings };
+export { LecturerProfile, LectProjectDetails, LectMeetings, LectFileSubmitted };

@@ -149,26 +149,31 @@ const LeftBar = ({ sideState, setSideState }) => {
             text: "Lecturer Repository",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/lecturer-repo",
         },
         {
             text: "Student Repository",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/student-repo",
         },
         {
             text: "Weightage and Rubric",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/rubric",
         },
         {
             text: "Reports",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/reports",
         },
         {
             text: "Schedule Panel",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
+            path: "/sched-panel",
         },
     ];
 

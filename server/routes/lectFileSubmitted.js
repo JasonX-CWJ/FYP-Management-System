@@ -1,15 +1,13 @@
-// import express from "express";
+import express from "express";
 
-// import { getLectFileSubmitted, createLectFileSubmitted, updateLectFileSubmitted, deleteLectFileSubmitted } from "../controllers/lectFileSubmitted.js";
+import { getLectFileSubmitted, createLectFileSubmitted, updateLectFileSubmitted, deleteLectFileSubmitted } from "../controllers/lectFileSubmitted.js";
 
-// const router = express.Router();
-// import auth from "../middleware/auth.js";
+const router = express.Router();
+import auth from "../middleware/auth.js";
 
-// router.get("/", getLectFileSubmitted);
-// router.post("/", auth, createLectFileSubmitted);
-// router.patch("/:id", auth, updateLectFileSubmitted);
-// router.delete("/:id", auth, deleteLectFileSubmitted);
+router.get("/", getLectFileSubmitted);
+router.post("/", auth, createLectFileSubmitted);
+router.patch("/:id", auth, updateLectFileSubmitted);
+router.delete("/:id", auth, deleteLectFileSubmitted);
 
-// export default router;
-
-//this done, just uncomment
+export default router;
