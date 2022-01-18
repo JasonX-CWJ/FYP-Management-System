@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Paper, Container, makeStyles } from "@ma
 import { useDispatch, useSelector } from "react-redux";
 
 import { createPanelAssignMark, updatePanelAssignMark } from "../../../../actions/LPanel/PanelAssignMark";
-import PanelAssignMarkDetails from "./PanelAssignMarkDetails";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {

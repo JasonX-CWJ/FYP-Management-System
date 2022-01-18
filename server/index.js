@@ -17,13 +17,12 @@ import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view f
 //import studentRepo from "./routes/studentRepo.js"; - no route, controller and models yet (jason)
 //import rubricWeight from "./routes/rubricWeight.js"; - all done just uncomment (zana)
 //import reports from "./routes/reports.js"; - no route, controller and models yet (jason)
-//import schedPanel from "./routes/schedPanel.js"; - progressing (zana)
-
+import schedPanel from "./routes/schedPanel.js";
 
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
 import lectMeetings from "./routes/lectMeetings.js";
-//import lectFileSubmitted from "./routes/lectFileSubmitted.js" - all done just uncomment
+import lectFileSubmitted from "./routes/lectFileSubmitted.js"
 
 //Panel
 import panelAssignMark from "./routes/panelAssignMark.js" 
@@ -48,13 +47,12 @@ app.use("/info", infoGuideRouter);
 //app.use("/studentRepo", studentRepo);
 //app.use("/rubricWeight", rubricWeight);
 //app.use("/reports", reports);
-//app.use("/schedPanel", schedPanel);
+app.use("/schedPanel", schedPanel);
 
 //Lecturer
 app.use("/lectProjectDet", lectProjectDet);
 app.use("/lectMeetings", lectMeetings); - 
-//app.use("/lectFileSubmitted", lectFileSubmitted);
-//app.use("/lectAssignMark", lectAssignMark);
+app.use("/lectFileSubmitted", lectFileSubmitted);
 
 //Panel
 app.use("/panelAssignMark", panelAssignMark);

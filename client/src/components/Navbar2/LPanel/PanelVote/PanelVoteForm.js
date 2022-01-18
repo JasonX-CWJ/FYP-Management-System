@@ -3,7 +3,6 @@ import { TextField, Button, Typography, Paper, Container, makeStyles } from "@ma
 import { useDispatch, useSelector } from "react-redux";
 
 import { createPanelVote, updatePanelVote } from "../../../../actions/LPanel/PanelVote";
-import PanelVoteDetails from "./PanelVoteDetails";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,14 +63,14 @@ const PanelVoteForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => 
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
-                    Please Sign In to add a new project detail.
+                    Please Sign In to add a new vote detail.
                 </Typography>
             </Paper>
         );
     }
 
     return (
-<Container>
+    <Container>
         <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
             <Typography variant="h6">{currentId ? `Editing "${panelV.title}"` : ""}</Typography>
             <TextField name="title" variant="outlined" required autoFocus label="Title" fullWidth value={panelVData.title} onChange={(e) => setpanelVData({ ...panelVData, title: e.target.value })} />

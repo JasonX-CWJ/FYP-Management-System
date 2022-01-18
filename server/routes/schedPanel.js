@@ -1,15 +1,13 @@
-// import express from "express";
+import express from "express";
 
-//  import { getSchedPanel, createSchedPanel, updateSchedPanel, deleteSchedPanel } from "../controllers/schedPanel.js";
+ import { getSchedPanel, createSchedPanel, updateSchedPanel, deleteSchedPanel } from "../controllers/schedPanel.js";
 
-// const router = express.Router();
-//  import auth from "../middleware/auth.js";
+const router = express.Router();
+ import auth from "../middleware/auth.js";
 
-// router.get("/", getSchedPanel);
-// router.post("/", auth, createSchedPanel);
-// router.patch("/:id", auth, updateSchedPanel);
-// router.delete("/:id", auth, deleteSchedPanel);
+router.get("/", getSchedPanel);
+router.post("/", auth, createSchedPanel);
+router.patch("/:id", auth, updateSchedPanel);
+router.delete("/:id", auth, deleteSchedPanel);
 
-// export default router;
-
-//this done, just uncomment
+export default router;

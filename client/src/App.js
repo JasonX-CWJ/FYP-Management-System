@@ -6,8 +6,9 @@ import Auth from "./components/Auth/Auth";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
-import { LecturerProfile, LectProjectDetails, LectMeetings } from "./components/Navbar2/Lecturer";
+import { LecturerProfile, LectProjectDetails, LectMeetings, LectFileSubmitted } from "./components/Navbar2/Lecturer";
 import { PanelAssignMark, PanelVote } from "./components/Navbar2/LPanel";
+import { SchedPanel } from "./components/Navbar2/Admin";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -44,18 +45,18 @@ const App = () => {
                     <Route path="/lectprofile" exact component={LecturerProfile} />
                     <Route path="/lectproject-detail" exact component={LectProjectDetails} />
                     <Route path="/lectmeetings" exact component={LectMeetings} />
-                    {/* <Route path="/lectfile-submitted" exact component={LectFileSubmitted} /> */}
+                    <Route path="/lectfile-submitted" exact component={LectFileSubmitted} />
 
                     {/* Panel Section */} 
                     <Route path="/panelassign-mark" exact component={PanelAssignMark} />
                     <Route path="/panel-vote" exact component={PanelVote} />
 
-                    {/* Admin Section; Note-add path in LeftBar.js */}
+                    {/* Admin Section */}
                     {/* <Route path="/lecturer-repo" exact component={LecturerRepo} /> */}
                     {/* <Route path="/student-repo" exact component={StudentRepo} /> */}
                     {/* <Route path="/rubric" exact component={RubricWeight} /> */}
                     {/* <Route path="/reports" exact component={Reports} /> */}
-                    {/* <Route path="/sched-panel" exact component={SchedPanel} /> */}
+                    <Route path="/sched-panel" exact component={SchedPanel} />
                 </Switch>
             </Layout>
             {/* </Container> */}
