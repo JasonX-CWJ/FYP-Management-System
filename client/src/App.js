@@ -8,7 +8,7 @@ import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/
 import { FileSubmission, Meetings, ProjectDetails, StudentProfile } from "./components/Navbar2/Student";
 import { LecturerProfile, LectProjectDetails, LectMeetings, LectFileSubmitted } from "./components/Navbar2/Lecturer";
 import { PanelAssignMark, PanelVote } from "./components/Navbar2/LPanel";
-import { SchedPanel } from "./components/Navbar2/Admin";
+import { SchedPanel, RubricWeight } from "./components/Navbar2/Admin";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -54,7 +54,7 @@ const App = () => {
                     {/* Admin Section */}
                     {/* <Route path="/lecturer-repo" exact component={LecturerRepo} /> */}
                     {/* <Route path="/student-repo" exact component={StudentRepo} /> */}
-                    {/* <Route path="/rubric" exact component={RubricWeight} /> */}
+                    <Route path="/rubric" exact component={RubricWeight} />
                     {/* <Route path="/reports" exact component={Reports} /> */}
                     <Route path="/sched-panel" exact component={SchedPanel} />
                 </Switch>

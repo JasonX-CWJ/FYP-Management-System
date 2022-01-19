@@ -60,3 +60,8 @@ export const fetchSchedPanel = () => API.get("/schedPanel");
 export const createSchedPanel = (newSchedPanel) => API.post("/schedPanel", newSchedPanel);
 export const updateSchedPanel = (id, updatedSchedPanel) => API.patch(`/schedPanel/${id}`, updatedSchedPanel);
 export const deleteSchedPanel = (id) => API.delete(`/schedPanel/${id}`);
+
+export const fetchRubricWeight = () => API.get("/rubricWeight");
+export const createRubricWeight = (newRubricWeight) => API.post("/rubricWeight", newRubricWeight);
+export const updateRubricWeight = (id, updatedRubricWeight) => API.patch(`/rubricWeight/${id}`, updatedRubricWeight);
+export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);

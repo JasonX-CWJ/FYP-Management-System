@@ -44,3 +44,8 @@ export const CREATE_SP = "CREATE_SP";
 export const UPDATE_SP = "UPDATE_SP";
 export const DELETE_SP = "DELETE_SP";
 export const FETCH_ALL_SP = "FETCH_ALL_SP";
+
+export const CREATE_RW = "CREATE_RW";
+export const UPDATE_RW = "UPDATE_RW";
+export const DELETE_RW = "DELETE_RW";
+export const FETCH_ALL_RW = "FETCH_ALL_RW";
