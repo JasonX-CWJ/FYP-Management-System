@@ -9,5 +9,6 @@ import lectFileSubmitted from './Lecturer/lectFileSubmitted';
 import panelAssignMark from './LPanel/panelAssignMark';
 import panelVote from './LPanel/panelVote';
 import schedPanel from './Admin/schedPanel';
+import rubricWeight from './Admin/rubricWeight';
 
-export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectMeetings, lectFileSubmitted, panelAssignMark, panelVote, schedPanel });
+export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectMeetings, lectFileSubmitted, panelAssignMark, panelVote, schedPanel, rubricWeight });

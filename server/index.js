@@ -15,7 +15,7 @@ import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view f
 //Admin
 //import lecturerRepo from "./routes/lecturerRepo.js"; - no route, controller and models yet (jason)
 //import studentRepo from "./routes/studentRepo.js"; - no route, controller and models yet (jason)
-//import rubricWeight from "./routes/rubricWeight.js"; - all done just uncomment (zana)
+import rubricWeight from "./routes/rubricWeight.js";
 //import reports from "./routes/reports.js"; - no route, controller and models yet (jason)
 import schedPanel from "./routes/schedPanel.js";
 
@@ -45,7 +45,7 @@ app.use("/info", infoGuideRouter);
 //Admin
 //app.use("/lecturerRepo", lecturerRepo);
 //app.use("/studentRepo", studentRepo);
-//app.use("/rubricWeight", rubricWeight);
+app.use("/rubricWeight", rubricWeight);
 //app.use("/reports", reports);
 app.use("/schedPanel", schedPanel);
 
