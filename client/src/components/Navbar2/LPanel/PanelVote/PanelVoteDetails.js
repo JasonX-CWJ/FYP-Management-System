@@ -43,6 +43,9 @@ const PanelVoteDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) =>
             {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell className={classes.tableCell} component="th" scope="row">
+                    {row.dept}
+                </TableCell>
+                <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.title}
                 </TableCell>
                 <TableCell className={classes.tableCell} component="th" scope="row">

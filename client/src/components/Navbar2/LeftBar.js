@@ -137,7 +137,7 @@ const LeftBar = ({ sideState, setSideState }) => {
             path: "/panelassign-mark",
         },
         {
-            text: "Panel APAC Voting",
+            text: "Panel APAC Nominees",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
             path: "/panel-vote",

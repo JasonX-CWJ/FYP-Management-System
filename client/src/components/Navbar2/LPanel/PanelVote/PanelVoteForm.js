@@ -73,8 +73,9 @@ const PanelVoteForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => 
     <Container>
         <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
             <Typography variant="h6">{currentId ? `Editing "${panelV.title}"` : ""}</Typography>
-            <TextField name="title" variant="outlined" required autoFocus label="Title" fullWidth value={panelVData.title} onChange={(e) => setpanelVData({ ...panelVData, title: e.target.value })} />
-            <TextField name="vote" variant="outlined" required label="Vote" fullWidth value={panelVData.vote} onChange={(e) => setpanelVData({ ...panelVData, vote: e.target.value })} />
+            <TextField name="dept" variant="outlined" required autoFocus label="Department" fullWidth value={panelVData.dept} onChange={(e) => setpanelVData({ ...panelVData, dept: e.target.value })} />
+            <TextField name="title" variant="outlined" required label="Title" fullWidth value={panelVData.title} onChange={(e) => setpanelVData({ ...panelVData, title: e.target.value })} />
+            <TextField name="vote" variant="outlined" required label="Student(s)" fullWidth value={panelVData.vote} onChange={(e) => setpanelVData({ ...panelVData, vote: e.target.value })} />
             <div style={{ display: "flex" }}>
                 <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                     Submit

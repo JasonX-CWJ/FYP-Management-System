@@ -5,7 +5,8 @@ const panelVoteSchema = mongoose.Schema({
     //this models is not final
     creator: String, //takes the userId
     title: String, //takes title that wants to assign mark
-    vote: String, //vote the title - similar to like from video
+    vote: String, //vchanged to student names
+    dept: String,
 });
 
 var panelVote = mongoose.model("PanelVote", panelVoteSchema);

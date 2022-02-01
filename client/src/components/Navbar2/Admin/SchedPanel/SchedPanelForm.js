@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const SchedPanelForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [adminSPData, setadminSPData] = useState({ lectName: "", studTitle: "" });
+    const [adminSPData, setadminSPData] = useState({ lectName: "", studTitle: "", date: "", time: "" });
     const adminSP = useSelector((state) => (currentId ? state.schedPanel.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -36,7 +36,7 @@ const SchedPanelForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) =>
 
     const clearForm = () => {
         setCurrentId(0);
-        setadminSPData({ lectName: "", studTitle: "" });
+        setadminSPData({ lectName: "", studTitle: "", date: "", time: "" });
     };
 
     useEffect(() => {
@@ -74,6 +74,9 @@ const SchedPanelForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) =>
                 <Typography variant="h6">{currentId ? `Editing "${adminSP.lectName}"` : ""}</Typography>
                 <TextField name="lectName" variant="outlined" required autoFocus label="Lecturer Name" fullWidth value={adminSPData.lectName} onChange={(e) => setadminSPData({ ...adminSPData, lectName: e.target.value })} />
                 <TextField name="studTitle" variant="outlined" required label="Project Title" fullWidth value={adminSPData.studTitle} onChange={(e) => setadminSPData({ ...adminSPData, studTitle: e.target.value })} />
+                <TextField name="studName" variant="outlined" required label="Student(s)" fullWidth value={adminSPData.studName} onChange={(e) => setadminSPData({ ...adminSPData, studName: e.target.value })} />
+                <TextField name="date" variant="outlined" required label="Date" fullWidth value={adminSPData.date} onChange={(e) => setadminSPData({ ...adminSPData, date: e.target.value })} />
+                <TextField name="time" variant="outlined" required label="Time" fullWidth value={adminSPData.time} onChange={(e) => setadminSPData({ ...adminSPData, time: e.target.value })} />
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit
