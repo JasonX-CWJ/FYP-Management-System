@@ -30,10 +30,10 @@ export const createPanelVote = async (req, res) => {
 
 export const updatePanelVote = async (req, res) => {
     const { id } = req.params;
-    const { creator, title, vote } = req.body;
+    const { creator, title, vote, dept } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No PanelVote with id: ${id}`);
-    const updatedPanelVote = { creator, title, vote, _id: id };
+    const updatedPanelVote = { creator, title, vote, dept, _id: id };
 
     await PanelVote.findByIdAndUpdate(id, updatedPanelVote, { new: true });
 

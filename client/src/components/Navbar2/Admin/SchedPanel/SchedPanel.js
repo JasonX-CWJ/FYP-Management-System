@@ -110,6 +110,9 @@ const SchedPanel = () => {
                     <TableRow>
                         <TableCell className={classes.tableCell}>Lecturer Name</TableCell>
                         <TableCell className={classes.tableCell}>Project Title</TableCell>
+                        <TableCell className={classes.tableCell}>Student(s)</TableCell>
+                        <TableCell className={classes.tableCell}>Date</TableCell>
+                        <TableCell className={classes.tableCell}>Time</TableCell>
                         <TableCell className={classes.tableCell}></TableCell>
                     </TableRow>
                 </TableHead>

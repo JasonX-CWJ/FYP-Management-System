@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper, Container, makeStyles } from "@material-ui/core";
+import { TextField, Button, Typography, Paper, Grid, Container, makeStyles, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createRubricWeight, updateRubricWeight } from "../../../../actions/Admin/RubricWeight";
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RubricWeightForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [adminRWData, setadminRWData] = useState({ rubric: "", weight: "" });
+    const [adminRWData, setadminRWData] = useState({ fypSess:"", dimension: "", rubric: "", weight: "" });
     const adminRW = useSelector((state) => (currentId ? state.rubricWeight.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -37,7 +37,7 @@ const RubricWeightForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
 
     const clearForm = () => {
         setCurrentId(0);
-        setadminRWData({ rubric: "", weight: "" });
+        setadminRWData({ fypSess:"", dimension: "", rubric: "", weight: "" });
     };
 
     useEffect(() => {
@@ -72,8 +72,40 @@ const RubricWeightForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
     return (
         <Container>
             <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? `Editing "${adminRW.rubric}"` : ""}</Typography>
-                <TextField name="rubric" variant="outlined" required autoFocus label="Rubric" fullWidth value={adminRWData.rubric} onChange={(e) => setadminRWData({ ...adminRWData, rubric: e.target.value })} />
+                <Grid   container spacing={2} >
+                    <Grid item  xs={12} >
+                    <Typography variant="h6">{currentId ? `Editing "${adminRW.rubric}"` : ""}</Typography>
+                    <br></br>
+                    </Grid>
+                </Grid>
+                {/* added */}
+                <FormControl  >
+                    <FormLabel id="fypSess">FYP Session</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="fypSess"
+                        name="fypSess"
+                        value={adminRWData.fypSess} onChange={(e) => setadminRWData({ ...adminRWData, fypSess: e.target.value })}
+                    >
+                        <FormControlLabel value="fyp1" control={<Radio required={true}/>} label="FYP1" />
+                        <FormControlLabel value="fyp2" control={<Radio required={true}/>} label="FYP2" />
+                    </RadioGroup>
+                    </FormControl>
+                    
+                    <FormControl  >
+                    <FormLabel id="dimension">Evaluation Type</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="dimension"
+                        name="dimension"
+                        value={adminRWData.dimension} onChange={(e) => setadminRWData({ ...adminRWData, dimension: e.target.value })}
+                    >
+                        <FormControlLabel value="techeval" control={<Radio required={true}/>} label="Technical Evaluation (50%)" />
+                        <FormControlLabel value="softskillseval" control={<Radio required={true}/>} label="Soft Skills Evaluation (10%)" />
+                    </RadioGroup>
+                </FormControl>
+                {/* added */}
+                <TextField name="dimension" variant="outlined" required autoFocus label="Dimension" fullWidth value={adminRWData.rubric} onChange={(e) => setadminRWData({ ...adminRWData, rubric: e.target.value })} />
                 <TextField name="weight" variant="outlined" required label="Weight" fullWidth value={adminRWData.weight} onChange={(e) => setadminRWData({ ...adminRWData, weight: e.target.value })} />
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>

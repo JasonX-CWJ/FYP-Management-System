@@ -97,30 +97,110 @@ const RubricWeight = () => {
                     </Grid>
                     <Grid item>
                     <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Insert Rubric Testing
+                       Insert New
                     </Button>
                     </Grid>
                 </Grid>
             </Toolbar>
             </Paper>
+            
+            {/* added */}
             <Paper style={{ margin: "16px 0px", padding: 8, }}>
+            <Grid   container spacing={2} >
+                <Grid item  xs={6} >
+                    <Typography variant="h5"> FYP1 </Typography>
+                </Grid>
+                <Grid item  xs={6}>
+                    <Typography variant="h5"> FYP2 </Typography>
+                </Grid>
+            </Grid>
+            <Grid   container spacing={2} >
+            
+            <Grid item  xs={6}>
+            <Typography variant="h6"> Technical Evaluation (50%)</Typography>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
+                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
+                <TableHead >
                     <TableRow>
-                        <TableCell className={classes.tableCell}>Rubric</TableCell>
-                        <TableCell className={classes.tableCell}>Weight</TableCell>
+                        <TableCell className={classes.tableCell}>Dimension</TableCell>
+                        <TableCell className={classes.tableCell}>Weightage (%)</TableCell>
                         <TableCell className={classes.tableCell}></TableCell>
+
+                    </TableRow>
+                </TableHead>
+                <TableBody >
+                    {adminRW.map((row) => (
+                        <RubricWeightDetails filter={'fyp1'} filter2={'techeval'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                
+                </Table>
+            </TableContainer>
+            <Typography variant="h6"> <br/> Soft Skills Evaluation (10%)</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
+                <TableHead >
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Dimension</TableCell>
+                        <TableCell className={classes.tableCell}>Weightage (%)</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     { adminRW.map((row) => (
-                        <RubricWeightDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        <RubricWeightDetails filter={'fyp1'} filter2={'softskillseval'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
                     ))}
                 </TableBody>
+                
                 </Table>
             </TableContainer>
+            
+            </Grid>
+            <Grid item  xs={6}>
+            <Typography variant="h6"> Technical Evaluation (50%)</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
+                <TableHead >
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Dimension</TableCell>
+                        <TableCell className={classes.tableCell}>Weightage (%)</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { adminRW.map((row) => (
+                        <RubricWeightDetails filter={'fyp2'} filter2={'techeval'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                
+                </Table>
+            </TableContainer>
+            <Typography variant="h6"><br/> Soft Skills Evaluation (10%)</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
+                <TableHead >
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Dimension</TableCell>
+                        <TableCell className={classes.tableCell}>Weightage (%)</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { adminRW.map((row) => (
+                        <RubricWeightDetails filter={'fyp2'} filter2={'softskillseval'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                
+                </Table>
+            </TableContainer>
+            </Grid>
+            </Grid>
             </Paper>
+            {/* added */}
+
             <RubricWeightPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
                 <RubricWeightForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
             </RubricWeightPopup> 

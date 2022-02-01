@@ -104,6 +104,59 @@ const LectProjectDetails = () => {
                 </Grid>
             </Toolbar>
             </Paper>
+
+            <Paper style={{ margin: "16px 0px", padding: 8, }}>
+            <Typography variant="h6"> Active FYP Titles</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Department</TableCell>
+                        <TableCell className={classes.tableCell}>Semester</TableCell>
+                        <TableCell className={classes.tableCell}>Session</TableCell>
+                        <TableCell className={classes.tableCell}>Title</TableCell>
+                        <TableCell className={classes.tableCell}>Description</TableCell>
+                        <TableCell className={classes.tableCell}>Potential Stakeholder</TableCell>
+                        <TableCell className={classes.tableCell}>Tools</TableCell>
+                        <TableCell className={classes.tableCell}>Students</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { lectPD.map((row) => (
+                        <LectProjectDetailsDets filter={'active'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                </Table>
+            </TableContainer>
+            </Paper>
+
+            <Paper style={{ margin: "16px 0px", padding: 8, }}>
+            <Typography variant="h6"> Accepted Titles</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Department</TableCell>
+                        <TableCell className={classes.tableCell}>Semester</TableCell>
+                        <TableCell className={classes.tableCell}>Session</TableCell>
+                        <TableCell className={classes.tableCell}>Title</TableCell>
+                        <TableCell className={classes.tableCell}>Description</TableCell>
+                        <TableCell className={classes.tableCell}>Potential Stakeholder</TableCell>
+                        <TableCell className={classes.tableCell}>Tools</TableCell>
+                        <TableCell className={classes.tableCell}>No. of Students</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { lectPD.map((row) => (
+                        <LectProjectDetailsDets filter={'accept'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                </Table>
+            </TableContainer>
+            </Paper>
+
             <Paper style={{ margin: "16px 0px", padding: 8, }}>
             <Typography variant="h6"> Pending Titles</Typography>
             <TableContainer component={Paper}>
@@ -123,12 +176,65 @@ const LectProjectDetails = () => {
                 </TableHead>
                 <TableBody>
                     { lectPD.map((row) => (
-                        <LectProjectDetailsDets key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        <LectProjectDetailsDets filter={'pending'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
                     ))}
                 </TableBody>
                 </Table>
             </TableContainer>
             </Paper>
+
+            <Paper style={{ margin: "16px 0px", padding: 8, }}>
+            <Typography variant="h6"> Student Proposed Titles</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Department</TableCell>
+                        <TableCell className={classes.tableCell}>Semester</TableCell>
+                        <TableCell className={classes.tableCell}>Session</TableCell>
+                        <TableCell className={classes.tableCell}>Title</TableCell>
+                        <TableCell className={classes.tableCell}>Description</TableCell>
+                        <TableCell className={classes.tableCell}>Potential Stakeholder</TableCell>
+                        <TableCell className={classes.tableCell}>Tools</TableCell>
+                        <TableCell className={classes.tableCell}>No. of Students</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { lectPD.map((row) => (
+                        <LectProjectDetailsDets filter={'student'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                </Table>
+            </TableContainer>
+            </Paper>
+
+            <Paper style={{ margin: "16px 0px", padding: 8, }}>
+            <Typography variant="h6"> Rejected Titles</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.tableCell}>Department</TableCell>
+                        <TableCell className={classes.tableCell}>Semester</TableCell>
+                        <TableCell className={classes.tableCell}>Session</TableCell>
+                        <TableCell className={classes.tableCell}>Title</TableCell>
+                        <TableCell className={classes.tableCell}>Description</TableCell>
+                        <TableCell className={classes.tableCell}>Potential Stakeholder</TableCell>
+                        <TableCell className={classes.tableCell}>Tools</TableCell>
+                        <TableCell className={classes.tableCell}>No. of Students</TableCell>
+                        <TableCell className={classes.tableCell}></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { lectPD.map((row) => (
+                        <LectProjectDetailsDets filter={'reject'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                    ))}
+                </TableBody>
+                </Table>
+            </TableContainer>
+            </Paper>
+
             <LectProjectDetailsPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
                 <LectProjectDetailsForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
             </LectProjectDetailsPopup> 

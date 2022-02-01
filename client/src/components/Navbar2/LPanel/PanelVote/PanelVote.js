@@ -94,11 +94,11 @@ const PanelVote = () => {
             <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid justify="space-between" container spacing={24}>
                     <Grid item>
-                    <Typography variant="h5"> Panel Vote </Typography>
+                    <Typography variant="h5"> Panel APAC Nominees </Typography>
                     </Grid>
                     <Grid item>
                     <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Testing Vote Backend
+                       Testing Nominees Backend
                     </Button>
                     </Grid>
                 </Grid>
@@ -109,8 +109,9 @@ const PanelVote = () => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                 <TableHead>
                     <TableRow>
+                        <TableCell className={classes.tableCell}>Department</TableCell>
                         <TableCell className={classes.tableCell}>Title</TableCell>
-                        <TableCell className={classes.tableCell}>Vote</TableCell>
+                        <TableCell className={classes.tableCell}>Student(s)</TableCell>
                         <TableCell className={classes.tableCell}></TableCell>
                     </TableRow>
                 </TableHead>

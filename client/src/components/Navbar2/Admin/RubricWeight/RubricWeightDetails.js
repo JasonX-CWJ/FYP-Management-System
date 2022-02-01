@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) => {
+const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm , filter, filter2 }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
@@ -39,7 +39,7 @@ const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
 
     return (
         <React.Fragment>
-            {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (      
+            {((user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.fypSess === filter && row.dimension === filter2) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.rubric}

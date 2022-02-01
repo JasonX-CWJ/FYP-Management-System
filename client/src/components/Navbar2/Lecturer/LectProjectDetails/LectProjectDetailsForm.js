@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LectProjectDetailsForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [lectPDData, setlectPDData] = useState({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "" });
+    const [lectPDData, setlectPDData] = useState({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "", status: "pending" });
     const lectPD = useSelector((state) => (currentId ? state.lectProjectDetails.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();

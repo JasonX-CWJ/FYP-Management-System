@@ -48,6 +48,15 @@ const SchedPanelDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) =
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.studTitle}
                 </TableCell>
+                <TableCell className={classes.tableCell} component="th" scope="row">
+                    {row.studName}
+                </TableCell>
+                <TableCell className={classes.tableCell} component="th" scope="row">
+                    {row.date}
+                </TableCell>
+                <TableCell className={classes.tableCell} component="th" scope="row">
+                    {row.time}
+                </TableCell>
                 <TableCell className={classes.tableCell}>
                         <Button
                             size="small"
