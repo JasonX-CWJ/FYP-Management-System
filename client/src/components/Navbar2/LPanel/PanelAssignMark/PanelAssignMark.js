@@ -31,6 +31,7 @@ import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import PanelAssignMarkDetails from "./PanelAssignMarkDetails";
 import PanelAssignMarkForm from "./PanelAssignMarkForm";
 import PanelAssignMarkPopup from "./PanelAssignMarkPopup";
+import PanelAssignMarkFInput from "./PanelAssignMarkFInput";
 
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
@@ -71,6 +72,7 @@ const PanelAssignMark = () => {
     const panelAM = useSelector((state) => state.panelAssignMark);
     const [currentId, setCurrentId] = useState(0);
     const [openPopup, setOpenPopup] = useState(false);
+    const [openPopup2, setOpenPopup2] = useState(false);
 
     useEffect(() => {
         dispatch(getPanelAssignMark());
@@ -83,6 +85,11 @@ const PanelAssignMark = () => {
     const openForm = (item) => {
         setCurrentId(item._id);
         setOpenPopup(true);
+    };
+
+    const openFInput = (item) => {
+        setCurrentId(item._id);
+        setOpenPopup2(true);
     };
 
     const confirmDelete = (id) => {
@@ -137,6 +144,7 @@ const PanelAssignMark = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                     <TableHead>
                         <TableRow>
+                            <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
@@ -144,7 +152,7 @@ const PanelAssignMark = () => {
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput} />
                         ))}
                     </TableBody>
                     </Table>
@@ -164,7 +172,7 @@ const PanelAssignMark = () => {
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -180,6 +188,7 @@ const PanelAssignMark = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                     <TableHead>
                         <TableRow>
+                            <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
@@ -187,7 +196,7 @@ const PanelAssignMark = () => {
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -200,6 +209,7 @@ const PanelAssignMark = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                     <TableHead>
                         <TableRow>
+                            <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
@@ -207,7 +217,7 @@ const PanelAssignMark = () => {
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -220,6 +230,9 @@ const PanelAssignMark = () => {
             
             <PanelAssignMarkPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
                 <PanelAssignMarkForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+            </PanelAssignMarkPopup> 
+            <PanelAssignMarkPopup openPopup={openPopup2} setOpenPopup={setOpenPopup2} setCurrentId={setCurrentId}>
+                <PanelAssignMarkFInput currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup2} setNotify={setNotify} />
             </PanelAssignMarkPopup> 
             <Notification notify={notify} setNotify={setNotify} />
             <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
