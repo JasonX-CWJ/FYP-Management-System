@@ -1,6 +1,6 @@
 import { makeStyles, Box, CardMedia, TableRow, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
 import React, { useState } from "react";
-import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
+import { Delete as DeleteIcon, Edit as EditIcon, Check as CheckIcon, Close as CloseIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LectMeetingsDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) => {
+const LectMeetingsDetails = ({ filter, row, setConfirmDialog, confirmDelete, openForm }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
@@ -39,7 +39,7 @@ const LectMeetingsDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
 
     return (
         <React.Fragment>
-            {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (      
+            {((user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.status === filter) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.title}
@@ -50,37 +50,41 @@ const LectMeetingsDetails = ({ row, setConfirmDialog, confirmDelete, openForm })
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.studname}
                 </TableCell>
-                <TableCell className={classes.tableCell} component="th" scope="row">
+                {/* <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.link}
-                </TableCell>
+                </TableCell> */}
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.date}
                 </TableCell>
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.time}
                 </TableCell>
-                <TableCell className={classes.tableCell}>
+                {(row.status === 'pending') && (
+                    <TableCell className={classes.tableCell}>
                         <Button
                             size="small"
-                            color="secondary"
-                            onClick={() =>
-                                setConfirmDialog({
-                                    isOpen: true,
-                                    title: "Are you sure you want to delete this?",
-                                    subtitle: "You cannot undo this operation!",
-                                    onConfirm: () => {
-                                        confirmDelete(row._id);
-                                    },
-                                })
-                            }
+                            color="primary"
+                            
                         >
-                            <DeleteIcon fontSize="small" /> Delete
+                            <CheckIcon fontSize="small" /> Accept
                         </Button>           
-                        <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            <EditIcon fontSize="small" /> Edit
+                        <Button size="small" color="secondary" >
+                            <CloseIcon fontSize="small" /> Reject
                         </Button>
-                    
-                </TableCell>
+                    </TableCell>
+                )}
+                {(row.status === 'active') && (
+                    <TableCell className={classes.tableCell}>
+                        <Button
+                            size="small"
+                            color="primary"
+                            
+                        >
+                            <CheckIcon fontSize="small" /> Completed
+                        </Button>           
+                        
+                    </TableCell>
+                )}
             </TableRow>
             )}  
         </React.Fragment>

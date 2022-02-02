@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LectMeetingsForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [lectMData, setlectMData] = useState({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "" });
+    const [lectMData, setlectMData] = useState({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "", status: "pending" });
     const lectM = useSelector((state) => (currentId ? state.lectMeetings.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -37,7 +37,7 @@ const LectMeetingsForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
 
     const clearForm = () => {
         setCurrentId(0);
-        setlectMData({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "" });
+        setlectMData({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "", status: "" });
     };
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const LectMeetingsForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
                 <TextField name="title" variant="outlined" required autoFocus label="Meeting Title" fullWidth value={lectMData.title} onChange={(e) => setlectMData({ ...lectMData, title: e.target.value })} />
                 <TextField name="projecttitle" variant="outlined" required label="Project Title" fullWidth value={lectMData.projecttitle} onChange={(e) => setlectMData({ ...lectMData, projecttitle: e.target.value })} />
                 <TextField name="studname" variant="outlined" required label="Student Name" fullWidth value={lectMData.studname} onChange={(e) => setlectMData({ ...lectMData, studname: e.target.value })} />
-                <TextField name="link" variant="outlined" required label="Link" fullWidth value={lectMData.link} onChange={(e) => setlectMData({ ...lectMData, link: e.target.value })} />
+                {/* <TextField name="link" variant="outlined" required label="Link" fullWidth value={lectMData.link} onChange={(e) => setlectMData({ ...lectMData, link: e.target.value })} /> */}
                 <TextField name="date" variant="outlined" required label="Date" fullWidth value={lectMData.date} onChange={(e) => setlectMData({ ...lectMData, date: e.target.value })} />
                 <TextField name="time" variant="outlined" required label="Time" fullWidth value={lectMData.time} onChange={(e) => setlectMData({ ...lectMData, time: e.target.value })} />
                 <div style={{ display: "flex" }}>

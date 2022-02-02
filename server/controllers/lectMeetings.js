@@ -30,10 +30,10 @@ export const createLectMeetings = async (req, res) => {
 
 export const updateLectMeetings = async (req, res) => {
     const { id } = req.params;
-    const { creator, title, projecttitle, studname, link, date, time } = req.body;
+    const { creator, title, projecttitle, studname, link, date, time, status } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No LectMeetings with id: ${id}`);
-    const updatedLectMeetings = { creator, title, projecttitle, studname, link, date, time, _id: id };
+    const updatedLectMeetings = { creator, title, projecttitle, studname, link, date, time, status, _id: id };
 
     await LectMeetings.findByIdAndUpdate(id, updatedLectMeetings, { new: true });
 
