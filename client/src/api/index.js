@@ -18,3 +18,6 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);
 export const updatePass = (formData) => API.post("/user/updatePass", formData);
+
+export const uploadStudentList = (data) => API.post("/test/upload-student-list", data);
+export const fetchStudentList = () => API.get("/test/fetch-student-list");

@@ -39,3 +39,17 @@ export const deletePost = (id) => async (dispatch) => {
         console.log(error);
     }
 };
+
+//TEMPORARY STUFF
+export const uploadStudentList = (data) => async (dispatch) => {
+    try {
+        console.log(data);
+        const formData = new FormData();
+
+        formData.append("file", data.file);
+        formData.append("userrole", data.userrole);
+        const result = await api.uploadStudentList(formData);
+    } catch (error) {
+        console.log(error);
+    }
+};

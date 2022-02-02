@@ -9,7 +9,7 @@ const studentSchema = mongoose.Schema({
     semester: { type: String, required: true },
     year: { type: String, required: true },
     supervisor: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" }],
-    projectApplied: [Projects],
+    // projectApplied: [Projects],
     // role: { type: String },
 });
 
