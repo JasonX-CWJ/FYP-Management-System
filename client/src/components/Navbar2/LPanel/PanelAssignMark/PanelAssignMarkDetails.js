@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const PanelAssignMarkDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) => {
+const PanelAssignMarkDetails = ({ row, setConfirmDialog, confirmDelete, openForm, openFInput }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
@@ -42,6 +42,11 @@ const PanelAssignMarkDetails = ({ row, setConfirmDialog, confirmDelete, openForm
         <React.Fragment>
             {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => setOpenDetail(!openDetail)}>
+                        {openDetail ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                </TableCell>
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.title}
                 </TableCell>
@@ -69,10 +74,26 @@ const PanelAssignMarkDetails = ({ row, setConfirmDialog, confirmDelete, openForm
                         <Button size="small" color="primary" onClick={() => openForm(row)}>
                             <EditIcon fontSize="small" /> Edit
                         </Button>
+
+                        <Button size="small" color="primary" onClick={() => openFInput(row)}>
+                            <EditIcon fontSize="small" /> Assign Mark
+                        </Button>
                     
                 </TableCell>
             </TableRow>
             )}  
+            <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <Collapse in={openDetail} timeout="auto" unmountOnExit>
+                    <Box sx={{ margin: 12 }}>
+                        <Typography variant="h6">{row.studname}</Typography>
+                        <Typography variant="body1">
+                            {row.monEval}
+                        </Typography>
+                    </Box>
+                </Collapse>
+            </TableCell>
+        </TableRow>
         </React.Fragment>
     );
 };
