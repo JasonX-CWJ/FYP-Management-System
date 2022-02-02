@@ -19,6 +19,8 @@ import {
     Toolbar,
     Grid,
     Card,
+    Box,
+    Tab,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -29,6 +31,10 @@ import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import PanelAssignMarkDetails from "./PanelAssignMarkDetails";
 import PanelAssignMarkForm from "./PanelAssignMarkForm";
 import PanelAssignMarkPopup from "./PanelAssignMarkPopup";
+
+import TabContext from '@material-ui/lab/TabContext';
+import TabList from '@material-ui/lab/TabList';
+import TabPanel from '@material-ui/lab/TabPanel';
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -88,8 +94,17 @@ const PanelAssignMark = () => {
         });
     };
 
+    {/* test */}
+    const [value, setValue] = React.useState('1');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+    {/* test */}
+
     return (
         <Grow in>
+            
             <Container maxWidth={false}>
             <Paper>
             <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
@@ -105,25 +120,104 @@ const PanelAssignMark = () => {
                 </Grid>
             </Toolbar>
             </Paper>
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6"> Pending Titles</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { panelAM.map((row) => (
-                        <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
+                {/* test */}
+            <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <TabList onChange={handleChange} >
+                <Tab label="FYP 1" value="1" />
+                <Tab label="FYP 2" value="2" />
+                </TabList>
+            </Box>
+
+
+            <TabPanel value="1">
+                <Paper style={{ margin: "16px 0px", padding: 8, }}>
+                <Typography variant="h6">FYP 1 Monitoring</Typography>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.tableCell}>Title</TableCell>
+                            <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { panelAM.map((row) => (
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        ))}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+                </Paper>
+
+                <Paper style={{ margin: "16px 0px", padding: 8, }}>
+                <Typography variant="h6">FYP 1 Viva</Typography>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.tableCell}>Title</TableCell>
+                            <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { panelAM.map((row) => (
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        ))}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+                </Paper>
+            </TabPanel>
+
+
+            <TabPanel value="2">
+                <Paper style={{ margin: "16px 0px", padding: 8, }}>
+                <Typography variant="h6">FYP 2 Monitoring</Typography>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.tableCell}>Title</TableCell>
+                            <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { panelAM.map((row) => (
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        ))}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+                </Paper>
+
+                <Paper style={{ margin: "16px 0px", padding: 8, }}>
+                <Typography variant="h6">FYP 2 Viva</Typography>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.tableCell}>Title</TableCell>
+                            <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { panelAM.map((row) => (
+                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        ))}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+                </Paper>
+            </TabPanel>
+            </TabContext>
+            {/* test */}
+            
+            
             <PanelAssignMarkPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
                 <PanelAssignMarkForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
             </PanelAssignMarkPopup> 

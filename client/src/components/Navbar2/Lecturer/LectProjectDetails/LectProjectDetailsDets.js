@@ -43,9 +43,14 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
         <React.Fragment>
             {((user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.status === filter ) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.department}
+                <TableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => setOpenDetail(!openDetail)}>
+                        {openDetail ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
                 </TableCell>
+                {/* <TableCell className={classes.tableCell} component="th" scope="row">
+                    {row.department}
+                </TableCell> */}
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.semester}
                 </TableCell>
@@ -82,15 +87,36 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
                                 })
                             }
                         >
-                            <DeleteIcon fontSize="small" /> Delete
+                            <DeleteIcon fontSize="small" /> 
                         </Button>           
                         <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            <EditIcon fontSize="small" /> Edit
+                            <EditIcon fontSize="small" /> 
                         </Button>
                     
                 </TableCell>
             </TableRow>
             )}  
+            <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <Collapse in={openDetail} timeout="auto" unmountOnExit>
+                    <Box sx={{ margin: 12 }}>
+                        <Typography variant="h6">{row.title}</Typography>
+                        <Typography variant="body1">
+                            {row.description.split("\n").map((item, idx) => {
+                                return (
+                                    <React.Fragment key={idx}>
+                                        {item}
+                                        <br />
+                                    </React.Fragment>
+                                );
+                            })}
+                        </Typography>
+                        <Typography variant="body2">Potential Stakeholder: {row.potStakeholder}</Typography>
+                        <Typography variant="body2">Tools: {row.tool}</Typography>
+                    </Box>
+                </Collapse>
+            </TableCell>
+        </TableRow>
         </React.Fragment>
     );
 };
