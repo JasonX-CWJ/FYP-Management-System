@@ -37,7 +37,7 @@ const LectProjectDetailsForm = ({ currentId, setCurrentId, setNotify, setOpenPop
 
     const clearForm = () => {
         setCurrentId(0);
-        setlectPDData({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "" });
+        setlectPDData({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "", status: "pending" });
     };
 
     useEffect(() => {
