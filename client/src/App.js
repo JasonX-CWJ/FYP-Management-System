@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import ResetPass from "./components/Auth/ResetPass";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails } from "./components/Navbar2/Student";
@@ -29,6 +30,7 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/auth" exact component={Auth} />
+                    <Route path="/reset-password" exact component={ResetPass} />
 
                     {/* General */}
                     <Route path="/announcements" exact component={Announcements} />
@@ -40,12 +42,12 @@ const App = () => {
                     <Route path="/meetings" exact component={Meetings} />
                     <Route path="/file-submission" exact component={FileSubmission} />
 
-                    {/* Lecturer Section */} 
+                    {/* Lecturer Section */}
                     <Route path="/lectproject-detail" exact component={LectProjectDetails} />
                     <Route path="/lectmeetings" exact component={LectMeetings} />
                     <Route path="/lectfile-submitted" exact component={LectFileSubmitted} />
 
-                    {/* Panel Section */} 
+                    {/* Panel Section */}
                     <Route path="/panelassign-mark" exact component={PanelAssignMark} />
                     <Route path="/panel-vote" exact component={PanelVote} />
 
