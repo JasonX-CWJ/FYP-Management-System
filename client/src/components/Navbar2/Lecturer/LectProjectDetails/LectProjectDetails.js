@@ -152,11 +152,11 @@ const LectProjectDetails = () => {
             <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} >
-                <Tab label="Mine" value="mine" />
-                <Tab label="Student" value="student" />
+                <Tab label="Mine" value="1" />
+                <Tab label="Student" value="2" />
                 </TabList>
             </Box>
-            <TabPanel value="mine">
+            <TabPanel value="1">
                 <Paper style={{ margin: "16px 0px", padding: 8, }}>
                 <Typography variant="h6"> Accepted Titles</Typography>
                 <TableContainer component={Paper}>
@@ -239,7 +239,7 @@ const LectProjectDetails = () => {
                 </Paper>
             </TabPanel>
 
-            <TabPanel value="student">
+            <TabPanel value="2">
             <Paper style={{ margin: "16px 0px", padding: 8, }}>
                 <Typography variant="h6"> Student Applied Titles</Typography>
                 <TableContainer component={Paper}>
