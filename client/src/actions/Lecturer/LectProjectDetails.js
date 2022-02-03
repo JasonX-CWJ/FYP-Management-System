@@ -33,7 +33,7 @@ export const updateLectProjectDet = (id, post) => async (dispatch) => {
 
 export const deleteLectProjectDet = (id) => async (dispatch) => {
     try {
-        await await api.deleteLectProjectDet(id);
+        await api.deleteLectProjectDet(id);
 
         dispatch({ type: DELETE_LPD, payload: id });
     } catch (error) {

@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import LectProjectDet from "../models/lectProjectDet.js";
+import STATUS from "../constants/projectStatus.js";
 
 const router = express.Router();
 
@@ -49,6 +50,17 @@ export const deleteLectProjectDet = async (req, res) => {
     await LectProjectDet.findByIdAndRemove(id);
 
     res.json({ message: "LectProjectDet deleted successfully." });
+};
+
+//admin related
+
+export const approveLectProjectDet = async (req, res) => {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No LectProjectDet with id: ${id}`);
+    const updatedLectProjectDet = await LectProjectDet.findByIdAndUpdate(id, { status: STATUS.ACCEPT });
+
+    res.json(updatedLectProjectDet);
 };
 
 export default router;

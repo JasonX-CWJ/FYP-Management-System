@@ -12,6 +12,7 @@ const lectProjectDetSchema = mongoose.Schema({
     tool: String,
     noOfStud: String,
     status: String, //to know if it is approved or not by admin - not included anywhere yet
+    // studentAssigned: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }]
 });
 
 var lectProjectDet = mongoose.model("LectProjectDet", lectProjectDetSchema);

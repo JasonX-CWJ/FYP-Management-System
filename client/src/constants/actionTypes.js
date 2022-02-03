@@ -6,6 +6,7 @@ export const FETCH_ALL = "FETCH_ALL";
 export const AUTH = "AUTH";
 export const LOGOUT = "LOGOUT";
 export const ERROR = "ERROR";
+export const UPDATE_PASS = "UPDATE_PASS";
 
 export const CREATE_INFO = "CREATE_INFO";
 export const UPDATE_INFO = "UPDATE_INFO";
@@ -49,3 +50,5 @@ export const CREATE_RW = "CREATE_RW";
 export const UPDATE_RW = "UPDATE_RW";
 export const DELETE_RW = "DELETE_RW";
 export const FETCH_ALL_RW = "FETCH_ALL_RW";
+
+export const APPROVE_LPD = "APPROVE_LPD";
