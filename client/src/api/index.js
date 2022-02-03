@@ -26,6 +26,17 @@ export const updateInfoGuide = (id, updatedInfoGuide) => API.patch(`/info/${id}`
 export const deleteInfoGuide = (id) => API.delete(`/info/${id}`);
 
 // student section
+// PROJECT DETAILS
+// export const fetchProjectDet = () => API.get("/ProjectDet");
+// export const createProjectDet = (newProjectDet) => API.post("/ProjectDet", newProjectDet);
+// export const updateProjectDet = (id, updatedProjectDet) => API.patch(`/ProjectDet/${id}`, updatedProjectDet);
+// export const deleteProjectDet = (id) => API.delete(`/ProjectDet/${id}`);
+
+//MEETINGS
+// export const fetchMeetings = () => API.get("/Meetings");
+// export const createMeetings = (newMeetings) => API.post("/Meetings", newMeetings);
+// export const updateMeetings = (id, updatedMeetings) => API.patch(`/Meetings/${id}`, updatedMeetings);
+// export const deleteMeetings = (id) => API.delete(`/Meetings/${id}`);
 
 // lecturer section
 export const fetchLectProjectDet = () => API.get("/lectProjectDet");
