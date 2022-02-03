@@ -13,6 +13,19 @@ export const UPDATE_INFO = "UPDATE_INFO";
 export const DELETE_INFO = "DELETE_INFO";
 export const FETCH_ALL_INFO = "FETCH_ALL_INFO";
 
+// student section 
+//PROJECT DETAILS
+// export const CREATE_PD = "CREATE_PD";
+// export const UPDATE_PD = "UPDATE_PD";
+// export const DELETE_PD = "DELETE_PD";
+// export const FETCH_ALL_PD = "FETCH_ALL_PD";
+
+// MEETINGS
+// export const CREATE_M = "CREATE_M";
+// export const UPDATE_M = "UPDATE_M";
+// export const DELETE_M = "DELETE_M";
+// export const FETCH_ALL_M = "FETCH_ALL_M";
+
 // lecturer section
 export const CREATE_LPD = "CREATE_LPD";
 export const UPDATE_LPD = "UPDATE_LPD";

@@ -37,7 +37,7 @@ const LectMeetingsForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
 
     const clearForm = () => {
         setCurrentId(0);
-        setlectMData({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "", status: "" });
+        setlectMData({ title: "", projecttitle: "", studname: "", link: "", date: "", time: "", status: "", status: "pending" });
     };
 
     useEffect(() => {
