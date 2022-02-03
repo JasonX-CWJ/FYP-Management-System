@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { 
+import {
     InputAdornment,
     makeStyles,
     Grow,
@@ -23,14 +23,14 @@ import {
     Tab,
 } from "@material-ui/core";
 
-import TabContext from '@material-ui/lab/TabContext';
-import TabList from '@material-ui/lab/TabList';
-import TabPanel from '@material-ui/lab/TabPanel';
+import TabContext from "@material-ui/lab/TabContext";
+import TabList from "@material-ui/lab/TabList";
+import TabPanel from "@material-ui/lab/TabPanel";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { getLectProjectDet, deleteLectProjectDet } from "../../../../actions/Lecturer/LectProjectDetails";
-
+import { approveLectProjectDet } from "../../../../actions/Admin/AdmProjectDetails";
 
 import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
@@ -65,12 +65,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const useStyles = makeStyles((theme) => ({
+    tableRow: {
+        border: 0,
+        height: 50,
+        maxHeight: 10,
+        whiteSpace: "pre-wrap",
+    },
+    tableCell: {
+        maxWidth: 200, // percentage also works
+        maxHeight: 100,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+    },
+
+    tableCellMobile: {
+        maxWidth: 200, // percentage also works
+        maxHeight: 100,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        [theme.breakpoints.down("md")]: {
+            display: "none",
+        },
+    },
+}));
+
 const LectProjectDetails = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
     const lectPD = useSelector((state) => state.lectProjectDetails);
     const [currentId, setCurrentId] = useState(0);
+    const [approveData, setApproveData] = useState({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "", status: "" });
     const [openPopup, setOpenPopup] = useState(false);
 
     useEffect(() => {
@@ -83,6 +111,16 @@ const LectProjectDetails = () => {
     const openForm = (item) => {
         setCurrentId(item._id);
         setOpenPopup(true);
+    };
+  
+    const openApprove = (item) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
+        setCurrentId(item._id);
+        dispatch(approveLectProjectDet(item._id));
+        // setOpenPopup(true);
     };
 
     const confirmDelete = (id) => {
@@ -140,7 +178,7 @@ const LectProjectDetails = () => {
                 </TableHead>
                 <TableBody>
                     { lectPD.map((row) => (
-                        <LectProjectDetailsDets filter={'active'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                        <LectProjectDetailsDets filter={'active'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} isPending={false} />
                     ))}
                 </TableBody>
                 </Table>
@@ -177,7 +215,7 @@ const LectProjectDetails = () => {
                     </TableHead>
                     <TableBody>
                         { lectPD.map((row) => (
-                            <LectProjectDetailsDets filter={'accept'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <LectProjectDetailsDets filter={'accept'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} isPending={false}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -204,7 +242,7 @@ const LectProjectDetails = () => {
                     </TableHead>
                     <TableBody>
                         { lectPD.map((row) => (
-                            <LectProjectDetailsDets filter={'pending'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <LectProjectDetailsDets filter={'pending'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} isPending={true} openApprove={openApprove}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -231,7 +269,7 @@ const LectProjectDetails = () => {
                     </TableHead>
                     <TableBody>
                         { lectPD.map((row) => (
-                            <LectProjectDetailsDets filter={'reject'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <LectProjectDetailsDets filter={'reject'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} isPending={false}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -260,7 +298,7 @@ const LectProjectDetails = () => {
                     </TableHead>
                     <TableBody>
                         { lectPD.map((row) => (
-                            <LectProjectDetailsDets filter={'applied'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                            <LectProjectDetailsDets filter={'applied'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} isPending={false}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -313,3 +351,4 @@ const LectProjectDetails = () => {
 };
 
 export default LectProjectDetails;
+
