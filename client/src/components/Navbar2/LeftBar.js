@@ -77,12 +77,6 @@ const LeftBar = ({ sideState, setSideState }) => {
     ];
     const menuItemsStudent = [
         {
-            text: "Student Profile",
-            icon: <SubjectOutlined className={classes.icon} />,
-            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "/profile",
-        },
-        {
             text: "Project Details",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
@@ -102,13 +96,7 @@ const LeftBar = ({ sideState, setSideState }) => {
         },
     ];
 
-    const menuItemsLecturer = [
-        {
-            text: "Lecturer Profile",
-            icon: <SubjectOutlined className={classes.icon} />,
-            iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "/lectprofile",
-        },
+    const menuItemsLecturer = [ 
         {
             text: "Project Details",
             icon: <SubjectOutlined className={classes.icon} />,
