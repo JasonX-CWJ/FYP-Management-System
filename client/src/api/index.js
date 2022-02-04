@@ -78,3 +78,5 @@ export const updateRubricWeight = (id, updatedRubricWeight) => API.patch(`/rubri
 export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 
 export const approveLectProjectDet = (id) => API.patch(`/lectProjectDet/approve/${id}`);
+export const fetchLectProjectApplied = () => API.get("/lectProjectDet/mystudents");
+export const approveLectProjectApplied = (id) => API.patch(`/lectProjectDet/mystudents/${id}`);

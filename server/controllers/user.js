@@ -9,7 +9,10 @@ export const signin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const oldUser = await User.findOne({ email });
+        const oldUser = await User.findOne({ email }).populate({
+            path: "studentData",
+            populate: [{ path: "projectActive" }, { path: "supervisor" }],
+        });
 
         if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
