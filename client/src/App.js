@@ -1,14 +1,17 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "./components/Home/Home";
+// import Student from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import StudentHome from "./components/Navbar2/Home2";
+import LecturerHome from "./components/Navbar2/LecturerHome";
+import AdminHome from "./components/Navbar2/AdminHome";
 
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails } from "./components/Navbar2/Student";
 import { LectProjectDetails, LectMeetings, LectFileSubmitted } from "./components/Navbar2/Lecturer";
 import { PanelAssignMark, PanelVote } from "./components/Navbar2/LPanel";
-import { SchedPanel, RubricWeight, LecturerRepo } from "./components/Navbar2/Admin";
+import { SchedPanel, RubricWeight, LecturerRepo, StudentRepo } from "./components/Navbar2/Admin";
 // import useStyles from "./styles";
 import Layout from "./components/Layout";
 
@@ -27,7 +30,9 @@ const App = () => {
                 <LeftBar /> */}
             <Layout>
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" exact component={StudentHome} />
+                    <Route path="/lecturer" exact component={LecturerHome} />\
+                    <Route path="/admin" exact component={AdminHome} />
                     <Route path="/auth" exact component={Auth} />
 
                     {/* General */}
@@ -51,7 +56,7 @@ const App = () => {
 
                     {/* Admin Section */}
                     <Route path="/lecturer-repo" exact component={LecturerRepo} />
-                    {/* <Route path="/student-repo" exact component={StudentRepo} /> */}
+                    <Route path="/student-repo" exact component={StudentRepo} />
                     <Route path="/rubric" exact component={RubricWeight} />
                     {/* <Route path="/reports" exact component={Reports} /> */}
                     <Route path="/sched-panel" exact component={SchedPanel} />
