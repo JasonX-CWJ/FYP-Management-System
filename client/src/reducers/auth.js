@@ -12,6 +12,8 @@ const authReducer = (state = { authData: null }, action) => {
             return { ...state, authData: null, loading: false, errors: null };
         case actionType.ERROR:
             return { ...state, authData: null, loading: false, errors: action.errorMessage };
+        case actionType.UPDATE_PASS:
+            return state;
         default:
             return state;
     }

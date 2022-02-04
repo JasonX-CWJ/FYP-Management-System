@@ -14,6 +14,7 @@ API.interceptors.request.use((req) => {
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);
+export const updatePass = (formData) => API.post("/user/updatePass", formData);
 
 export const fetchPosts = () => API.get("/posts");
 export const createPost = (newPost) => API.post("/posts", newPost);
@@ -71,7 +72,6 @@ export const createPanelVote = (newPanelVote) => API.post("/panelVote", newPanel
 export const updatePanelVote = (id, updatedPanelVote) => API.patch(`/panelVote/${id}`, updatedPanelVote);
 export const deletePanelVote = (id) => API.delete(`/panelVote/${id}`);
 
-
 //admin section
 export const fetchSchedPanel = () => API.get("/schedPanel");
 export const createSchedPanel = (newSchedPanel) => API.post("/schedPanel", newSchedPanel);
@@ -82,6 +82,7 @@ export const fetchRubricWeight = () => API.get("/rubricWeight");
 export const createRubricWeight = (newRubricWeight) => API.post("/rubricWeight", newRubricWeight);
 export const updateRubricWeight = (id, updatedRubricWeight) => API.patch(`/rubricWeight/${id}`, updatedRubricWeight);
 export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
+
 
 //LECTURER REPO
 // export const fetchLecturerRepo = () => API.get("/lecturerRepo");
@@ -94,3 +95,6 @@ export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 // export const createStudentRepo = (newStudentRepo) => API.post("/studentRepo", newStudentRepo);
 // export const updateStudentRepo = (id, updatedStudentRepo) => API.patch(`/studentRepo/${id}`, updatedStudentRepo);
 // export const deleteStudentRepo = (id) => API.delete(`/studentRepo/${id}`);
+
+export const approveLectProjectDet = (id) => API.patch(`/lectProjectDet/approve/${id}`);
+

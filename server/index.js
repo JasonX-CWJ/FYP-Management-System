@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-
 import userRouter from "./routes/user.js";
 
 //General
 import postRoutes from "./routes/posts.js"; //announcement (jason)
 import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view for all - change name to infoGuideView soon (zana)
+import testRouter from "./routes/test.js";
 //import projectRepo from "./routes/projectRepo.js"; - no route, controller and models yet (jason)
 
 //Admin
@@ -22,11 +22,11 @@ import schedPanel from "./routes/schedPanel.js";
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
 import lectMeetings from "./routes/lectMeetings.js";
-import lectFileSubmitted from "./routes/lectFileSubmitted.js"
+import lectFileSubmitted from "./routes/lectFileSubmitted.js";
 
 //Panel
-import panelAssignMark from "./routes/panelAssignMark.js" 
-import panelVote from "./routes/panelVote.js"
+import panelAssignMark from "./routes/panelAssignMark.js";
+import panelVote from "./routes/panelVote.js";
 
 const app = express();
 dotenv.config();
@@ -40,6 +40,8 @@ app.use("/user", userRouter);
 //General
 app.use("/posts", postRoutes);
 app.use("/info", infoGuideRouter);
+app.use("/test", testRouter);
+
 //app.use("/projectRepo", projectRepo);
 
 //Admin
@@ -51,8 +53,8 @@ app.use("/schedPanel", schedPanel);
 
 //Lecturer
 app.use("/lectProjectDet", lectProjectDet);
-app.use("/lectMeetings", lectMeetings); - 
-app.use("/lectFileSubmitted", lectFileSubmitted);
+app.use("/lectMeetings", lectMeetings);
+-app.use("/lectFileSubmitted", lectFileSubmitted);
 
 //Panel
 app.use("/panelAssignMark", panelAssignMark);
