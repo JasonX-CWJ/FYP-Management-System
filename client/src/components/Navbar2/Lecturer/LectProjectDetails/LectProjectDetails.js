@@ -40,6 +40,33 @@ import LectProjectDetailsForm from "./LectProjectDetailsForm";
 import LectProjectDetailsPopup from "./LectProjectDetailsPopup";
 import { getLectProjectApplied, approveLectProjectApplied } from "../../../../actions/Lecturer/LectProjectApplied";
 
+const useStyles = makeStyles((theme) => ({
+    tableRow: {
+        border: 0,
+        height: 50,
+        maxHeight: 10,
+        whiteSpace: "pre-wrap",
+    },
+    tableCell: {
+        maxWidth: 200, // percentage also works
+        maxHeight: 100,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+    },
+
+    tableCellMobile: {
+        maxWidth: 200, // percentage also works
+        maxHeight: 100,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        [theme.breakpoints.down("md")]: {
+            display: "none",
+        },
+    },
+}));
+
 const LectProjectDetails = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
