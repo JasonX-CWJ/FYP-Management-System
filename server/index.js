@@ -10,6 +10,7 @@ import userRouter from "./routes/user.js";
 import postRoutes from "./routes/posts.js"; //announcement (jason)
 import infoGuideRouter from "./routes/infoGuide.js"; //this suppose to be view for all - change name to infoGuideView soon (zana)
 import testRouter from "./routes/test.js";
+import general from "./routes/general.js";
 //import projectRepo from "./routes/projectRepo.js"; - no route, controller and models yet (jason)
 
 //Admin
@@ -41,6 +42,7 @@ app.use("/user", userRouter);
 app.use("/posts", postRoutes);
 app.use("/info", infoGuideRouter);
 app.use("/test", testRouter);
+app.use("/general", general);
 
 //app.use("/projectRepo", projectRepo);
 

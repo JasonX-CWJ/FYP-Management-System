@@ -97,4 +97,8 @@ export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 // export const deleteStudentRepo = (id) => API.delete(`/studentRepo/${id}`);
 
 export const approveLectProjectDet = (id) => API.patch(`/lectProjectDet/approve/${id}`);
+export const fetchLectProjectApplied = () => API.get("/lectProjectDet/mystudents");
+export const approveLectProjectApplied = (id) => API.patch(`/lectProjectDet/mystudents/${id}`);
 
+export const getLecturers = () => API.get("/general/getlecturers");
+export const getStudents = () => API.get("/general/getstudents");

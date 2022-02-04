@@ -13,6 +13,7 @@ export const UPDATE_INFO = "UPDATE_INFO";
 export const DELETE_INFO = "DELETE_INFO";
 export const FETCH_ALL_INFO = "FETCH_ALL_INFO";
 
+
 // PROJECT REPO
 // export const CREATE_PR = "CREATE_PR";
 // export const UPDATE_PR = "UPDATE_PR";
@@ -37,6 +38,9 @@ export const CREATE_LPD = "CREATE_LPD";
 export const UPDATE_LPD = "UPDATE_LPD";
 export const DELETE_LPD = "DELETE_LPD";
 export const FETCH_ALL_LPD = "FETCH_ALL_LPD";
+
+export const FETCH_ALL_LPD_STU = "FETCH_ALL_LPD_STU";
+export const APPROVE_LPD_STU = "APPROVE_LPD_STU";
 
 export const CREATE_LM = "CREATE_LM";
 export const UPDATE_LM = "UPDATE_LM";

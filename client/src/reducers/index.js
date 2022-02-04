@@ -1,4 +1,5 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
+
 
 import posts from './posts';
 import auth from './auth';
@@ -6,6 +7,7 @@ import infoGuideline from './infoGuideline';
 // import projectRepo from './projectRepo';
 
 import lectProjectDetails from './Lecturer/lectProjectDetails';
+import lectProjectApplied from "./Lecturer/lectProjectApplied";
 import lectMeetings from './Lecturer/lectMeetings';
 import lectFileSubmitted from './Lecturer/lectFileSubmitted';
 
@@ -22,4 +24,4 @@ import rubricWeight from './Admin/rubricWeight';
 
 //please add commented above in export below
 
-export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectMeetings, lectFileSubmitted, panelAssignMark, panelVote, schedPanel, rubricWeight });
+export const reducers = combineReducers({ posts, auth, infoGuideline, lectProjectDetails, lectProjectApplied, lectMeetings, lectFileSubmitted, panelAssignMark, panelVote, schedPanel, rubricWeight });

@@ -8,8 +8,9 @@ const studentSchema = mongoose.Schema({
     department: { type: String, required: true },
     semester: { type: String, required: true },
     year: { type: String, required: true },
-    supervisor: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" }],
-    // projectApplied: [Projects],
+    supervisor: { type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" },
+    projectApplied: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },
+    projectActive: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },
     // role: { type: String },
 });
 

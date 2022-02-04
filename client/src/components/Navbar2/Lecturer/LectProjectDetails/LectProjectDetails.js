@@ -34,47 +34,24 @@ import { approveLectProjectDet } from "../../../../actions/Admin/AdmProjectDetai
 
 import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
+import LectProjectAppliedDets from "./LectProjectAppliedDets";
 import LectProjectDetailsDets from "./LectProjectDetailsDets";
 import LectProjectDetailsForm from "./LectProjectDetailsForm";
 import LectProjectDetailsPopup from "./LectProjectDetailsPopup";
-
-const useStyles = makeStyles((theme) => ({
-    tableRow: {
-        border: 0,
-        height: 50,
-        maxHeight: 10,
-        whiteSpace: "pre-wrap",
-    },
-    tableCell: {
-        maxWidth: 200, // percentage also works
-        maxHeight: 100,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-
-    tableCellMobile: {
-        maxWidth: 200, // percentage also works
-        maxHeight: 100,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        [theme.breakpoints.down("md")]: {
-            display: "none",
-        },
-    },
-}));
+import { getLectProjectApplied, approveLectProjectApplied } from "../../../../actions/Lecturer/LectProjectApplied";
 
 const LectProjectDetails = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
     const lectPD = useSelector((state) => state.lectProjectDetails);
+    const lectPDStudent = useSelector((state) => state.lectProjectApplied);
     const [currentId, setCurrentId] = useState(0);
     const [approveData, setApproveData] = useState({ department: "", semester: "", session: "", title: "", description: "", potStakeholder: "", tool: "", noOfStud: "", status: "" });
     const [openPopup, setOpenPopup] = useState(false);
 
     useEffect(() => {
+        dispatch(getLectProjectApplied());
         dispatch(getLectProjectDet());
     }, [currentId, dispatch]);
 
@@ -91,8 +68,9 @@ const LectProjectDetails = () => {
             ...confirmDialog,
             isOpen: false,
         });
-        setCurrentId(item._id);
-        dispatch(approveLectProjectDet(item._id));
+        // setCurrentId(item._id);
+        console.log(item._id);
+        dispatch(approveLectProjectApplied(item._id));
         // setOpenPopup(true);
     };
 
@@ -306,16 +284,8 @@ const LectProjectDetails = () => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {lectPD.map((row) => (
-                                            <LectProjectDetailsDets
-                                                filter={"applied"}
-                                                key={row._id}
-                                                row={row}
-                                                setConfirmDialog={setConfirmDialog}
-                                                confirmDelete={confirmDelete}
-                                                openForm={openForm}
-                                                isPending={false}
-                                            />
+                                        {lectPDStudent.map((row) => (
+                                            <LectProjectAppliedDets key={row._id} row={row} setConfirmDialog={setConfirmDialog} openApprove={openApprove} />
                                         ))}
                                     </TableBody>
                                 </Table>
