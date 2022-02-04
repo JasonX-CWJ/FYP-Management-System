@@ -26,6 +26,12 @@ export const createInfoGuide = (newInfoGuide) => API.post("/info", newInfoGuide)
 export const updateInfoGuide = (id, updatedInfoGuide) => API.patch(`/info/${id}`, updatedInfoGuide);
 export const deleteInfoGuide = (id) => API.delete(`/info/${id}`);
 
+// PROJECT REPOSITORY
+// export const fetchProjectRepo = () => API.get("/projectRepo");
+// export const createProjectRepo = (newProjectRepo) => API.post("/projectRepo", newProjectRepo);
+// export const updateProjectRepo = (id, updatedProjectRepo) => API.patch(`/projectRepo/${id}`, updatedProjectRepo);
+// export const deleteProjectRepo = (id) => API.delete(`/projectRepo/${id}`);
+
 // student section
 // PROJECT DETAILS
 // export const fetchProjectDet = () => API.get("/ProjectDet");
@@ -77,4 +83,18 @@ export const createRubricWeight = (newRubricWeight) => API.post("/rubricWeight",
 export const updateRubricWeight = (id, updatedRubricWeight) => API.patch(`/rubricWeight/${id}`, updatedRubricWeight);
 export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 
+
+//LECTURER REPO
+// export const fetchLecturerRepo = () => API.get("/lecturerRepo");
+// export const createLecturerRepo = (newLecturerRepo) => API.post("/lecturerRepo", newLecturerRepo);
+// export const updateLecturerRepo = (id, updatedLecturerRepo) => API.patch(`/lecturerRepo/${id}`, updatedLecturerRepo);
+// export const deleteLecturerRepo = (id) => API.delete(`/lecturerRepo/${id}`);
+
+//STUDENT REPO
+// export const fetchStudentRepo = () => API.get("/studentRepo");
+// export const createStudentRepo = (newStudentRepo) => API.post("/studentRepo", newStudentRepo);
+// export const updateStudentRepo = (id, updatedStudentRepo) => API.patch(`/studentRepo/${id}`, updatedStudentRepo);
+// export const deleteStudentRepo = (id) => API.delete(`/studentRepo/${id}`);
+
 export const approveLectProjectDet = (id) => API.patch(`/lectProjectDet/approve/${id}`);
+

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper, Container, makeStyles } from "@material-ui/core";
+import { TextField, Button, Typography, Paper, Container, makeStyles, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
 // import { createLecturerRepo, updateLecturerRepo } from "../../../../actions/Admin/LecturerRepo";
@@ -70,32 +70,25 @@ const LecturerRepoForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
 
     return (
         <Container>
-            {/* <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+            <form autoComplete="off" className={`${classes.root} ${classes.form}`} >
                 <Typography variant="h6">{currentId ? `Editing "${adminLR.lectName}"` : ""}</Typography>
                 <TextField name="lectName" variant="outlined" required autoFocus label="Lecturer Name" fullWidth value={adminLRData.lectName} onChange={(e) => setadminLRData({ ...adminLRData, lectName: e.target.value })} />
                 <TextField name="department" variant="outlined" required label="Department" fullWidth value={adminLRData.department} onChange={(e) => setadminLRData({ ...adminLRData, department: e.target.value })} />
-                <TextField name="email" variant="outlined" required label="Email" fullWidth value={adminLRData.email} onChange={(e) => setadminLRData({ ...adminLRData, email: e.target.value })} />
-                <TextField name="role" variant="outlined" required label="Role" fullWidth value={adminLRData.role} onChange={(e) => setadminLRData({ ...adminLRData, role: e.target.value })} />
                 
-                <FormControl component="fieldset" className={classes.formControl}>
-                    <FormLabel component="legend">Assign responsibility</FormLabel>
-                    <FormGroup>
-                    <FormControlLabel
-                        control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-                        label="Gilad Gray"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-                        label="Jason Killian"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-                        label="Antoine Llorca"
-                    />
-                    </FormGroup>
-                    <FormHelperText>Be careful</FormHelperText>
+                <FormControl  >
+                    <FormLabel id="role">Assign Panel?</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="role"
+                        name="role"
+                        value={adminLRData.role} onChange={(e) => setadminLRData({ ...adminLRData, role: e.target.value })}
+                    >
+                        <FormControlLabel value="panel" control={<Radio required={true}/>} label="A Panel" />
+                        <FormControlLabel value="notpanel" control={<Radio required={true}/>} label="Not A Panel" />
+                    </RadioGroup>
                 </FormControl>
-                
+
+                <TextField name="email" variant="outlined" required label="Email" fullWidth value={adminLRData.email} onChange={(e) => setadminLRData({ ...adminLRData, email: e.target.value })} />           
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit
@@ -104,7 +97,7 @@ const LecturerRepoForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) 
                         Clear
                     </Button>
                 </div>
-            </form> */}
+            </form>
         </Container>
         );
 };

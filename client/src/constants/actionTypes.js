@@ -13,6 +13,12 @@ export const UPDATE_INFO = "UPDATE_INFO";
 export const DELETE_INFO = "DELETE_INFO";
 export const FETCH_ALL_INFO = "FETCH_ALL_INFO";
 
+// PROJECT REPO
+// export const CREATE_PR = "CREATE_PR";
+// export const UPDATE_PR = "UPDATE_PR";
+// export const DELETE_PR = "DELETE_PR";
+// export const FETCH_ALL_PR = "FETCH_ALL_PR";
+
 // student section 
 //PROJECT DETAILS
 // export const CREATE_PD = "CREATE_PD";
@@ -64,4 +70,18 @@ export const UPDATE_RW = "UPDATE_RW";
 export const DELETE_RW = "DELETE_RW";
 export const FETCH_ALL_RW = "FETCH_ALL_RW";
 
+
+//LECTURER REPO
+// export const CREATE_LR = "CREATE_LR";
+// export const UPDATE_LR = "UPDATE_LR";
+// export const DELETE_LR = "DELETE_LR";
+// export const FETCH_ALL_LR = "FETCH_ALL_LR";
+
+//STUDENT REPO
+// export const CREATE_SR = "CREATE_SR";
+// export const UPDATE_SR = "UPDATE_SR";
+// export const DELETE_SR = "DELETE_SR";
+// export const FETCH_ALL_SR = "FETCH_ALL_SR";
+
 export const APPROVE_LPD = "APPROVE_LPD";
+
