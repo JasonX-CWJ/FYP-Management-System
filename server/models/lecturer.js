@@ -9,7 +9,7 @@ const lecturerSchema = mongoose.Schema({
     students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
     isPanel: { type: Boolean, default: false },
     panelStudents: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
-    projectSupervised: { type: mongoose.Schema.Types.ObjectId, ref: "ProjectRepo" },
+    projectSupervised: [{ type: mongoose.Schema.Types.ObjectId, ref: "ProjectRepo" }],
     // role: { type: String },
 });
 
