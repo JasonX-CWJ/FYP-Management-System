@@ -7,7 +7,7 @@ import { createPost, updatePost } from "../../actions/posts";
 import useStyles from "./styles";
 
 const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [postData, setPostData] = useState({ title: "", message: "", tags: "", selectedFile: "" });
+    const [postData, setPostData] = useState({ title: "", message: "", department: "", selectedFile: "" });
     const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -19,7 +19,7 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
 
     const clearForm = () => {
         setCurrentId(0);
-        setPostData({ title: "", message: "", tags: "", selectedFile: "" });
+        setPostData({ title: "", message: "", department: "", selectedFile: "" });
     };
 
     useEffect(() => {
@@ -68,18 +68,18 @@ const Form = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
                     onChange={(e) => setPostData({ ...postData, message: e.target.value })}
                 />
                 <TextField
-                    name="tags"
+                    name="department"
                     required
                     variant="outlined"
-                    label="Tags (coma separated)"
+                    label="Department"
                     fullWidth
                     multiline
                     value={postData.tags}
-                    onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+                    onChange={(e) => setPostData({ ...postData, department: e.target.value })}
                 />
-                <div className={classes.fileInput}>
+                {/* <div className={classes.fileInput}>
                     <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
-                </div>
+                </div> */}
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit

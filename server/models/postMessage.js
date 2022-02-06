@@ -5,7 +5,7 @@ const postSchema = mongoose.Schema({
     message: String,
     name: String,
     creator: String,
-    tags: [String],
+    department: String,
     // department: String,
     selectedFile: String, // Maybe for the guideline thing.
     createdAt: {
