@@ -122,7 +122,7 @@ const ProjectDetailCard = () => {
             <TableBody>
                 {lectPD.map((row) => (
                     <React.Fragment>
-                        {row.status === "active" && (
+                        {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.status === "active" && (
                             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                                 <TableCell>
                                     <Typography variant="body1">Title: {row.title}</Typography>

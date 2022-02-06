@@ -217,7 +217,7 @@ const LeftBar = ({ sideState, setSideState }) => {
                                 <ListItemText primary="Overview" className={location.pathname === "/student" ? null : classes.text} />
                             </ListItem>
                         )}
-                        {user?.result?.role === ROLE.LECTURER && (
+                        {(user?.result?.role === ROLE.LECTURER || user?.result?.role === ROLE.PANEL) && (
                             <ListItem
                                 button
                                 onClick={() => {
