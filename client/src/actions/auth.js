@@ -18,6 +18,7 @@ export const signin = (formData, router) => async (dispatch) => {
                     router.push("/student");
                     break;
                 case ROLE.LECTURER:
+                case ROLE.PANEL:
                     router.push("/lecturer");
                     break;
                 case ROLE.ADMIN:
