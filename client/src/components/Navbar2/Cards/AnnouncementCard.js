@@ -72,9 +72,12 @@ const AnnouncementCard = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableBody>
-                        {posts.slice(0, 5).map((row) => (
-                            <AnnouncementCardDetails row={row} />
-                        ))}
+                        {posts
+                            .reverse()
+                            .slice(0, 5)
+                            .map((row) => (
+                                <AnnouncementCardDetails row={row} />
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>
