@@ -18,9 +18,11 @@ import {
     TablePagination,
     Toolbar,
     Box,
-    IconButton, Collapse
+    IconButton,
+    Collapse,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
+import ROLE from "../../../constants/userRole";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -62,73 +64,75 @@ const UserDetailCard = () => {
     // }, [currentId, dispatch]);
 
     return (
-        <Paper style={{  padding: 8, }}>
-            This should only be seen for student, do if role is student
-            <Typography variant="h6">Student Details</Typography>
-            <TableCell>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Name: {user?.result.name}</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Matric Number: take student user matric number</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Department: take student user department</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Semester: take student user semester</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Session: take student user session</Typography>
-                </TableCell>
-                </TableRow>
-            </TableCell>
-
-
-
-            This should only be seen for lecturer, do if role is lecturer
-            <Typography variant="h6">Lecturer Details</Typography>
-            <TableCell>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Name: {user?.result.name}</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Department: take lecturer user department</Typography>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Role(s): should show role of lecturer user, example:<br/>Lecturer, Supervisor  or Lecturer, Panel or Lecturer</Typography>
-                </TableCell>
-                </TableRow>
-                below only applicable if have active projects
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Total Projects Under Supervision: take lecturer user total supervision</Typography>
-                </TableCell>
-                </TableRow>
-                below only applicable if user is a panel
-                <TableRow>
-                <TableCell>
-                <Typography variant="body1">Total Projects to Panel: take lecturer user total panel</Typography>
-                </TableCell>
-                </TableRow>
-            </TableCell>
+        <Paper style={{ padding: 8 }}>
+            {user?.result?.role === ROLE.STUDENT && (
+                <>
+                    <Typography variant="h6">Student Details</Typography>
+                    <TableCell>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Name: {user?.result.name}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Matric Number: {user?.result?.studentData.matricNo}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Department: {user?.result?.studentData.department}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Semester: {user?.result?.studentData.semester}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Session: {user?.result?.studentData.session}</Typography>
+                            </TableCell>
+                        </TableRow>
+                    </TableCell>
+                </>
+            )}
+            {(user?.result?.role === ROLE.LECTURER || user?.result?.role === ROLE.PANEL || user?.result?.role === ROLE.ADMIN) && (
+                <>
+                    <Typography variant="h6">Lecturer Details</Typography>
+                    <TableCell>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Name: {user?.result.name}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Department: {user?.result?.lecturerData.department}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                {user?.result?.role === ROLE.LECTURER && <Typography variant="body1">Role(s): Supervisor</Typography>}
+                                {user?.result?.role === ROLE.PANEL && <Typography variant="body1">Role(s): Supervisor and Panel</Typography>}
+                                {user?.result?.role === ROLE.ADMIN && <Typography variant="body1">Role(s): Admin</Typography>}
+                            </TableCell>
+                        </TableRow>
+                        {/* <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Total Projects Under Supervision: take lecturer user total supervision</Typography>
+                            </TableCell>
+                        </TableRow> */}
+                        {/* below only applicable if user is a panel
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Total Projects to Panel: take lecturer user total panel</Typography>
+                            </TableCell>
+                        </TableRow> */}
+                    </TableCell>
+                </>
+            )}
         </Paper>
-
-        
     );
 };
 

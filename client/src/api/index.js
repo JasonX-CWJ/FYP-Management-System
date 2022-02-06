@@ -27,10 +27,12 @@ export const updateInfoGuide = (id, updatedInfoGuide) => API.patch(`/info/${id}`
 export const deleteInfoGuide = (id) => API.delete(`/info/${id}`);
 
 // PROJECT REPOSITORY
-// export const fetchProjectRepo = () => API.get("/projectRepo");
-// export const createProjectRepo = (newProjectRepo) => API.post("/projectRepo", newProjectRepo);
-// export const updateProjectRepo = (id, updatedProjectRepo) => API.patch(`/projectRepo/${id}`, updatedProjectRepo);
-// export const deleteProjectRepo = (id) => API.delete(`/projectRepo/${id}`);
+export const fetchProjectRepo = () => API.get("/projectRepo");
+export const createProjectRepo = (newProjectRepo) => API.post("/projectRepo", newProjectRepo);
+export const updateProjectRepo = (id, updatedProjectRepo) => API.patch(`/projectRepo/${id}`, updatedProjectRepo);
+export const deleteProjectRepo = (id) => API.delete(`/projectRepo/${id}`);
+export const applyProject = (projectid, studentid) => API.post(`/projectRepo/apply/${projectid}/${studentid}`);
+export const approveLectProjectDet = (id) => API.patch(`/projectRepo/approve/${id}`);
 
 // student section
 // PROJECT DETAILS
@@ -83,7 +85,6 @@ export const createRubricWeight = (newRubricWeight) => API.post("/rubricWeight",
 export const updateRubricWeight = (id, updatedRubricWeight) => API.patch(`/rubricWeight/${id}`, updatedRubricWeight);
 export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 
-
 //LECTURER REPO
 // export const fetchLecturerRepo = () => API.get("/lecturerRepo");
 // export const createLecturerRepo = (newLecturerRepo) => API.post("/lecturerRepo", newLecturerRepo);
@@ -96,7 +97,6 @@ export const deleteRubricWeight = (id) => API.delete(`/rubricWeight/${id}`);
 // export const updateStudentRepo = (id, updatedStudentRepo) => API.patch(`/studentRepo/${id}`, updatedStudentRepo);
 // export const deleteStudentRepo = (id) => API.delete(`/studentRepo/${id}`);
 
-export const approveLectProjectDet = (id) => API.patch(`/lectProjectDet/approve/${id}`);
 export const fetchLectProjectApplied = () => API.get("/lectProjectDet/mystudents");
 export const approveLectProjectApplied = (id) => API.patch(`/lectProjectDet/mystudents/${id}`);
 

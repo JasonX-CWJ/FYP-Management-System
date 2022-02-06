@@ -6,6 +6,7 @@ import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 
 import * as actionType from "../../constants/actionTypes";
+import ROLE from "../../constants/userRole";
 
 const useStyles = makeStyles((theme) => ({
     drawerDesktop: {
@@ -60,7 +61,7 @@ const LeftBar = ({ sideState, setSideState }) => {
             text: "Announcements",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "/announcements",
+            path: "/",
         },
         {
             text: "Info and Guidelines",
@@ -96,7 +97,7 @@ const LeftBar = ({ sideState, setSideState }) => {
         },
     ];
 
-    const menuItemsLecturer = [ 
+    const menuItemsLecturer = [
         {
             text: "Project Details",
             icon: <SubjectOutlined className={classes.icon} />,
@@ -122,7 +123,7 @@ const LeftBar = ({ sideState, setSideState }) => {
             text: "Panel Assign Mark",
             icon: <SubjectOutlined className={classes.icon} />,
             iconFocused: <SubjectOutlined className={classes.iconFocused} />,
-            path: "/panelassign-mark",
+            path: "/panel-assign-mark",
         },
         {
             text: "Panel APAC Nominees",
@@ -199,46 +200,57 @@ const LeftBar = ({ sideState, setSideState }) => {
             </div>
 
             <List>
-                <ListItem
-                    button
-                    onClick={() => {
-                        history.push("/");
-                        handleDrawerToggle();
-                    }}
-                    className={location.pathname === "/" ? classes.active : null}
-                >
-                    <ListItemIcon>
-                        <SubjectOutlined className={location.pathname === "/" ? classes.iconFocused : classes.icon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Overview" className={location.pathname === "/" ? null : classes.text} />
-                </ListItem>
-                <ListItem
-                    button
-                    onClick={() => {
-                        history.push("/lecturer");
-                        handleDrawerToggle();
-                    }}
-                    className={location.pathname === "/lecturer" ? classes.active : null}
-                >
-                    <ListItemIcon>
-                        <SubjectOutlined className={location.pathname === "/lecturer" ? classes.iconFocused : classes.icon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Overview Lecturer" className={location.pathname === "/lecturer" ? null : classes.text} />
-                </ListItem>
-                <ListItem
-                    button
-                    onClick={() => {
-                        history.push("/admin");
-                        handleDrawerToggle();
-                    }}
-                    className={location.pathname === "/admin" ? classes.active : null}
-                >
-                    <ListItemIcon>
-                        <SubjectOutlined className={location.pathname === "/admin" ? classes.iconFocused : classes.icon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Overview Admin" className={location.pathname === "/admin" ? null : classes.text} />
-                </ListItem>
-                <Divider variant="fullWidth" className={classes.divider} />
+                {user?.result && (
+                    <>
+                        {user?.result?.role === ROLE.STUDENT && (
+                            <ListItem
+                                button
+                                onClick={() => {
+                                    history.push("/student");
+                                    handleDrawerToggle();
+                                }}
+                                className={location.pathname === "/student" ? classes.active : null}
+                            >
+                                <ListItemIcon>
+                                    <SubjectOutlined className={location.pathname === "/student" ? classes.iconFocused : classes.icon} />
+                                </ListItemIcon>
+                                <ListItemText primary="Overview" className={location.pathname === "/student" ? null : classes.text} />
+                            </ListItem>
+                        )}
+                        {user?.result?.role === ROLE.LECTURER && (
+                            <ListItem
+                                button
+                                onClick={() => {
+                                    history.push("/lecturer");
+                                    handleDrawerToggle();
+                                }}
+                                className={location.pathname === "/lecturer" ? classes.active : null}
+                            >
+                                <ListItemIcon>
+                                    <SubjectOutlined className={location.pathname === "/lecturer" ? classes.iconFocused : classes.icon} />
+                                </ListItemIcon>
+                                <ListItemText primary="Overview Lecturer" className={location.pathname === "/lecturer" ? null : classes.text} />
+                            </ListItem>
+                        )}
+                        {user?.result?.role === ROLE.ADMIN && (
+                            <ListItem
+                                button
+                                onClick={() => {
+                                    history.push("/admin");
+                                    handleDrawerToggle();
+                                }}
+                                className={location.pathname === "/admin" ? classes.active : null}
+                            >
+                                <ListItemIcon>
+                                    <SubjectOutlined className={location.pathname === "/admin" ? classes.iconFocused : classes.icon} />
+                                </ListItemIcon>
+                                <ListItemText primary="Overview Admin" className={location.pathname === "/admin" ? null : classes.text} />
+                            </ListItem>
+                        )}
+                        <Divider variant="fullWidth" className={classes.divider} />
+                    </>
+                )}
+
                 {menuItemsGeneral.map((item) => (
                     <ListItem
                         button
@@ -253,7 +265,7 @@ const LeftBar = ({ sideState, setSideState }) => {
                         <ListItemText primary={item.text} className={location.pathname === item.path ? null : classes.text} />
                     </ListItem>
                 ))}
-                {user?.result && (
+                {user?.result && user?.result?.role === ROLE.STUDENT && (
                     <>
                         <Divider variant="fullWidth" className={classes.divider} />
                         {menuItemsStudent.map((item) => (
@@ -272,7 +284,7 @@ const LeftBar = ({ sideState, setSideState }) => {
                         ))}
                     </>
                 )}
-                {user?.result && (
+                {user?.result && (user?.result?.role === ROLE.LECTURER || user?.result?.role === ROLE.PANEL) && (
                     <div>
                         <Divider variant="fullWidth" className={classes.divider} />
                         {menuItemsLecturer.map((item) => (
@@ -292,7 +304,7 @@ const LeftBar = ({ sideState, setSideState }) => {
                         ))}
                     </div>
                 )}
-                {user?.result && (
+                {user?.result && user?.result?.role === ROLE.PANEL && (
                     <div>
                         <Divider variant="fullWidth" className={classes.divider} />
                         {menuItemsPanel.map((item) => (
@@ -312,7 +324,7 @@ const LeftBar = ({ sideState, setSideState }) => {
                         ))}
                     </div>
                 )}
-                {user?.result && (
+                {user?.result && user?.result?.role === ROLE.ADMIN && (
                     <div>
                         <Divider variant="fullWidth" className={classes.divider} />
                         {menuItemsAdmin.map((item) => (

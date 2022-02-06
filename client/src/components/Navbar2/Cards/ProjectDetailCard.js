@@ -18,11 +18,13 @@ import {
     TablePagination,
     Toolbar,
     Box,
-    IconButton, Collapse
+    IconButton,
+    Collapse,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
+import ROLE from "../../../constants/userRole";
 // import { getProjectDet } from "../../../actions/Student/ProjectDetails";
-// import { getLectProjectDet } from "../../../actions/Lecturer/LectProjectDetails";
+import { getLectProjectDet } from "../../../actions/Lecturer/LectProjectDetails";
 // import { getProjectRepo } from "../../../actions/ProjectRepo";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProjectDetailCard = () => {
+    const user = JSON.parse(localStorage.getItem("profile")); // get current user
+
     const dispatch = useDispatch();
     const classes = useStyles();
     const [openDetail, setOpenDetail] = useState(false);
@@ -60,81 +64,86 @@ const ProjectDetailCard = () => {
     const studPD = useSelector((state) => state.ProjectDetails);
     const lectPD = useSelector((state) => state.lectProjectDetails);
     const projectRepo = useSelector((state) => state.projectRepo);
-    
+
     const [currentId, setCurrentId] = useState(0);
 
-    // useEffect(() => {
-    //     dispatch(getProjectDet());
-    //     dispatch(getLectProjectDet());
-    //     dispatch(getProjectRepo());
-    // }, [currentId, dispatch]);
+    useEffect(() => {
+        // dispatch(getProjectDet());
+        dispatch(getLectProjectDet());
+        // dispatch(getProjectRepo());
+    }, [currentId, dispatch]);
+
+    console.log(lectPD);
 
     return (
-        <Paper style={{ margin: "16px 0px", padding: 8, }}>
+        <Paper style={{ margin: "16px 0px", padding: 8 }}>
+            <Typography variant="h6">Project Details</Typography>
+            {user?.result?.role === ROLE.STUDENT && (
+                <>
+                    <TableCell>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Title: {user?.result.studentData?.projectActive?.title}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Supervisor: {user?.result.studentData?.supervisor?.name}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Panel(s): N/A</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="body1">Stakeholder: {user?.result.studentData?.projectActive?.potStakeholder}</Typography>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            {/* <TableCell>
+                        <Typography variant="body1">Team Member: take student user team member</Typography>
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>
+                        <Typography variant="body1">Team Member Matric Number: take student user team member matric number</Typography>
+                    </TableCell> */}
+                        </TableRow>
+                    </TableCell>
+                </>
+            )}
 
-        below is for student user, view in code
-        <Typography variant="h6">Project Details</Typography>
-
-        <TableCell>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Title: take student user active title</Typography>
-            </TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Supervisor: take student user supervisor</Typography>
-            </TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Panel(s): take student user panel</Typography>
-            </TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Stakeholder: take student user supervisor</Typography>
-            </TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Team Member: take student user team member</Typography>
-            </TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>
-            <Typography variant="body1">Team Member Matric Number: take student user team member matric number</Typography>
-            </TableCell>
-            </TableRow>
-        </TableCell>
-
+            {/* 
         <br/>below is for lecturer user who has active projects, view in code
         <Typography variant="h6">Projects Under Supervision</Typography>
-        
-        {/* <TableBody>
-        {lectPD.map((row) => (
-            <React.Fragment>
-            {(row.status === 'active') && (
-                <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell>
-                <Typography variant="body1">Title: take active title</Typography>
-                <Typography variant="body1">Student(s): take students in active title</Typography>
-                <Typography variant="body1">Stakeholder: take stakeholder in active title</Typography>
-                <Typography variant="body1">Panel(s): take panel in active title</Typography>
-                
-                <Typography variant="body1">Meeting(s) Completed: take meetings completed for in active title</Typography>
-                </TableCell>
-                </TableRow>
-            )}
-            
-        </React.Fragment>
-        ))}
-        </TableBody> */}
+         */}
+            <TableBody>
+                {lectPD.map((row) => (
+                    <React.Fragment>
+                        {row.status === "active" && (
+                            <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                                <TableCell>
+                                    <Typography variant="body1">Title: {row.title}</Typography>
+                                    <Typography variant="body1">Student(s):</Typography>
+                                    {row.studentAssigned.map((row) => (
+                                        <Typography variant="body1">{row.name}</Typography>
+                                    ))}
+                                    <Typography variant="body1">Stakeholder: {row.potStakeholder}</Typography>
+                                    {/* <Typography variant="body1">Panel(s): take panel in active title</Typography> */}
 
+                                    {/* <Typography variant="body1">Meeting(s) Completed: take meetings completed for in active title</Typography> */}
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </React.Fragment>
+                ))}
+            </TableBody>
+            {/* 
         <br/>below is for lecturer user who is panel, view in code, not yet done please wait
-        <Typography variant="h6">Projects to Panel</Typography>
-
-        {/* <TableBody>
+        <Typography variant="h6">Projects to Panel</Typography> */}
+            {/* <TableBody>
         {projectRepo.map((row) => (
             <React.Fragment>
             {(row.status === 'active') && (
@@ -153,7 +162,7 @@ const ProjectDetailCard = () => {
         </React.Fragment>
         ))}
         </TableBody> */}
-    </Paper>
+        </Paper>
     );
 };
 

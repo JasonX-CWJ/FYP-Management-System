@@ -1,6 +1,6 @@
 import { makeStyles, Box, CardMedia, TableRow, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
 import React, { useState } from "react";
-import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon, Check as CheckIcon, Check } from "@material-ui/icons";
+import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon, Check as CheckIcon } from "@material-ui/icons";
 import moment from "moment";
 import Base64Downloader from "react-base64-downloader";
 
@@ -31,26 +31,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, openForm, openApprove, isPending }) => {
+const ProjectDetailsApplied = ({ filter, row, setConfirmDialog, confirmDelete, apply }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
     const [openDetail, setOpenDetail] = useState(false);
 
+    // console.log(row);
     const user = JSON.parse(localStorage.getItem("profile")); // get current user
+
+    if (row.status === "applied") {
+        console.log(row?.studentApplied.findIndex((element) => element._id === user?.result?.studentData?._id));
+    }
 
     return (
         <React.Fragment>
-            {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.status === filter && (
+            {row.status === "applied" && row?.studentApplied.findIndex((element) => element._id === user?.result?.studentData?._id) >= 0 && (
                 <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell>
-                        <IconButton
-                            aria-label="expand row"
-                            size="small"
-                            onClick={() => {
-                                setOpenDetail(!openDetail);
-                            }}
-                        >
+                        <IconButton aria-label="expand row" size="small" onClick={() => setOpenDetail(!openDetail)}>
                             {openDetail ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                         </IconButton>
                     </TableCell>
@@ -75,50 +74,6 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
                     <TableCell className={classes.tableCell} component="th" scope="row">
                         {row.tool}
                     </TableCell>
-                    <TableCell className={classes.tableCell} component="th" scope="row">
-                        {row.noOfStud}
-                    </TableCell>
-                    {filter === "pending" && (
-                        <TableCell className={classes.tableCell}>
-                            <Button
-                                size="small"
-                                color="secondary"
-                                onClick={() =>
-                                    setConfirmDialog({
-                                        isOpen: true,
-                                        title: "Are you sure you want to delete this?",
-                                        subtitle: "You cannot undo this operation!",
-                                        onConfirm: () => {
-                                            confirmDelete(row._id);
-                                        },
-                                    })
-                                }
-                            >
-                                <DeleteIcon fontSize="small" />
-                            </Button>
-                            <Button size="small" color="primary" onClick={() => openForm(row)}>
-                                <EditIcon fontSize="small" />
-                            </Button>
-                            {/* {isPending == true && (
-                            <Button
-                                size="small"
-                                color="primary"
-                                onClick={() =>
-                                    setConfirmDialog({
-                                        isOpen: true,
-                                        title: "Are you sure you want to approve this?",
-                                        subtitle: "",
-                                        onConfirm: () => {
-                                            openApprove(row);
-                                        },
-                                    })
-                                }
-                            >
-                                <CheckIcon color="success" fontSize="small" />
-                            </Button>
-                        )} */}
-                        </TableCell>
-                    )}
                 </TableRow>
             )}
             <TableRow>
@@ -138,6 +93,8 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
                             </Typography>
                             <Typography variant="body2">Potential Stakeholder: {row.potStakeholder}</Typography>
                             <Typography variant="body2">Tools: {row.tool}</Typography>
+                            {row.status === "accept" && <Typography variant="body2">No. of Students: {row.noOfStud}</Typography>}
+                            {row.status === "applied" && row.studentApplied.map((row) => <Typography variant="body2">Students: {row.name}</Typography>)}
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -146,4 +103,4 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
     );
 };
 
-export default LectProjectDetailsDets;
+export default ProjectDetailsApplied;

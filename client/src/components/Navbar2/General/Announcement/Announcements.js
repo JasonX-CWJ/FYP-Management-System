@@ -29,6 +29,7 @@ import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import Form from "../../../Form/Form";
 import AnnouncementDetails from "./AnnouncementDetails";
+import ROLE from "../../../../constants/userRole";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -189,6 +190,8 @@ const Announcements = () => {
         });
     };
 
+    const user = JSON.parse(localStorage.getItem("profile")); // get current user
+
     return (
         <Grow in>
             <Container maxWidth={false}>
@@ -209,9 +212,11 @@ const Announcements = () => {
                             }}
                             onChange={handleSearch}
                         />
-                        <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                            New
-                        </Button>
+                        {user?.result != null && user?.result?.role != ROLE.STUDENT && (
+                            <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+                                New
+                            </Button>
+                        )}
                     </Toolbar>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">

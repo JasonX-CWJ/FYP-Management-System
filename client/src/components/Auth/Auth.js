@@ -37,7 +37,7 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(e);
         if (isSignup) {
             dispatch(signup(form, history));
         } else {

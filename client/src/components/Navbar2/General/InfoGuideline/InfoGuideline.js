@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { 
+import {
     InputAdornment,
     makeStyles,
     Grow,
@@ -27,6 +27,7 @@ import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import InfoGuidelineDetails from "./InfoGuidelineDetails";
 import InfoGuidelineForm from "./InfoGuidelineForm";
 import AddInfoGuidelinePopup from "./AddInfoGuidelinePopup";
+import ROLE from "../../../../constants/userRole";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -56,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InfoGuideline = () => {
-    
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -86,41 +86,44 @@ const InfoGuideline = () => {
             isOpen: false,
         });
     };
+    const user = JSON.parse(localStorage.getItem("profile")); // get current user
 
     return (
         <Grow in>
             <Container maxWidth={false}>
-            <Typography variant="h5"> All Info and Guidelines</Typography>
-            <div></div>
-            <Paper>
-            <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-                <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                    New
-                </Button>
-            </Toolbar>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell className={classes.tableCell}>Title</TableCell>
-                            <TableCell className={classes.tableCell}>Description</TableCell>
-                            <TableCell className={classes.tableCell}></TableCell>
-                            <TableCell className={classes.tableCell}></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { infoGuides.map((row) => (
-                            <InfoGuidelineDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
-            <AddInfoGuidelinePopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
-                <InfoGuidelineForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
-            </AddInfoGuidelinePopup>
-            <Notification notify={notify} setNotify={setNotify} />
-            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
+                <Typography variant="h5"> All Info and Guidelines</Typography>
+                <div></div>
+                <Paper>
+                    {user?.result != null && user?.result?.role === ROLE.ADMIN && (
+                        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+                            <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+                                New
+                            </Button>
+                        </Toolbar>
+                    )}
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Description</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {infoGuides.map((row) => (
+                                    <InfoGuidelineDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+                <AddInfoGuidelinePopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
+                    <InfoGuidelineForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+                </AddInfoGuidelinePopup>
+                <Notification notify={notify} setNotify={setNotify} />
+                <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             </Container>
         </Grow>
     );

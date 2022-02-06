@@ -7,7 +7,7 @@ const studentSchema = mongoose.Schema({
     matricNo: { type: String, required: true },
     department: { type: String, required: true },
     semester: { type: String, required: true },
-    year: { type: String, required: true },
+    session: { type: String, required: true },
     supervisor: { type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" },
     projectApplied: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },
     projectActive: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },

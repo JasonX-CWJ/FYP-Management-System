@@ -10,7 +10,6 @@ import AdminHome from "./components/Navbar2/AdminHome";
 
 import ResetPass from "./components/Auth/ResetPass";
 
-
 import { Announcements, InfoGuideline, ProjectRepo } from "./components/Navbar2/General";
 import { FileSubmission, Meetings, ProjectDetails } from "./components/Navbar2/Student";
 import { LectProjectDetails, LectMeetings, LectFileSubmitted } from "./components/Navbar2/Lecturer";
@@ -34,14 +33,14 @@ const App = () => {
                 <LeftBar /> */}
             <Layout>
                 <Switch>
-                    <Route path="/" exact component={StudentHome} />
-                    <Route path="/lecturer" exact component={LecturerHome} />\
+                    <Route path="/student" exact component={StudentHome} />
+                    <Route path="/lecturer" exact component={LecturerHome} />
                     <Route path="/admin" exact component={AdminHome} />
                     <Route path="/auth" exact component={Auth} />
                     <Route path="/reset-password" exact component={ResetPass} />
 
                     {/* General */}
-                    <Route path="/announcements" exact component={Announcements} />
+                    <Route path="/" exact component={Announcements} />
                     <Route path="/info-and-guidelines" exact component={InfoGuideline} />
                     <Route path="/project-repository" exact component={ProjectRepo} />
 
@@ -56,7 +55,7 @@ const App = () => {
                     <Route path="/lectfile-submitted" exact component={LectFileSubmitted} />
 
                     {/* Panel Section */}
-                    <Route path="/panelassign-mark" exact component={PanelAssignMark} />
+                    <Route path="/panel-assign-mark" exact component={PanelAssignMark} />
                     <Route path="/panel-vote" exact component={PanelVote} />
 
                     {/* Admin Section */}

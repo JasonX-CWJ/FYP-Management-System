@@ -2,7 +2,8 @@ import { makeStyles, Box, CardMedia, TableRow, Typography, TableCell, IconButton
 import React, { useState } from "react";
 import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
 import moment from "moment";
-import Base64Downloader from 'react-base64-downloader';
+import ROLE from "../../../../constants/userRole";
+import Base64Downloader from "react-base64-downloader";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -45,10 +46,15 @@ const InfoGuidelineDetails = ({ row, setConfirmDialog, confirmDelete, openForm }
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.title}
                 </TableCell>
-                <TableCell className={classes.tableCell}>{
-                    <a href={row.selectedFile} download="download.pdf">View</a>
-                }</TableCell>
                 <TableCell className={classes.tableCell}>
+                    {
+                        <a href={row.selectedFile} download="download.pdf">
+                            View
+                        </a>
+                    }
+                </TableCell>
+                {user?.result != null && user?.result?.role === ROLE.ADMIN && (
+                    <TableCell className={classes.tableCell}>
                         <Button
                             size="small"
                             color="secondary"
@@ -65,12 +71,12 @@ const InfoGuidelineDetails = ({ row, setConfirmDialog, confirmDelete, openForm }
                         >
                             <DeleteIcon fontSize="small" /> Delete
                         </Button>
-                   
+
                         <Button size="small" color="primary" onClick={() => openForm(row)}>
                             <EditIcon fontSize="small" /> Edit
                         </Button>
-                    
-                </TableCell>
+                    </TableCell>
+                )}
             </TableRow>
         </React.Fragment>
     );

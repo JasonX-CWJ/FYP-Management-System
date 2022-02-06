@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LectProjectAppliedDets = ({ row, setConfirmDialog, openApprove }) => {
+const LectProjectAppliedDets = ({ filter, row, setConfirmDialog, openApprove }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
@@ -39,9 +39,14 @@ const LectProjectAppliedDets = ({ row, setConfirmDialog, openApprove }) => {
 
     const user = JSON.parse(localStorage.getItem("profile")); // get current user
 
+    console.log(filter);
+    console.log(row?.projectID?.creator);
+    console.log(user?.result?._id);
+    console.log(row);
+
     return (
         <React.Fragment>
-            {(user?.result?.googleId === row?.projectID?.creator || user?.result?._id === row?.projectID.creator) && (
+            {(user?.result?.googleId === row?.projectID?.creator || user?.result?._id === row?.projectID?.creator) && (
                 <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell>
                         <IconButton

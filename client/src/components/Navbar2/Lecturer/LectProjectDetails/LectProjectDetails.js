@@ -90,15 +90,23 @@ const LectProjectDetails = () => {
         setOpenPopup(true);
     };
 
+    // const openApprove = (item) => {
+    //     setConfirmDialog({
+    //         ...confirmDialog,
+    //         isOpen: false,
+    //     });
+    //     // setCurrentId(item._id);
+    //     console.log(item._id);
+    //     dispatch(approveLectProjectDet(item._id));
+    //     // setOpenPopup(true);
+    // };
+
     const openApprove = (item) => {
         setConfirmDialog({
             ...confirmDialog,
             isOpen: false,
         });
-        // setCurrentId(item._id);
-        console.log(item._id);
         dispatch(approveLectProjectApplied(item._id));
-        // setOpenPopup(true);
     };
 
     const confirmDelete = (id) => {

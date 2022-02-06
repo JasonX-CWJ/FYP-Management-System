@@ -30,6 +30,7 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { useSelector, useDispatch } from "react-redux";
 
 // import { getProjectDet, deleteProjectDet } from "../../../../actions/Student/ProjectDetails";
+import { getProjectRepo, applyProject } from "../../../../actions/ProjectRepo";
 //pls make above file
 
 import Notification from "../../Reusable/Notification";
@@ -38,6 +39,7 @@ import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import ProjectDetailsDets from "./ProjectDetailsDets";
 import ProjectDetailsForm from "./ProjectDetailsForm";
 import ProjectDetailsPopup from "./ProjectDetailsPopup";
+import ProjectDetailsApplied from "./ProjectDetailsApplied";
 //make 3 above files
 
 const useStyles = makeStyles((theme) => ({
@@ -71,15 +73,15 @@ const ProjectDetails = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    const studPD = useSelector((state) => state.ProjectDetails);
+    const user = JSON.parse(localStorage.getItem("profile"));
+
+    const studPD = useSelector((state) => state.projectRepo);
     const [currentId, setCurrentId] = useState(0);
     const [openPopup, setOpenPopup] = useState(false);
 
-    const user = JSON.parse(localStorage.getItem("profile"));
-
-    // useEffect(() => {
-    //     dispatch(getProjectDet());
-    // }, [currentId, dispatch]);
+    useEffect(() => {
+        dispatch(getProjectRepo());
+    }, [currentId, dispatch]);
 
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subtitle: "" });
@@ -87,6 +89,11 @@ const ProjectDetails = () => {
     const openForm = (item) => {
         setCurrentId(item._id);
         setOpenPopup(true);
+    };
+
+    const apply = (item) => {
+        const studentid = user.result.studentData._id;
+        dispatch(applyProject(item._id, studentid));
     };
 
     // const confirmDelete = (id) => {
@@ -163,14 +170,13 @@ const ProjectDetails = () => {
                                             <TableCell className={classes.tableCell}>Description</TableCell>
                                             <TableCell className={classes.tableCell}>Potential Stakeholder</TableCell>
                                             <TableCell className={classes.tableCell}>Tools</TableCell>
-                                            <TableCell className={classes.tableCell}>Students</TableCell>
                                             <TableCell className={classes.tableCell}></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {/* { studPD.map((row) => (
-                        <ProjectDetailsDets filter={'applied'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
+                                        {studPD.map((row) => (
+                                            <ProjectDetailsApplied key={row._id} row={row} setConfirmDialog={setConfirmDialog} openForm={openForm} />
+                                        ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -195,9 +201,9 @@ const ProjectDetails = () => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {/* { studPD.map((row) => (
-                        <ProjectDetailsDets filter={'active'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
+                                        {studPD.map((row) => (
+                                            <ProjectDetailsDets filter={"accept"} key={row._id} row={row} setConfirmDialog={setConfirmDialog} apply={apply} />
+                                        ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
