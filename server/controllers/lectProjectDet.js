@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import LectProjectDet from "../models/lectProjectDet.js";
 import LectProjectApplied from "../models/lectProjectApplied.js";
+import Student from "../models/student.js";
 import STATUS from "../constants/projectStatus.js";
 
 const router = express.Router();
@@ -54,7 +55,7 @@ export const deleteLectProjectDet = async (req, res) => {
     res.json({ message: "LectProjectDet deleted successfully." });
 };
 
-//admin related
+//ADMIN RELATED
 
 export const approveLectProjectDet = async (req, res) => {
     const id = req.params.id;
@@ -98,10 +99,24 @@ export const approveLectProjectApplied = async (req, res) => {
     try {
         //get the project
         const projectApplied = await LectProjectApplied.findById(req.params.projectid);
-        const project = await LectProjectDet.findByIdAndUpdate(toId(projectApplied.projectID), { studentAssigned: projectApplied.studentID });
-        console.log(project);
+        // console.log(projectApplied);
+        // const project = await LectProjectDet.findById(toId(projectApplied.projectID));
+        // console.log(project);
+        // const student = await Student.find({ _id: { $in: projectApplied.studentID } });
+        // console.log(student);
+        // console.log(projectApplied.studentID);
 
-        res.status(200).json(projectApplied);
+        const project2 = await LectProjectDet.findByIdAndUpdate(toId(projectApplied.projectID), {
+            status: STATUS.ACTIVE,
+            $push: { studentAssigned: { $each: projectApplied.studentID } },
+            $pullAll: { studentApplied: projectApplied.studentID },
+        });
+
+        // const lect = await LectProjectDet.findById(toId(projectApplied.projectID))
+        const student = await Student.updateMany({ _id: { $in: projectApplied.studentID } }, { projectActive: toId(projectApplied.projectID) });
+        await LectProjectApplied.findByIdAndRemove(req.params.projectid);
+        // // console.log("hi");
+        res.status(200).json(req.params.projectid);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

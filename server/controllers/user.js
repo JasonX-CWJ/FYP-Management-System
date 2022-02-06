@@ -9,10 +9,12 @@ export const signin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const oldUser = await User.findOne({ email }).populate({
-            path: "studentData",
-            populate: [{ path: "projectActive" }, { path: "supervisor" }],
-        });
+        const oldUser = await User.findOne({ email })
+            .populate({
+                path: "studentData",
+                populate: [{ path: "projectActive" }, { path: "supervisor" }],
+            })
+            .populate("lecturerData");
 
         if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
@@ -29,6 +31,7 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
+    console.log(req.body);
     const { email, password, firstName, lastName } = req.body;
 
     try {

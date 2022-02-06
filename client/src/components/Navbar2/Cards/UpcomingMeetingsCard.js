@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-    makeStyles,
-    Paper,
-    TableBody,
-    TableCell,
-    TableRow,
-    Typography,
-} from "@material-ui/core";
+import { makeStyles, Paper, TableBody, TableCell, TableRow, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 // import { getMeetings } from "../../../actions/Student/Meetings";
 // import { getLectMeetings } from "../../../actions/Lecturer/LectMeetings";
@@ -45,7 +38,7 @@ const UpcomingMeetingsCard = () => {
 
     const studM = useSelector((state) => state.Meetings);
     const lectM = useSelector((state) => state.lectMeetings);
-    
+
     const [currentId, setCurrentId] = useState(0);
 
     // useEffect(() => {
@@ -54,10 +47,9 @@ const UpcomingMeetingsCard = () => {
     // }, [currentId, dispatch]);
 
     return (
-        <Paper style={{ margin: "16px 0px", padding: 8, }}>
+        <Paper style={{ margin: "16px 0px", padding: 8 }}>
             <Typography variant="h6">Upcoming Meeting</Typography>
-
-            below is for student user, view in code
+            <Typography variant="h5"> None </Typography>
             {/* <TableBody>
             {studM.map((row) => (
                 <React.Fragment>
@@ -71,8 +63,7 @@ const UpcomingMeetingsCard = () => {
             </React.Fragment>
             ))}
             </TableBody> */}
-
-            <br/>below is for lecturer user, view in code, double check the models, might be wrong or nonexistent
+            {/* <br/>below is for lecturer user, view in code, double check the models, might be wrong or nonexistent */}
             {/* <TableBody>
             {lectM.map((row) => (
                 <React.Fragment>

@@ -31,7 +31,7 @@ const AddInfoGuidelinePopup = ({ openPopup, setOpenPopup, setCurrentId, children
                     </Button>
                 </div>
             </DialogTitle>
-            <DialogContent dividers= {true} >{children}</DialogContent>
+            <DialogContent dividers={true}>{children}</DialogContent>
         </Dialog>
     );
 };

@@ -1,5 +1,6 @@
 import { AUTH, ERROR, UPDATE_PASS } from "../constants/actionTypes";
 import * as api from "../api/index.js";
+import ROLE from "../constants/userRole";
 
 export const signin = (formData, router) => async (dispatch) => {
     try {
@@ -11,7 +12,18 @@ export const signin = (formData, router) => async (dispatch) => {
             console.log(true);
             router.push("/reset-password");
         } else {
-            router.push("/");
+            // Change the routes here
+            switch (data.result.role) {
+                case ROLE.STUDENT:
+                    router.push("/student");
+                    break;
+                case ROLE.LECTURER:
+                    router.push("/lecturer");
+                    break;
+                case ROLE.ADMIN:
+                    router.push("/admin");
+                    break;
+            }
             window.location.reload();
         }
     } catch (error) {

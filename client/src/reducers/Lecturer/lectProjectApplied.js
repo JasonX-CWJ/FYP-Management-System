@@ -8,8 +8,7 @@ export default (lectProjectApplied = [], action) => {
         //     return [...lectProjectDets, action.payload];
         // case UPDATE_LPD:
         case APPROVE_LPD_STU:
-            console.log(action.payload);
-            return lectProjectApplied.map((lectProjectApplied) => (lectProjectApplied._id === action.payload._id ? action.payload : lectProjectApplied));
+            return lectProjectApplied.filter((lectProjectApplied) => lectProjectApplied._id !== action.payload);
         // case DELETE_LPD:
         //     return lectProjectDets.filter((lectProjectDet) => lectProjectDet._id !== action.payload);
         default:
