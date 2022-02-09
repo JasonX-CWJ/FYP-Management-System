@@ -42,10 +42,10 @@ export const approveLectProjectDet = (id, approvalStatus) => API.patch(`/project
 // export const deleteProjectDet = (id) => API.delete(`/ProjectDet/${id}`);
 
 //MEETINGS
-// export const fetchMeetings = () => API.get("/Meetings");
-// export const createMeetings = (newMeetings) => API.post("/Meetings", newMeetings);
-// export const updateMeetings = (id, updatedMeetings) => API.patch(`/Meetings/${id}`, updatedMeetings);
-// export const deleteMeetings = (id) => API.delete(`/Meetings/${id}`);
+export const fetchFileSubmissions = (studentid) => API.get(`/FileSubmissions/${studentid}`);
+export const createFileSubmissions = (newFileSubmissions) => API.post("/FileSubmissions", newFileSubmissions);
+export const updateFileSubmissions = (id, updatedFileSubmissions) => API.patch(`/FileSubmissions/${id}`, updatedFileSubmissions);
+export const deleteFileSubmissions = (id) => API.delete(`/FileSubmissions/${id}`);
 
 // lecturer section
 export const fetchLectProjectDet = () => API.get("/lectProjectDet");

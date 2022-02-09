@@ -20,6 +20,9 @@ import rubricWeight from "./routes/rubricWeight.js";
 //import reports from "./routes/reports.js"; - no route, controller and models yet (jason)
 import schedPanel from "./routes/schedPanel.js";
 
+//Student
+import fileSubmissions from "./routes/fileSubmission.js";
+
 // Lecturer
 import lectProjectDet from "./routes/lectProjectDet.js";
 import lectMeetings from "./routes/lectMeetings.js";
@@ -52,6 +55,9 @@ app.use("/projectRepo", projectRepo);
 app.use("/rubricWeight", rubricWeight);
 //app.use("/reports", reports);
 app.use("/schedPanel", schedPanel);
+
+//Student
+app.use("/FileSubmissions", fileSubmissions);
 
 //Lecturer
 app.use("/lectProjectDet", lectProjectDet);
