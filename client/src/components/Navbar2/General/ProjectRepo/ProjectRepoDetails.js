@@ -4,6 +4,7 @@ import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArro
 import moment from "moment";
 import Base64Downloader from "react-base64-downloader";
 import ROLE from "../../../../constants/userRole";
+import STATUS from "../../../../constants/projectStatus";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -101,14 +102,27 @@ const ProjectRepoDetails = ({ filter, filter2, row, setConfirmDialog, confirmDel
                                             title: "Are you sure you want to approve this?",
                                             subtitle: "You cannot undo this operation!",
                                             onConfirm: () => {
-                                                openForm(row);
+                                                openForm(row, STATUS.ACCEPT);
                                             },
                                         })
                                     }
                                 >
                                     <CheckIcon fontSize="small" /> Accept
                                 </Button>
-                                <Button size="small" color="secondary">
+                                <Button
+                                    size="small"
+                                    color="secondary"
+                                    onClick={() =>
+                                        setConfirmDialog({
+                                            isOpen: true,
+                                            title: "Are you sure you want to reject this?",
+                                            subtitle: "You cannot undo this operation!",
+                                            onConfirm: () => {
+                                                openForm(row, STATUS.REJECT);
+                                            },
+                                        })
+                                    }
+                                >
                                     <CloseIcon fontSize="small" /> Reject
                                 </Button>
                             </TableCell>
@@ -133,8 +147,15 @@ const ProjectRepoDetails = ({ filter, filter2, row, setConfirmDialog, confirmDel
                             </Typography>
                             <Typography variant="body2">Potential Stakeholder: {row.potStakeholder}</Typography>
                             <Typography variant="body2">Tools: {row.tool}</Typography>
-                            {row.status === "active" && <Typography variant="body2">No. of Students: {row.noOfStud}</Typography>}
-                            {row.status !== "active" && <Typography variant="body2">Students: {row.studName}</Typography>}
+                            {row.status === "accept" && <Typography variant="body2">No. of Students: {row.noOfStud}</Typography>}
+                            {row.status === "active" && (
+                                <>
+                                    <Typography variant="body2">Students: </Typography>
+                                    {row.studentAssigned.map((row, idx) => {
+                                        return <Typography variant="body2">{row.name}</Typography>;
+                                    })}
+                                </>
+                            )}
                         </Box>
                     </Collapse>
                 </TableCell>

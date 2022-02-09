@@ -47,6 +47,7 @@ export const CREATE_LM = "CREATE_LM";
 export const UPDATE_LM = "UPDATE_LM";
 export const DELETE_LM = "DELETE_LM";
 export const FETCH_ALL_LM = "FETCH_ALL_LM";
+export const CHANGE_LM_STAT = "CHANGE_LM_STAT";
 
 export const CREATE_LFS = "CREATE_LFS";
 export const UPDATE_LFS = "UPDATE_LFS";

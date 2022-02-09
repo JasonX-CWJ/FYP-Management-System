@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { 
+import {
     InputAdornment,
     makeStyles,
     Grow,
@@ -22,8 +22,7 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getLectMeetings, deleteLectMeetings, updateLectMeetings } from "../../../../actions/Lecturer/LectMeetings";
-
+import { getLectMeetings, deleteLectMeetings, updateLectMeetings, changeLectMeetingsStatus } from "../../../../actions/Lecturer/LectMeetings";
 
 import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
@@ -70,6 +69,8 @@ const LectMeetings = () => {
         dispatch(getLectMeetings());
     }, [currentId, dispatch]);
 
+    console.log(lectM);
+
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subtitle: "" });
 
@@ -87,153 +88,200 @@ const LectMeetings = () => {
         });
     };
 
+    const openApprove = (item, status) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
+        dispatch(changeLectMeetingsStatus(item._id, { status: status }));
+    };
+
     return (
         <Grow in>
             <Container maxWidth={false}>
-            <Paper>
-            <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-                <Grid justify="space-between" container spacing={24}>
-                    <Grid item>
-                    <Typography variant="h5"> Meetings</Typography>
-                    </Grid>
-                    <Grid item>
-                    <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Submit New Meeting
-                    </Button>
-                    </Grid>
-                </Grid>
-            </Toolbar>
-            </Paper>
-            
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6">Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Project Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student Name</TableCell>
-                        {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { lectM.map((row) => (
-                        <LectMeetingsDetails filter={'active'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
-            
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6">Monitoring/Viva Session</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Project Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student Name</TableCell>
-                        {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { lectM.map((row) => (
-                        <LectMeetingsDetails filter={'session'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
+                <Paper>
+                    <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Grid justify="space-between" container spacing={24}>
+                            <Grid item>
+                                <Typography variant="h5"> Meetings</Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+                                    Submit New Meeting
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Toolbar>
+                </Paper>
 
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6">Completed</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Project Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student Name</TableCell>
-                        {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { lectM.map((row) => (
-                        <LectMeetingsDetails filter={'complete'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Typography variant="h6">Meetings</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Project Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Student Name</TableCell>
+                                    {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
+                                    <TableCell className={classes.tableCell}>Date</TableCell>
+                                    <TableCell className={classes.tableCell}>Time</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {lectM.map((row) => (
+                                    <LectMeetingsDetails
+                                        filter={"active"}
+                                        key={row._id}
+                                        row={row}
+                                        setConfirmDialog={setConfirmDialog}
+                                        confirmDelete={confirmDelete}
+                                        openForm={openForm}
+                                        openApprove={openApprove}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
 
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6"> Pending Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Project Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student Name</TableCell>
-                        {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { lectM.map((row) => (
-                        <LectMeetingsDetails filter={'pending'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Typography variant="h6">Monitoring/Viva Session</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Project Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Student Name</TableCell>
+                                    {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
+                                    <TableCell className={classes.tableCell}>Date</TableCell>
+                                    <TableCell className={classes.tableCell}>Time</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {lectM.map((row) => (
+                                    <LectMeetingsDetails
+                                        filter={"session"}
+                                        key={row._id}
+                                        row={row}
+                                        setConfirmDialog={setConfirmDialog}
+                                        confirmDelete={confirmDelete}
+                                        openForm={openForm}
+                                        openApprove={openApprove}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
 
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-            <Typography variant="h6">Rejected</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Project Title</TableCell>
-                        <TableCell className={classes.tableCell}>Student Name</TableCell>
-                        {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { lectM.map((row) => (
-                        <LectMeetingsDetails filter={'reject'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))}
-                </TableBody>
-                </Table>
-            </TableContainer>
-            </Paper>
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Typography variant="h6">Completed</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Project Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Student Name</TableCell>
+                                    {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
+                                    <TableCell className={classes.tableCell}>Date</TableCell>
+                                    <TableCell className={classes.tableCell}>Time</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {lectM.map((row) => (
+                                    <LectMeetingsDetails
+                                        filter={"complete"}
+                                        key={row._id}
+                                        row={row}
+                                        setConfirmDialog={setConfirmDialog}
+                                        confirmDelete={confirmDelete}
+                                        openForm={openForm}
+                                        openApprove={openApprove}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
 
-            <LectMeetingsPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
-                <LectMeetingsForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
-            </LectMeetingsPopup> 
-            <Notification notify={notify} setNotify={setNotify} />
-            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Typography variant="h6"> Pending Meetings</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Project Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Student Name</TableCell>
+                                    {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
+                                    <TableCell className={classes.tableCell}>Date</TableCell>
+                                    <TableCell className={classes.tableCell}>Time</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {lectM.map((row) => (
+                                    <LectMeetingsDetails
+                                        filter={"pending"}
+                                        key={row._id}
+                                        row={row}
+                                        setConfirmDialog={setConfirmDialog}
+                                        confirmDelete={confirmDelete}
+                                        openForm={openForm}
+                                        openApprove={openApprove}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Typography variant="h6">Rejected</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Project Title</TableCell>
+                                    <TableCell className={classes.tableCell}>Student Name</TableCell>
+                                    {/* <TableCell className={classes.tableCell}>Link</TableCell> */}
+                                    <TableCell className={classes.tableCell}>Date</TableCell>
+                                    <TableCell className={classes.tableCell}>Time</TableCell>
+                                    <TableCell className={classes.tableCell}></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {lectM.map((row) => (
+                                    <LectMeetingsDetails
+                                        filter={"reject"}
+                                        key={row._id}
+                                        row={row}
+                                        setConfirmDialog={setConfirmDialog}
+                                        confirmDelete={confirmDelete}
+                                        openForm={openForm}
+                                        openApprove={openApprove}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+
+                <LectMeetingsPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
+                    <LectMeetingsForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+                </LectMeetingsPopup>
+                <Notification notify={notify} setNotify={setNotify} />
+                <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             </Container>
         </Grow>
     );
-
 };
 
 export default LectMeetings;

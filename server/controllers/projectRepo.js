@@ -70,11 +70,11 @@ export const applyProject = async (req, res) => {
 };
 
 export const approveProject = async (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.body.status);
     const id = req.params.id;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No LectProjectDet with id: ${id}`);
-    const updatedLectProjectDet = await LectProjectDet.findByIdAndUpdate(id, { status: STATUS.ACCEPT });
+    const updatedLectProjectDet = await LectProjectDet.findByIdAndUpdate(id, { status: req.body.status });
 
     res.json(updatedLectProjectDet);
 };
