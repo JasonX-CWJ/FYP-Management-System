@@ -6,7 +6,7 @@ const router = express.Router();
 import auth from "../middleware/auth.js";
 
 router.get("/:id", getFileSubmissions);
-router.post("/", auth, createFileSubmissions);
+router.post("/:id", auth, createFileSubmissions);
 router.patch("/:id", auth, updateFileSubmissions);
 router.delete("/:id", auth, deleteFileSubmissions);
 

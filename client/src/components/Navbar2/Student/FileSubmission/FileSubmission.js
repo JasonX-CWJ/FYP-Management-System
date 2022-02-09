@@ -92,13 +92,11 @@ const FileSubmission = () => {
         dispatch(getFileSubmissions(id));
     }, [currentId, dispatch]);
 
-    console.log(fileSubmission);
-
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subtitle: "" });
 
     const openForm = (item) => {
-        setCurrentId(item._id);
+        // setCurrentId(item._id);
         setOpenPopup(true);
     };
 
@@ -156,27 +154,27 @@ const FileSubmission = () => {
                                             type="monitoring"
                                             session="fyp1"
                                             content={fileSubmission.monitoringLinkFYP1}
-                                            setCurrentSubmission={setCurrentSubmission}
-                                            currentSubmission={currentSubmission}
                                             openForm={openForm}
+                                            currentSubmission={currentSubmission}
+                                            setCurrentSubmission={setCurrentSubmission}
                                         />
                                         <FileSubmissionDetails
                                             title="Viva Session"
                                             type="viva"
                                             session="fyp1"
                                             content={fileSubmission.vivaLinkFYP1}
-                                            setCurrentSubmission={setCurrentSubmission}
-                                            currentSubmission={currentSubmission}
                                             openForm={openForm}
+                                            currentSubmission={currentSubmission}
+                                            setCurrentSubmission={setCurrentSubmission}
                                         />
                                         <FileSubmissionDetails
                                             title="Report"
                                             type="report"
                                             session="fyp1"
                                             content={fileSubmission.reportSubmissionFYP1}
-                                            setCurrentSubmission={setCurrentSubmission}
-                                            currentSubmission={currentSubmission}
                                             openForm={openForm}
+                                            currentSubmission={currentSubmission}
+                                            setCurrentSubmission={setCurrentSubmission}
                                         />
                                     </TableBody>
                                 </Table>
@@ -201,10 +199,28 @@ const FileSubmission = () => {
                                             type="monitoring"
                                             session="fyp2"
                                             content={fileSubmission.monitoringLinkFYP2}
+                                            openForm={openForm}
+                                            currentSubmission={currentSubmission}
                                             setCurrentSubmission={setCurrentSubmission}
                                         />
-                                        <FileSubmissionDetails title="Viva Session" type="viva" session="fyp2" content={fileSubmission.vivaLinkFYP2} setCurrentSubmission={setCurrentSubmission} />
-                                        <FileSubmissionDetails title="Report" type="report" session="fyp2" content={fileSubmission.reportSubmissionFYP2} setCurrentSubmission={setCurrentSubmission} />
+                                        <FileSubmissionDetails
+                                            title="Viva Session"
+                                            type="viva"
+                                            session="fyp2"
+                                            content={fileSubmission.vivaLinkFYP2}
+                                            openForm={openForm}
+                                            currentSubmission={currentSubmission}
+                                            setCurrentSubmission={setCurrentSubmission}
+                                        />
+                                        <FileSubmissionDetails
+                                            title="Report"
+                                            type="report"
+                                            session="fyp2"
+                                            content={fileSubmission.reportSubmissionFYP2}
+                                            openForm={openForm}
+                                            currentSubmission={currentSubmission}
+                                            setCurrentSubmission={setCurrentSubmission}
+                                        />
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -213,7 +229,7 @@ const FileSubmission = () => {
                 </TabContext>
 
                 <FileSubmissionPopup openPopup={openPopup} setOpenPopup={setOpenPopup}>
-                    <FileSubmissionForm setOpenPopup={setOpenPopup} setNotify={setNotify} />
+                    <FileSubmissionForm setOpenPopup={setOpenPopup} setNotify={setNotify} setCurrentSubmission={setCurrentSubmission} currentSubmission={currentSubmission} />
                 </FileSubmissionPopup>
                 <Notification notify={notify} setNotify={setNotify} />
                 <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />

@@ -17,14 +17,13 @@ const FileSubmissionPopup = ({ openPopup, setOpenPopup, setCurrentId, children }
             <DialogTitle>
                 <div style={{ display: "flex" }}>
                     <Typography variant="h4" style={{ flexGrow: 1 }}>
-                        New Info Guideline
+                        Submission
                     </Typography>
                     <Button
                         variant="contained"
                         color="secondary"
                         onClick={() => {
                             setOpenPopup(false);
-                            setCurrentId(null);
                         }}
                     >
                         <CloseIcon />

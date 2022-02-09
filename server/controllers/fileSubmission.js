@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import FileSubmissions from "../models/fileSubmissions.js";
 import Student from "../models/student.js";
+import { SESSION, TYPE } from "../constants/fileSubmissionType.js";
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ export const getFileSubmissions = async (req, res) => {
 
         const files = await FileSubmissions.findById(student.fileSubmission._id);
 
-        console.log(files);
+        // console.log(files);
         // const files = await FileSubmissions.find();
 
         res.status(200).json(files);
@@ -42,17 +43,54 @@ export const getFileSubmissions = async (req, res) => {
 };
 
 export const createFileSubmissions = async (req, res) => {
-    const infoGuide = req.body;
-    const filetype = req.body.selectedFile.split(";")[0].split("/")[1];
-    const newFileSubmissions = new FileSubmissions({ ...infoGuide, filetype: filetype, updatedAt: new Date().toISOString() });
+    // console.log(req.params.id);
+    // console.log(req.body);
+    const student = await Student.findById(req.params.id);
+    const files = await FileSubmissions.findById(student.fileSubmission._id);
+    const { reportSubmissionFYP1, reportSubmissionFYP2, monitoringLinkFYP1, monitoringLinkFYP2, vivaLinkFYP1, vivaLinkFYP2 } = files;
 
+    // do cases
     try {
-        await newInfoGuide.save();
-
-        res.status(201).json(newInfoGuide);
+        var newfile = "";
+        if (req.body.session === SESSION.FYP1) {
+            switch (req.body.type) {
+                case TYPE.MONITORING:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { monitoringLinkFYP1: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1, reportSubmissionFYP2, monitoringLinkFYP1: req.body.content, monitoringLinkFYP2, vivaLinkFYP1, vivaLinkFYP2 });
+                    break;
+                case TYPE.VIVA:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { vivaLinkFYP1: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1, reportSubmissionFYP2, monitoringLinkFYP1, monitoringLinkFYP2, vivaLinkFYP1: req.body.content, vivaLinkFYP2 });
+                    break;
+                case TYPE.REPORT:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { reportSubmissionFYP1: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1: req.body.content, reportSubmissionFYP2, monitoringLinkFYP1, monitoringLinkFYP2, vivaLinkFYP1, vivaLinkFYP2 });
+                    break;
+            }
+        } else {
+            switch (req.body.type) {
+                case TYPE.MONITORING:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { monitoringLinkFYP2: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1, reportSubmissionFYP2, monitoringLinkFYP1, monitoringLinkFYP2: req.body.content, vivaLinkFYP1, vivaLinkFYP2 });
+                    break;
+                case TYPE.VIVA:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { vivaLinkFYP2: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1, reportSubmissionFYP2, monitoringLinkFYP1, monitoringLinkFYP2, vivaLinkFYP1, vivaLinkFYP2: req.body.content });
+                    break;
+                case TYPE.REPORT:
+                    await FileSubmissions.findByIdAndUpdate(files._id, { reportSubmissionFYP2: req.body.content });
+                    newfile = new FileSubmissions({ reportSubmissionFYP1, reportSubmissionFYP2: req.body.content, monitoringLinkFYP1, monitoringLinkFYP2, vivaLinkFYP1, vivaLinkFYP2 });
+                    break;
+            }
+        }
+        res.status(201).json(newfile);
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
+
+    // const infoGuide = req.body;
+    // const filetype = req.body.selectedFile.split(";")[0].split("/")[1];
+    // const newFileSubmissions = new FileSubmissions({ ...infoGuide, filetype: filetype, updatedAt: new Date().toISOString() });
 };
 
 export const updateFileSubmissions = async (req, res) => {

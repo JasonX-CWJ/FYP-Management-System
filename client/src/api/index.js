@@ -43,7 +43,7 @@ export const approveLectProjectDet = (id, approvalStatus) => API.patch(`/project
 
 //MEETINGS
 export const fetchFileSubmissions = (studentid) => API.get(`/FileSubmissions/${studentid}`);
-export const createFileSubmissions = (newFileSubmissions) => API.post("/FileSubmissions", newFileSubmissions);
+export const createFileSubmissions = (studentid, newFileSubmissions) => API.post(`/FileSubmissions/${studentid}`, newFileSubmissions);
 export const updateFileSubmissions = (id, updatedFileSubmissions) => API.patch(`/FileSubmissions/${id}`, updatedFileSubmissions);
 export const deleteFileSubmissions = (id) => API.delete(`/FileSubmissions/${id}`);
 

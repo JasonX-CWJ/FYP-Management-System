@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FileSubmissionDetails = ({ title, type, session, row, content, setConfirmDialog, confirmDelete, openForm }) => {
+const FileSubmissionDetails = ({ title, type, session, row, content, setConfirmDialog, confirmDelete, openForm, currentSubmission, setCurrentSubmission }) => {
     const classes = useStyles();
 
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
@@ -52,11 +52,15 @@ const FileSubmissionDetails = ({ title, type, session, row, content, setConfirmD
                 </TableCell>
                 {content != "" && (
                     <TableCell className={classes.tableCell}>
-                        {
-                            <a href={content} download="">
-                                View
+                        {type == "monitoring" || type == "viva" ? (
+                            <a href={"https://" + content} target="_blank">
+                                Open link
                             </a>
-                        }
+                        ) : (
+                            <a href={content} download="">
+                                Download
+                            </a>
+                        )}
                     </TableCell>
                 )}
                 {content === "" && <TableCell className={classes.tableCell}>None</TableCell>}
@@ -65,31 +69,28 @@ const FileSubmissionDetails = ({ title, type, session, row, content, setConfirmD
                     <TableCell className={classes.tableCell}>
                         <Button
                             size="small"
-                            color="secondary"
-                            // onClick={() =>
-                            //     setConfirmDialog({
-                            //         isOpen: true,
-                            //         title: "Are you sure you want to delete this?",
-                            //         subtitle: "You cannot undo this operation!",
-                            //         onConfirm: () => {
-                            //             confirmDelete(row._id);
-                            //         },
-                            //     })
-                            // }
+                            color="primary"
+                            onClick={() => {
+                                setCurrentSubmission({ ...currentSubmission, type: type, session: session, content: content });
+                                openForm(row);
+                            }}
                         >
-                            <DeleteIcon fontSize="small" /> Delete
-                        </Button>
-
-                        <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            <EditIcon fontSize="small" /> Edit
+                            <EditIcon fontSize="small" /> Edit Submission
                         </Button>
                     </TableCell>
                 )}
 
                 {content === "" && (
                     <TableCell className={classes.tableCell}>
-                        <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            Add File
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() => {
+                                setCurrentSubmission({ ...currentSubmission, type: type, session: session, content: "" });
+                                openForm(row);
+                            }}
+                        >
+                            Add File/Link
                         </Button>
                     </TableCell>
                 )}

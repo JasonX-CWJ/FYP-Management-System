@@ -11,10 +11,11 @@ export const getFileSubmissions = (id) => async (dispatch) => {
     }
 };
 
-export const createFileSubmissions = (post) => async (dispatch) => {
+export const createFileSubmissions = (id, post) => async (dispatch) => {
     try {
-        const { data } = await api.createFileSubmissions(post);
-
+        // console.log(post);
+        const { data } = await api.createFileSubmissions(id, post);
+        // console.log(data);
         dispatch({ type: CREATE_F, payload: data });
     } catch (error) {
         console.log(error);

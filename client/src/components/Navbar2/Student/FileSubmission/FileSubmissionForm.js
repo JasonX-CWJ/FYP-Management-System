@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 
 import { createInfoGuide, updateInfoGuide } from "../../../../actions/infoGuideline";
+import { createFileSubmissions } from "../../../../actions/Student/FileSubmission";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FileSubmissionForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
+const FileSubmissionForm = ({ currentId, setCurrentId, setNotify, setOpenPopup, currentSubmission, setCurrentSubmission }) => {
     const [infoGuideData, setInfoGuideData] = useState({ title: "", selectedFile: "" });
     const infoGuide = useSelector((state) => (currentId ? state.infoGuideline.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
@@ -37,38 +38,41 @@ const FileSubmissionForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }
     }, [infoGuide]);
 
     const clearForm = () => {
-        setCurrentId(0);
-        setInfoGuideData({ title: "", selectedFile: "" });
+        // setCurrentId(0);
+        setCurrentSubmission({ ...currentSubmission, content: "" });
     };
 
-    useEffect(() => {
-        if (currentId == null) {
-            clearForm();
-        } // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentId]);
+    // useEffect(() => {
+    //     if (currentId == null) {
+    //         clearForm();
+    //     } // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [currentId]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e);
-        if (infoGuideData.selectedFile === "") {
-            setNotify({ isOpen: true, message: "No file attached!", type: "error" });
-        } else {
-            if (currentId === 0) {
-                dispatch(createInfoGuide({ ...infoGuideData }));
-            } else {
-                dispatch(updateInfoGuide(currentId, { ...infoGuideData }));
-            }
-            setOpenPopup(false);
-            setNotify({ isOpen: true, message: "Successfully Submitted!", type: "success" });
-            clearForm();
-        }
+        setOpenPopup(false);
+        setNotify({ isOpen: true, message: "Successfully Submitted!", type: "success" });
+        dispatch(createFileSubmissions(user?.result?.studentData?._id, currentSubmission));
+        clearForm();
+        // if (infoGuideData.selectedFile === "") {
+        //     setNotify({ isOpen: true, message: "No file attached!", type: "error" });
+        // } else {
+        //     // if (currentId === 0) {
+        //     //     dispatch(createInfoGuide({ ...infoGuideData }));
+        //     // } else {
+        //     //     dispatch(updateInfoGuide(currentId, { ...infoGuideData }));
+        //     // }
+        //     setOpenPopup(false);
+        //     setNotify({ isOpen: true, message: "Successfully Submitted!", type: "success" });
+        //     clearForm();
+        // }
     };
 
     if (!user?.result?.name) {
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
-                    Please Sign In to add info guideline.
+                    Please Sign In to add submission.
                 </Typography>
             </Paper>
         );
@@ -77,20 +81,24 @@ const FileSubmissionForm = ({ currentId, setCurrentId, setNotify, setOpenPopup }
     return (
         <Container>
             <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? `Editing "${infoGuide.title}"` : ""}</Typography>
-                <TextField
-                    name="title"
-                    variant="outlined"
-                    required
-                    autoFocus
-                    label="Title"
-                    fullWidth
-                    value={infoGuideData.title}
-                    onChange={(e) => setInfoGuideData({ ...infoGuideData, title: e.target.value })}
-                />
-                <div className={classes.fileInput}>
-                    <FileBase type="file" multiple={false} onDone={({ base64 }) => setInfoGuideData({ ...infoGuideData, selectedFile: base64 })} />
-                </div>
+                {/* <Typography variant="h6">{currentId ? `Editing "${infoGuide.title}"` : ""}</Typography> */}
+                {currentSubmission.type === "monitoring" || currentSubmission.type === "viva" ? (
+                    <TextField
+                        name="title"
+                        variant="outlined"
+                        required
+                        autoFocus
+                        label="Link"
+                        fullWidth
+                        value={currentSubmission.content}
+                        onChange={(e) => setCurrentSubmission({ ...currentSubmission, content: e.target.value })}
+                    />
+                ) : (
+                    <div className={classes.fileInput}>
+                        <FileBase type="file" multiple={false} onDone={({ base64 }) => setCurrentSubmission({ ...currentSubmission, content: base64 })} />
+                    </div>
+                )}
+
                 <div style={{ display: "flex" }}>
                     <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>
                         Submit
