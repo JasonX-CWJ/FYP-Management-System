@@ -138,6 +138,14 @@ const LectProjectDetailsDets = ({ filter, row, setConfirmDialog, confirmDelete, 
                             </Typography>
                             <Typography variant="body2">Potential Stakeholder: {row.potStakeholder}</Typography>
                             <Typography variant="body2">Tools: {row.tool}</Typography>
+                            {filter === "active" && (
+                                <>
+                                    <Typography variant="body2">Students: </Typography>
+                                    {row.studentAssigned.map((row, idx) => {
+                                        return <Typography variant="body2">{row.name}</Typography>;
+                                    })}
+                                </>
+                            )}
                         </Box>
                     </Collapse>
                 </TableCell>

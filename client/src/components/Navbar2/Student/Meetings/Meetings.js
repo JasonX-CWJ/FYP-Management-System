@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { 
+import {
     InputAdornment,
     makeStyles,
     Grow,
@@ -22,7 +22,7 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
-// import { getMeetings, deleteMeetings } from "../../../../actions/Student/Meetings";
+import { getLectMeetings } from "../../../../actions/Lecturer/LectMeetings";
 
 import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
@@ -61,13 +61,13 @@ const Meetings = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    const studM = useSelector((state) => state.Meetings);
+    const studM = useSelector((state) => state.lectMeetings);
     const [currentId, setCurrentId] = useState(0);
     const [openPopup, setOpenPopup] = useState(false);
 
-    // useEffect(() => {
-    //     dispatch(getMeetings());
-    // }, [currentId, dispatch]);
+    useEffect(() => {
+        dispatch(getLectMeetings());
+    }, [currentId, dispatch]);
 
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subtitle: "" });
@@ -89,127 +89,116 @@ const Meetings = () => {
     return (
         <Grow in>
             <Container maxWidth={false}>
-            <Paper>
-            <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-                <Grid justify="space-between" container spacing={24}>
-                    <Grid item>
-                    <Typography variant="h5"> Meetings </Typography>
+                <Paper>
+                    <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Grid justify="space-between" container spacing={24}>
+                            <Grid item>
+                                <Typography variant="h5"> Meetings </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+                                    Submit New Meeting
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Toolbar>
+                </Paper>
+
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">Upcoming Meetings</Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                            <TableCell className={classes.tableCell}>Date</TableCell>
+                                            <TableCell className={classes.tableCell}>Time</TableCell>
+                                            <TableCell className={classes.tableCell}></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {studM.map((row) => (
+                                            <MeetingsDetails filter={"active"} key={row._id} row={row} setConfirmDialog={setConfirmDialog} openForm={openForm} />
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">Completed Meetings</Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                            <TableCell className={classes.tableCell}>Date</TableCell>
+                                            <TableCell className={classes.tableCell}>Time</TableCell>
+                                            <TableCell className={classes.tableCell}></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {studM.map((row) => (
+                                            <MeetingsDetails filter={"complete"} key={row._id} row={row} setConfirmDialog={setConfirmDialog} openForm={openForm} />
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                    <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Submit New Meeting
-                    </Button>
+                </Paper>
+
+                <Paper style={{ margin: "16px 0px", padding: 8 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">Applied Meetings</Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                            <TableCell className={classes.tableCell}>Date</TableCell>
+                                            <TableCell className={classes.tableCell}>Time</TableCell>
+                                            <TableCell className={classes.tableCell}></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {studM.map((row) => (
+                                            <MeetingsDetails filter={"pending"} key={row._id} row={row} setConfirmDialog={setConfirmDialog} openForm={openForm} />
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">Rejected Meetings</Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell className={classes.tableCell}>Meeting Title</TableCell>
+                                            <TableCell className={classes.tableCell}>Date</TableCell>
+                                            <TableCell className={classes.tableCell}>Time</TableCell>
+                                            <TableCell className={classes.tableCell}></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {studM.map((row) => (
+                                            <MeetingsDetails filter={"reject"} key={row._id} row={row} setConfirmDialog={setConfirmDialog} openForm={openForm} />
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Toolbar>
-            </Paper>
+                </Paper>
 
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-
-            <Grid   container spacing={2} >
-            <Grid item  xs={6}>
-            <Typography variant="h6">Upcoming Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
-                <TableHead >
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-
-                    </TableRow>
-                </TableHead>
-                <TableBody >
-                    {/* {studM.map((row) => (
-                        <MeetingsDetails filter={'upcoming'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
-                </TableBody>
-                
-                </Table>
-            </TableContainer>
-            
-            </Grid>
-            <Grid item  xs={6}>
-            <Typography variant="h6">Completed Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
-                <TableHead >
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {/* { studM.map((row) => (
-                        <MeetingsDetails filter={'completed'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
-                </TableBody>
-                
-                </Table>
-            </TableContainer>
-            </Grid>
-            </Grid>
-            </Paper>
-            
-            <Paper style={{ margin: "16px 0px", padding: 8, }}>
-
-            <Grid   container spacing={2} >
-            <Grid item  xs={6}>
-            <Typography variant="h6">Applied Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
-                <TableHead >
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-
-                    </TableRow>
-                </TableHead>
-                <TableBody >
-                    {/* {studM.map((row) => (
-                        <MeetingsDetails filter={'pending'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
-                </TableBody>
-                
-                </Table>
-            </TableContainer>
-            
-            </Grid>
-            <Grid item  xs={6}>
-            <Typography variant="h6">Rejected Meetings</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ maxWidth: 650 }} aria-label="simple table" >
-                <TableHead >
-                    <TableRow>
-                        <TableCell className={classes.tableCell}>Meeting Title</TableCell>
-                        <TableCell className={classes.tableCell}>Date</TableCell>
-                        <TableCell className={classes.tableCell}>Time</TableCell>
-                        <TableCell className={classes.tableCell}></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {/* { studM.map((row) => (
-                        <MeetingsDetails filter={'rejected'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} />
-                    ))} */}
-                </TableBody>
-                
-                </Table>
-            </TableContainer>
-            </Grid>
-            </Grid>
-            </Paper>
-
-            <MeetingsPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
-                <MeetingsForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
-            </MeetingsPopup> 
-            <Notification notify={notify} setNotify={setNotify} />
-            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
-
+                <MeetingsPopup openPopup={openPopup} setOpenPopup={setOpenPopup} setCurrentId={setCurrentId}>
+                    <MeetingsForm currentId={currentId} setCurrentId={setCurrentId} setOpenPopup={setOpenPopup} setNotify={setNotify} />
+                </MeetingsPopup>
+                <Notification notify={notify} setNotify={setNotify} />
+                <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             </Container>
         </Grow>
     );

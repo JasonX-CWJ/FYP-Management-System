@@ -39,57 +39,52 @@ const MeetingsDetails = ({ filter, row, setConfirmDialog, confirmDelete, openFor
 
     return (
         <React.Fragment>
-            {((user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.status === filter) && (      
-            <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.title}
-                </TableCell>
-                {/* <TableCell className={classes.tableCell} component="th" scope="row">
+            {user?.result?.studentData._id === row?.studentID?._id && row.status === filter && (
+                <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {row.title}
+                    </TableCell>
+                    {/* <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.link}
                 </TableCell> */}
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.date}
-                </TableCell>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.time}
-                </TableCell>
-                {(row.status === 'pending') && (
-                    <TableCell className={classes.tableCell}>
-                        <Button
-                            size="small"
-                            color="secondary"
-                            onClick={() =>
-                                setConfirmDialog({
-                                    isOpen: true,
-                                    title: "Are you sure you want to delete this?",
-                                    subtitle: "You cannot undo this operation!",
-                                    onConfirm: () => {
-                                        confirmDelete(row._id);
-                                    },
-                                })
-                            }
-                        >
-                            <DeleteIcon fontSize="small" /> 
-                        </Button>           
-                        <Button size="small" color="primary" onClick={() => openForm(row)}>
-                            <EditIcon fontSize="small" /> 
-                        </Button>
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {row.date}
                     </TableCell>
-                )}
-                {(row.status === 'upcoming') && (
-                    <TableCell className={classes.tableCell}>
-                        <Button
-                            size="small"
-                            color="primary"
-                            
-                        >
-                            <CheckIcon fontSize="small" /> Completed
-                        </Button>           
-                        
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {row.time}
                     </TableCell>
-                )}
-            </TableRow>
-            )}  
+                    {/* {row.status === "pending" && (
+                        <TableCell className={classes.tableCell}>
+                            <Button
+                                size="small"
+                                color="secondary"
+                                onClick={() =>
+                                    setConfirmDialog({
+                                        isOpen: true,
+                                        title: "Are you sure you want to delete this?",
+                                        subtitle: "You cannot undo this operation!",
+                                        onConfirm: () => {
+                                            confirmDelete(row._id);
+                                        },
+                                    })
+                                }
+                            >
+                                <DeleteIcon fontSize="small" />
+                            </Button>
+                            <Button size="small" color="primary" onClick={() => openForm(row)}>
+                                <EditIcon fontSize="small" />
+                            </Button>
+                        </TableCell>
+                    )}
+                    {row.status === "upcoming" && (
+                        <TableCell className={classes.tableCell}>
+                            <Button size="small" color="primary">
+                                <CheckIcon fontSize="small" /> Completed
+                            </Button>
+                        </TableCell>
+                    )} */}
+                </TableRow>
+            )}
         </React.Fragment>
     );
 };

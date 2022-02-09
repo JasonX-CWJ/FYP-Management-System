@@ -40,6 +40,7 @@ const InfoGuidelineDetails = ({ row, setConfirmDialog, confirmDelete, openForm }
 
     const user = JSON.parse(localStorage.getItem("profile")); // get current user
 
+    const filename = "download." + row.filetype;
     return (
         <React.Fragment>
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -48,7 +49,7 @@ const InfoGuidelineDetails = ({ row, setConfirmDialog, confirmDelete, openForm }
                 </TableCell>
                 <TableCell className={classes.tableCell}>
                     {
-                        <a href={row.selectedFile} download="download.pdf">
+                        <a href={row.selectedFile} download={filename}>
                             View
                         </a>
                     }

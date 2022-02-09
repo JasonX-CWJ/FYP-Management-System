@@ -33,6 +33,7 @@ import Notification from "../../Reusable/Notification";
 import ConfirmDialog from "../../Reusable/ConfirmDialog";
 import ProjectRepoDetails from "./ProjectRepoDetails";
 import ROLE from "../../../../constants/userRole";
+import STATUS from "../../../../constants/projectStatus";
 // import ProjectRepoPopup from "./ProjectRepoPopup";
 // import ProjectRepoForm from "./ProjectRepoForm";
 
@@ -80,13 +81,12 @@ const ProjectRepo = () => {
     const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subtitle: "" });
 
-    const openForm = (item) => {
+    const openForm = (item, status) => {
         setConfirmDialog({
             ...confirmDialog,
             isOpen: false,
         });
-        // console.log(item._id);
-        dispatch(approveLectProjectDet(item._id));
+        dispatch(approveLectProjectDet(item._id, { status: status }));
     };
 
     const confirmDelete = (id) => {

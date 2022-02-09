@@ -49,9 +49,9 @@ export const applyProject = (projectid, studentid) => async (dispatch) => {
     } catch (error) {}
 };
 
-export const approveLectProjectDet = (id) => async (dispatch) => {
+export const approveLectProjectDet = (id, approveStatus) => async (dispatch) => {
     try {
-        const { data } = await api.approveLectProjectDet(id);
+        const { data } = await api.approveLectProjectDet(id, approveStatus);
         console.log(data);
         dispatch({ type: APPROVE_PR, payload: data });
     } catch (error) {

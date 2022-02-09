@@ -32,7 +32,7 @@ export const createProjectRepo = (newProjectRepo) => API.post("/projectRepo", ne
 export const updateProjectRepo = (id, updatedProjectRepo) => API.patch(`/projectRepo/${id}`, updatedProjectRepo);
 export const deleteProjectRepo = (id) => API.delete(`/projectRepo/${id}`);
 export const applyProject = (projectid, studentid) => API.post(`/projectRepo/apply/${projectid}/${studentid}`);
-export const approveLectProjectDet = (id) => API.patch(`/projectRepo/approve/${id}`);
+export const approveLectProjectDet = (id, approvalStatus) => API.patch(`/projectRepo/approve/${id}`, approvalStatus);
 
 // student section
 // PROJECT DETAILS
@@ -57,6 +57,7 @@ export const fetchLectMeetings = () => API.get("/lectMeetings");
 export const createLectMeetings = (newLectMeetings) => API.post("/lectMeetings", newLectMeetings);
 export const updateLectMeetings = (id, updatedLectMeetings) => API.patch(`/lectMeetings/${id}`, updatedLectMeetings);
 export const deleteLectMeetings = (id) => API.delete(`/lectMeetings/${id}`);
+export const changeLectMeetingsStatus = (id, status) => API.patch(`/lectMeetings/change/${id}`, status);
 
 export const fetchLectFileSubmitted = () => API.get("/lectFileSubmitted");
 export const createLectFileSubmitted = (newLectFileSubmitted) => API.post("/lectFileSubmitted", newLectFileSubmitted);

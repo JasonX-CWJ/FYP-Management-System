@@ -1,4 +1,4 @@
-import { FETCH_ALL_LM, CREATE_LM, UPDATE_LM, DELETE_LM } from "../../constants/actionTypes";
+import { FETCH_ALL_LM, CREATE_LM, UPDATE_LM, DELETE_LM, CHANGE_LM_STAT } from "../../constants/actionTypes";
 import * as api from "../../api/index.js";
 
 export const getLectMeetings = () => async (dispatch) => {
@@ -36,6 +36,16 @@ export const deleteLectMeetings = (id) => async (dispatch) => {
         await await api.deleteLectMeetings(id);
 
         dispatch({ type: DELETE_LM, payload: id });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const changeLectMeetingsStatus = (id, status) => async (dispatch) => {
+    try {
+        const { data } = await api.changeLectMeetingsStatus(id, status);
+        // console.log(data);
+        dispatch({ type: CHANGE_LM_STAT, payload: data });
     } catch (error) {
         console.log(error);
     }
