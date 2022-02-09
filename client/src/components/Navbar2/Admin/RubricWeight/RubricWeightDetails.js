@@ -1,6 +1,6 @@
-import { makeStyles, Box, CardMedia, TableRow, Typography, TableCell, IconButton, Button, Collapse } from "@material-ui/core";
-import React, { useState } from "react";
-import { Delete as DeleteIcon, Edit as EditIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from "@material-ui/icons";
+import { makeStyles, TableRow, TableCell, Button } from "@material-ui/core";
+import React from "react";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     tableRow: {
@@ -33,13 +33,12 @@ const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm , 
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
-    const [openDetail, setOpenDetail] = useState(false);
     
     const user = JSON.parse(localStorage.getItem("profile")); // get current user
 
     return (
         <React.Fragment>
-            {((user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && row.fypSess === filter && row.dimension === filter2) && (      
+            {( row.fypSess === filter && row.dimension === filter2) && (      
             <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.rubric}
@@ -48,6 +47,7 @@ const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm , 
                     {row.weight}
                 </TableCell>
                 <TableCell className={classes.tableCell}>
+                    {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) &&(
                         <Button
                             size="small"
                             color="secondary"
@@ -64,11 +64,12 @@ const RubricWeightDetails = ({ row, setConfirmDialog, confirmDelete, openForm , 
                         >
                             <DeleteIcon fontSize="small" /> Delete
                         </Button>
-
+                    )}
+                    {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) &&(
                         <Button size="small" color="primary" onClick={() => openForm(row)}>
                             <EditIcon fontSize="small" /> Edit
                         </Button>
-                    
+                    )}
                 </TableCell>
             </TableRow>
             )}  

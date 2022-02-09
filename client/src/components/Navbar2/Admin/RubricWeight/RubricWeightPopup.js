@@ -17,7 +17,7 @@ const RubricWeightPopup = ({ openPopup, setOpenPopup, setCurrentId, children }) 
             <DialogTitle>
                 <div style={{ display: "flex" }}>
                     <Typography variant="h4" style={{ flexGrow: 1 }}>
-                        New Testing
+                        Insert New
                     </Typography>
                     <Button
                         variant="contained"
