@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LectFileSubmittedDetails = ({ row, setConfirmDialog, confirmDelete, openForm }) => {
+const LectFileSubmittedDetails = ({ row, content, setConfirmDialog, confirmDelete, openForm }) => {
     const classes = useStyles();
     // had to directly parse the methods and rows from the main component method to save time refactoring. Works the same way.
     // Also the only way to make custom collapsible button work.
@@ -39,22 +39,25 @@ const LectFileSubmittedDetails = ({ row, setConfirmDialog, confirmDelete, openFo
 
     return (
         <React.Fragment>
-            {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && (      
-            <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.title}
-                </TableCell>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.description}
-                </TableCell>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.studname}
-                </TableCell>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                    {row.selectedFile}
-                </TableCell>
-                <TableCell className={classes.tableCell}>
-                        <Button
+            {(user?.result?.googleId === row?.creator || user?.result?._id === row?.creator) && content !== "" && content !== null && (
+                <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {row.projectActive.title}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {row.name}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row">
+                        {content !== "" && content !== null ? (
+                            <a href={content} download={row.name + " Report"}>
+                                Download
+                            </a>
+                        ) : (
+                            <>No File</>
+                        )}
+                    </TableCell>
+                    <TableCell className={classes.tableCell}>
+                        {/* <Button
                             size="small"
                             color="secondary"
                             onClick={() =>
@@ -69,14 +72,13 @@ const LectFileSubmittedDetails = ({ row, setConfirmDialog, confirmDelete, openFo
                             }
                         >
                             <DeleteIcon fontSize="small" /> Delete
-                        </Button>           
+                        </Button>
                         <Button size="small" color="primary" onClick={() => openForm(row)}>
                             <EditIcon fontSize="small" /> Edit
-                        </Button>
-                    
-                </TableCell>
-            </TableRow>
-            )}  
+                        </Button> */}
+                    </TableCell>
+                </TableRow>
+            )}
         </React.Fragment>
     );
 };

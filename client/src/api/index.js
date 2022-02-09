@@ -59,7 +59,7 @@ export const updateLectMeetings = (id, updatedLectMeetings) => API.patch(`/lectM
 export const deleteLectMeetings = (id) => API.delete(`/lectMeetings/${id}`);
 export const changeLectMeetingsStatus = (id, status) => API.patch(`/lectMeetings/change/${id}`, status);
 
-export const fetchLectFileSubmitted = () => API.get("/lectFileSubmitted");
+export const fetchLectFileSubmitted = (id) => API.get(`/lectFileSubmitted/${id}`);
 export const createLectFileSubmitted = (newLectFileSubmitted) => API.post("/lectFileSubmitted", newLectFileSubmitted);
 export const updateLectFileSubmitted = (id, updatedLectFileSubmitted) => API.patch(`/lectFileSubmitted/${id}`, updatedLectFileSubmitted);
 export const deleteLectFileSubmitted = (id) => API.delete(`/lectFileSubmitted/${id}`);
