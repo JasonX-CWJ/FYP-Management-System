@@ -11,6 +11,13 @@ const studentSchema = mongoose.Schema({
     supervisor: { type: mongoose.Schema.Types.ObjectId, ref: "Lecturer" },
     projectApplied: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },
     projectActive: { type: mongoose.Schema.Types.ObjectId, ref: "LectProjectDet" },
+    fileSubmission: { type: mongoose.Schema.Types.ObjectId, ref: "fileSubmission" },
+    // reportSubmissionFYP1: { type: String },
+    // reportSubmissionFYP2: { type: String },
+    // monitoringLinkFYP1: { type: String },
+    // monitoringLinkFYP2: { type: String },
+    // vivaLinkFYP1: { type: String },
+    // vivaLinkFYP2: { type: String },
     // role: { type: String },
 });
 

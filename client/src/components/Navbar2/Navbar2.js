@@ -63,7 +63,7 @@ const Navbar2 = ({ setSideState }) => {
                         </Button> */}
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary">
+                    <Button component={Link} to="/auth" variant="contained" color="secondary">
                         Sign In
                     </Button>
                 )}

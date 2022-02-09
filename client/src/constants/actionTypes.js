@@ -28,11 +28,11 @@ export const APPROVE_PR = "APPROVE_PR";
 // export const DELETE_PD = "DELETE_PD";
 // export const FETCH_ALL_PD = "FETCH_ALL_PD";
 
-// MEETINGS
-// export const CREATE_M = "CREATE_M";
-// export const UPDATE_M = "UPDATE_M";
-// export const DELETE_M = "DELETE_M";
-// export const FETCH_ALL_M = "FETCH_ALL_M";
+// FILE SUBMISSION
+export const CREATE_F = "CREATE_F";
+export const UPDATE_F = "UPDATE_F";
+export const DELETE_F = "DELETE_F";
+export const FETCH_ALL_F = "FETCH_ALL_F";
 
 // lecturer section
 export const CREATE_LPD = "CREATE_LPD";

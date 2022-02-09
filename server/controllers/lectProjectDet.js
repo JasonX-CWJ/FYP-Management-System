@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 import LectProjectDet from "../models/lectProjectDet.js";
 import LectProjectApplied from "../models/lectProjectApplied.js";
 import Student from "../models/student.js";
+import Lecturer from "../models/lecturer.js";
 import STATUS from "../constants/projectStatus.js";
+import User from "../models/user.js";
 
 const router = express.Router();
 const toId = mongoose.Types.ObjectId;
@@ -99,23 +101,24 @@ export const approveLectProjectApplied = async (req, res) => {
     try {
         //get the project
         const projectApplied = await LectProjectApplied.findById(req.params.projectid);
-        // console.log(projectApplied);
-        // const project = await LectProjectDet.findById(toId(projectApplied.projectID));
-        // console.log(project);
-        // const student = await Student.find({ _id: { $in: projectApplied.studentID } });
-        // console.log(student);
-        // console.log(projectApplied.studentID);
 
         const project2 = await LectProjectDet.findByIdAndUpdate(toId(projectApplied.projectID), {
             status: STATUS.ACTIVE,
             $push: { studentAssigned: { $each: projectApplied.studentID } },
             $pullAll: { studentApplied: projectApplied.studentID },
         });
+        // const project2 = await LectProjectDet.findById(toId(projectApplied.projectID));
 
-        // const lect = await LectProjectDet.findById(toId(projectApplied.projectID))
-        const student = await Student.updateMany({ _id: { $in: projectApplied.studentID } }, { projectActive: toId(projectApplied.projectID) });
+        //find the lecturer
+        const user = await User.findById(toId(project2.creator));
+        const supervisor = await Lecturer.findById(user?.lecturerData);
+
+        const student = await Student.updateMany({ _id: { $in: projectApplied.studentID } }, { projectActive: toId(projectApplied.projectID), supervisor: toId(supervisor._id) });
+        await Lecturer.findByIdAndUpdate(toId(supervisor._id), {
+            $push: { students: { $each: projectApplied.studentID } },
+        });
         await LectProjectApplied.findByIdAndRemove(req.params.projectid);
-        // // console.log("hi");
+
         res.status(200).json(req.params.projectid);
     } catch (error) {
         res.status(404).json({ message: error.message });

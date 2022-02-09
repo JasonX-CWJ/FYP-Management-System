@@ -16,6 +16,8 @@ import panelVote from "./LPanel/panelVote";
 import schedPanel from "./Admin/schedPanel";
 import rubricWeight from "./Admin/rubricWeight";
 import projectRepo from "./projectRepo";
+
+import fileSubmissions from "./Student/FileSubmissions";
 // import lecturerRepo from './Admin/lecturerRepo';
 // import studentRepo from './Admin/studentRepo';
 
@@ -37,4 +39,5 @@ export const reducers = combineReducers({
     schedPanel,
     rubricWeight,
     projectRepo,
+    fileSubmissions,
 });

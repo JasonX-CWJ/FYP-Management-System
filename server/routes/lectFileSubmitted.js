@@ -5,7 +5,7 @@ import { getLectFileSubmitted, createLectFileSubmitted, updateLectFileSubmitted,
 const router = express.Router();
 import auth from "../middleware/auth.js";
 
-router.get("/", getLectFileSubmitted);
+router.get("/:id", getLectFileSubmitted);
 router.post("/", auth, createLectFileSubmitted);
 router.patch("/:id", auth, updateLectFileSubmitted);
 router.delete("/:id", auth, deleteLectFileSubmitted);

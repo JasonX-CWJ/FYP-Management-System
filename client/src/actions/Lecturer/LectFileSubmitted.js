@@ -1,9 +1,9 @@
 import { FETCH_ALL_LFS, CREATE_LFS, UPDATE_LFS, DELETE_LFS } from "../../constants/actionTypes";
 import * as api from "../../api/index.js";
 
-export const getLectFileSubmitted = () => async (dispatch) => {
+export const getLectFileSubmitted = (id) => async (dispatch) => {
     try {
-        const { data } = await api.fetchLectFileSubmitted();
+        const { data } = await api.fetchLectFileSubmitted(id);
 
         dispatch({ type: FETCH_ALL_LFS, payload: data });
     } catch (error) {
