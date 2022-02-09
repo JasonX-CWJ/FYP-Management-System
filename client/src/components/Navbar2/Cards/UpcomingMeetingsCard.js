@@ -49,8 +49,6 @@ const UpcomingMeetingsCard = () => {
         dispatch(getLectMeetings());
     }, [currentId, dispatch]);
 
-    console.log(lectM);
-
     return (
         <Paper style={{ margin: "16px 0px", padding: 8 }}>
             <Typography variant="h6">Upcoming Meeting</Typography>
