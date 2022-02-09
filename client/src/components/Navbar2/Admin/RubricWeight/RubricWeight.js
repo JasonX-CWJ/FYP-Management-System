@@ -96,9 +96,9 @@ const RubricWeight = () => {
                     <Typography variant="h5"> Rubric and Weightage </Typography>
                     </Grid>
                     <Grid item>
-                    <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+                    {/* <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
                        Insert New
-                    </Button>
+                    </Button> */}
                     </Grid>
                 </Grid>
             </Toolbar>

@@ -22,7 +22,7 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getLectMeetings, deleteLectMeetings } from "../../../../actions/Lecturer/LectMeetings";
+import { getLectMeetings, deleteLectMeetings, updateLectMeetings } from "../../../../actions/Lecturer/LectMeetings";
 
 
 import Notification from "../../Reusable/Notification";

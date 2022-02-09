@@ -59,7 +59,7 @@ const LectMeetingsDetails = ({ filter, row, setConfirmDialog, confirmDelete, ope
                 <TableCell className={classes.tableCell} component="th" scope="row">
                     {row.time}
                 </TableCell>
-                {(row.status === 'pending') && (
+                {(row.status === 'pending' ) && (
                     <TableCell className={classes.tableCell}>
                         <Button
                             size="small"
@@ -75,6 +75,25 @@ const LectMeetingsDetails = ({ filter, row, setConfirmDialog, confirmDelete, ope
                 )}
                 {(row.status === 'active') && (
                     <TableCell className={classes.tableCell}>
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() =>
+                                setConfirmDialog({
+                                    isOpen: true,
+                                    title: "Are you sure you want to delete this?",
+                                    subtitle: "You cannot undo this operation!",
+                                    onConfirm: () => {
+                                        confirmDelete(row._id);
+                                    },
+                                })
+                            }
+                        >
+                            <DeleteIcon fontSize="small" /> 
+                        </Button>           
+                        <Button size="small" color="secondary" onClick={() => openForm(row)}>
+                            <EditIcon fontSize="small" /> 
+                        </Button>
                         <Button
                             size="small"
                             color="primary"
