@@ -17,14 +17,11 @@ const Home2 = () => {
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <MeetingsCompletedCard />
+                        <UpcomingMeetingsCard />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <UserDetailCard />
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <UpcomingMeetingsCard />
-                    </Grid>
-                    <Grid item xs={12} md={6} />
                     <Grid item xs={12} md={6}>
                         <ProjectDetailCard />
                     </Grid>
