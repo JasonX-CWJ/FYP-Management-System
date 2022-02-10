@@ -10,26 +10,26 @@ const Home2 = () => {
     // const classes = useStyles();
     return (
         <Grow in>
-        <Container maxWidth={false}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <AnnouncementCard />
+            <Container maxWidth={false}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <AnnouncementCard />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <MeetingsCompletedCard />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <UserDetailCard />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <UpcomingMeetingsCard />
+                    </Grid>
+                    <Grid item xs={12} md={6} />
+                    <Grid item xs={12} md={6}>
+                        <ProjectDetailCard />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <MeetingsCompletedCard />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <UserDetailCard />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <UpcomingMeetingsCard />
-                </Grid>
-                <Grid item xs={12} md={6} />
-                <Grid item xs={12} md={6}>
-                    <ProjectDetailCard />
-                </Grid>
-            </Grid>
-        </Container>
+            </Container>
         </Grow>
     );
 };
