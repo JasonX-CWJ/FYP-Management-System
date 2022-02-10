@@ -94,7 +94,7 @@ const UpcomingMeetingsCard = () => {
                         )}
                     </TableBody>
                 )}
-                {user?.result?.role === ROLE.LECTURER && (
+                {(user?.result?.role === ROLE.LECTURER || user?.result?.role === ROLE.PANEL) && (
                     <TableBody>
                         {lectM.map(
                             (row) =>
