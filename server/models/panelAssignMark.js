@@ -11,8 +11,10 @@ const panelAssignMarkSchema = mongoose.Schema({
     submSess: String, //change to array to accept Monitor and Viva i think
     dimension: String, //take from admin dimension
     rubric: String, //take from admin rubric, should be array maybe
-    monEval: [String], //drop down for satis or unsatis
-    vivaMark: String, //assign mark base on weightage of admin for viva
+    monEval1: [String], //drop down for satis or unsatis
+    monEval2: [String],
+    vivaMark1: String, //assign mark base on weightage of admin for viva
+    vivaMark2: String,
 });
 
 var panelAssignMark = mongoose.model("PanelAssignMark", panelAssignMarkSchema);

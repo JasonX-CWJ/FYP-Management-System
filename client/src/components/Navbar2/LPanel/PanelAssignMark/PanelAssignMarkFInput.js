@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PanelAssignMarkFInput = ({ currentId, setCurrentId, setNotify, setOpenPopup }) => {
-    const [panelAMData, setpanelAMData] = useState({ monEval: "" });
+    const [panelAMData, setpanelAMData] = useState({ monEval1: "" });
     const panelAM = useSelector((state) => (currentId ? state.panelAssignMark.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -75,7 +75,9 @@ const PanelAssignMarkFInput = ({ currentId, setCurrentId, setNotify, setOpenPopu
 <Container>
         <form autoComplete="off" className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
             <Typography variant="h6">{currentId ? `Marking "${panelAM.studname}"` : ""}</Typography>
-            <TextField name="monEval" variant="outlined" required autoFocus label="Monitoring" fullWidth value={panelAMData.monEval} onChange={(e) => setpanelAMData({ ...panelAMData, monEval: e.target.value })} />
+            <TextField name="monEval" variant="outlined" required autoFocus label="Monitoring" fullWidth value={panelAMData.monEval1} onChange={(e) => setpanelAMData({ ...panelAMData, monEval1: e.target.value })} />
+            {/* <TextField name="monEval" variant="outlined" required  label="Monitoring 2" fullWidth value={panelAMData.monEval1} onChange={(e) => setpanelAMData({ ...panelAMData, monEval1: e.target.value })} /> */}
+
             {/* <TextField name="monEval2" variant="outlined" required label="Monitoring2" fullWidth value={panelAMData.monEval} onChange={(e) => setpanelAMData({ ...panelAMData, monEval: e.target.value })} /> */}
             <div style={{ display: "flex" }}>
                 <Button type="submit" className={classes.buttonSubmit} variant="contained" color="primary" size="large" fullWidth>

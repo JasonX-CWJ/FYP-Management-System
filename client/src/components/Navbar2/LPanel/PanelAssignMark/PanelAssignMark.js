@@ -121,7 +121,7 @@ const PanelAssignMark = () => {
                     </Grid>
                     <Grid item>
                     <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                       Assign Mark
+                       Test backend
                     </Button>
                     </Grid>
                 </Grid>
@@ -147,12 +147,13 @@ const PanelAssignMark = () => {
                             <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}>Link</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput} />
+                            <PanelAssignMarkDetails filter={'fyp1'} filter2={'moni'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput} />
                         ))}
                     </TableBody>
                     </Table>
@@ -165,14 +166,16 @@ const PanelAssignMark = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                     <TableHead>
                         <TableRow>
+                            <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}>Link</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
+                            <PanelAssignMarkDetails filter={'fyp1'} filter2={'viva'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -191,12 +194,13 @@ const PanelAssignMark = () => {
                             <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}>Link</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
+                            <PanelAssignMarkDetails  filter={'fyp2'} filter2={'moni'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
@@ -212,12 +216,13 @@ const PanelAssignMark = () => {
                             <TableCell className={classes.tableCell}></TableCell>
                             <TableCell className={classes.tableCell}>Title</TableCell>
                             <TableCell className={classes.tableCell}>Student</TableCell>
+                            <TableCell className={classes.tableCell}>Link</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         { panelAM.map((row) => (
-                            <PanelAssignMarkDetails key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
+                            <PanelAssignMarkDetails  filter={'fyp2'} filter2={'viva'} key={row._id} row={row} setConfirmDialog={setConfirmDialog} confirmDelete={confirmDelete} openForm={openForm} openFInput={openFInput}/>
                         ))}
                     </TableBody>
                     </Table>
